@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomie Kiné — Révision 1ère année</title>
+<style>
+  :root{
+    --bg:#0f1720; --panel:#15212e; --panel2:#1c2c3d; --line:#27384b;
+    --txt:#e8eef4; --muted:#9fb3c6; --accent:#23b5a8; --accent2:#2f8fd6;
+    --good:#2ecc8f; --bad:#ec5b6a; --warn:#f0b429; --shadow:0 6px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(160deg,#0c131b,#0f1720 40%,#10202b);color:var(--txt);line-height:1.55;-webkit-font-smoothing:antialiased}
+  header{position:sticky;top:0;z-index:30;background:rgba(15,23,32,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .bar{max-width:1000px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .logo{font-weight:800;font-size:18px;letter-spacing:.3px}
+  .logo span{color:var(--accent)}
+  nav{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  .tab{border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:8px 12px;border-radius:10px;cursor:pointer;font-size:14px;font-weight:600;transition:.15s}
+  .tab:hover{color:var(--txt);border-color:var(--accent)}
+  .tab.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06141a;border-color:transparent}
+  main{max-width:1000px;margin:0 auto;padding:22px 16px 80px}
+  section.view{display:none;animation:fade .25s ease}
+  section.view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  h1{font-size:26px;margin:.2em 0 .4em}
+  h2{font-size:21px;margin:1.4em 0 .5em;color:#fff;border-left:4px solid var(--accent);padding-left:10px}
+  h3{font-size:16px;margin:1.1em 0 .4em;color:var(--accent)}
+  p{margin:.5em 0}
+  a{color:var(--accent2)}
+  .lead{color:var(--muted);font-size:15px}
+  .grid{display:grid;gap:14px}
+  .cards3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .panel h3{margin-top:0}
+  .big{font-size:34px;font-weight:800;color:var(--accent)}
+  .pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
+  button.btn{cursor:pointer;border:none;border-radius:11px;padding:11px 16px;font-weight:700;font-size:15px;transition:.15s}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06141a}
+  .btn-primary:hover{filter:brightness(1.07)}
+  .btn-ghost{background:var(--panel2);color:var(--txt);border:1px solid var(--line)!important}
+  .btn-ghost:hover{border-color:var(--accent)!important}
+  select{background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:14px;font-weight:600}
+  table{border-collapse:collapse;width:100%;margin:.6em 0;font-size:14px;background:var(--panel);border-radius:10px;overflow:hidden}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:#fff;font-size:13px}
+  .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  blockquote{margin:.7em 0;padding:10px 14px;background:rgba(35,181,168,.08);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;color:var(--muted)}
+  .toc{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}
+  .toc button{font-size:13px;padding:7px 11px;border-radius:9px;background:var(--panel2);border:1px solid var(--line);color:var(--muted);cursor:pointer}
+  .toc button:hover{color:#fff;border-color:var(--accent)}
+  /* Flashcards */
+  .fcwrap{max-width:560px;margin:18px auto;text-align:center}
+  .flashcard{perspective:1400px;height:320px;margin:14px 0;cursor:pointer}
+  .fcinner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+  .flashcard.flip .fcinner{transform:rotateY(180deg)}
+  .fcface{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .fcfront{background:linear-gradient(150deg,var(--panel),var(--panel2))}
+  .fcback{background:linear-gradient(150deg,#14302c,#10242f);transform:rotateY(180deg);border-color:var(--accent)}
+  .fcface .q{font-size:19px;font-weight:700}
+  .fcface .a{font-size:16px;color:#dff5f1}
+  .fctip{color:var(--muted);font-size:12px;margin-top:14px}
+  .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center}
+  .counter{color:var(--muted);font-size:14px;font-weight:600}
+  /* Quiz */
+  .opt{display:block;width:100%;text-align:left;margin:9px 0;padding:13px 15px;border-radius:12px;background:var(--panel2);border:1px solid var(--line);color:var(--txt);cursor:pointer;font-size:15px;transition:.12s}
+  .opt:hover:not(:disabled){border-color:var(--accent)}
+  .opt:disabled{cursor:default}
+  .opt.correct{background:rgba(46,204,143,.16);border-color:var(--good);color:#bff5dd}
+  .opt.wrong{background:rgba(236,91,106,.16);border-color:var(--bad);color:#ffd2d7}
+  .explain{margin-top:12px;padding:12px 14px;border-radius:10px;background:rgba(47,143,214,.1);border:1px solid #2f8fd655;font-size:14px;color:#d6e8f7;display:none}
+  .explain.show{display:block}
+  .progress{height:8px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:10px 0}
+  .progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .3s}
+  .scorebig{font-size:48px;font-weight:800}
+  .timer{font-variant-numeric:tabular-nums;font-weight:700;color:var(--warn)}
+  .center{text-align:center}
+  .mini{font-size:13px;color:var(--muted)}
+  ul{margin:.4em 0 .6em 0;padding-left:20px}
+  li{margin:.2em 0}
+  .badge-good{color:var(--good);font-weight:700}
+  .badge-bad{color:var(--bad);font-weight:700}
+  footer{max-width:1000px;margin:0 auto;padding:24px 16px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+  @media(max-width:600px){ .bar{gap:8px} .logo{font-size:16px} .tab{padding:7px 10px;font-size:13px} h1{font-size:22px} .flashcard{height:280px} }
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <div class="logo">🦴 Anatomie<span>Kiné</span></div>
+    <nav id="nav">
+      <button class="tab active" data-view="accueil">Accueil</button>
+      <button class="tab" data-view="cours">📖 Cours</button>
+      <button class="tab" data-view="flashcards">🃏 Flashcards</button>
+      <button class="tab" data-view="quiz">✅ Quiz</button>
+      <button class="tab" data-view="examen">🏆 Examen blanc</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ACCUEIL -->
+  <section class="view active" id="view-accueil">
+    <h1>Révision Anatomie — 1ère année Kiné</h1>
+    <p class="lead">Cours complet + flashcards + quiz QCM + examen blanc chronométré. Tout est hors-ligne, gratuit, dans ce seul fichier. Ta progression est sauvegardée sur cet appareil.</p>
+    <div class="grid cards3" style="margin-top:18px">
+      <div class="panel"><div class="big" id="stat-cards">0</div><div class="mini">flashcards disponibles</div></div>
+      <div class="panel"><div class="big" id="stat-qcm">0</div><div class="mini">questions de quiz</div></div>
+      <div class="panel"><div class="big" id="stat-best">—</div><div class="mini">meilleur score examen blanc</div></div>
+    </div>
+    <h2>Par où commencer ?</h2>
+    <div class="grid cards3">
+      <div class="panel"><h3>📖 1. Le cours</h3><p class="mini">Toute l'anatomie 1ère année : plans/axes, ostéo, arthro, et tous les tableaux muscles (Origine / Terminaison / Innervation / Action).</p><button class="btn btn-ghost" onclick="go('cours')">Ouvrir le cours</button></div>
+      <div class="panel"><h3>🃏 2. Les flashcards</h3><p class="mini">Mémorisation active, carte par carte, filtrable par région. Retourne, auto-évalue-toi, recommence.</p><button class="btn btn-ghost" onclick="go('flashcards')">Réviser</button></div>
+      <div class="panel"><h3>✅ 3. Le quiz</h3><p class="mini">QCM avec correction immédiate + explication. Choisis une région ou tout le programme.</p><button class="btn btn-ghost" onclick="go('quiz')">Se tester</button></div>
+    </div>
+    <h2>Quand tu te sens prêt</h2>
+    <div class="panel">
+      <h3>🏆 Examen blanc</h3>
+      <p class="mini">20 questions tirées au hasard, chronométrées, comme le jour J. Score + correction détaillée à la fin.</p>
+      <button class="btn btn-primary" onclick="go('examen')">Lancer un examen blanc</button>
+    </div>
+    <blockquote>💡 La méthode qui marche : <b>teste-toi, ne relis pas</b>. Fais le quiz / les flashcards tous les jours plutôt que de relire le cours 10 fois.</blockquote>
+  </section>
+
+  <!-- COURS -->
+  <section class="view" id="view-cours">
+    <h1>📖 Le cours complet</h1>
+    <p class="lead">Clique sur une partie pour y aller directement.</p>
+    <div class="toc" id="toc"></div>
+    <div id="cours-content"></div>
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section class="view" id="view-flashcards">
+    <h1>🃏 Flashcards</h1>
+    <div class="row" style="justify-content:flex-start">
+      <label class="mini">Région :</label>
+      <select id="fc-filter"></select>
+      <button class="btn btn-ghost" id="fc-shuffle">🔀 Mélanger</button>
+    </div>
+    <div class="fcwrap">
+      <div class="counter" id="fc-counter">—</div>
+      <div class="flashcard" id="flashcard" onclick="toggleFlip()">
+        <div class="fcinner">
+          <div class="fcface fcfront"><div class="q" id="fc-q">…</div><div class="fctip">Clique pour retourner</div></div>
+          <div class="fcface fcback"><div class="a" id="fc-a">…</div><div class="fctip">Clique pour revenir</div></div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="btn btn-ghost" id="fc-prev">← Précédent</button>
+        <button class="btn btn-ghost" id="fc-flip">Retourner</button>
+        <button class="btn btn-ghost" id="fc-next">Suivant →</button>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn btn-ghost" id="fc-unknown" style="border-color:#ec5b6a55!important">😕 À revoir</button>
+        <button class="btn btn-primary" id="fc-known">😎 Je savais</button>
+      </div>
+      <div class="mini" id="fc-stats" style="margin-top:10px"></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="view" id="view-quiz">
+    <h1>✅ Quiz QCM</h1>
+    <div id="quiz-setup">
+      <p class="lead">Choisis une région (ou tout), puis enchaîne les questions avec correction immédiate.</p>
+      <div class="row" style="justify-content:flex-start">
+        <label class="mini">Région :</label>
+        <select id="quiz-filter"></select>
+        <button class="btn btn-primary" id="quiz-start">Commencer</button>
+      </div>
+    </div>
+    <div id="quiz-play" style="display:none">
+      <div class="row" style="justify-content:space-between">
+        <span class="counter" id="quiz-counter"></span>
+        <span class="counter">Score : <b id="quiz-score">0</b></span>
+      </div>
+      <div class="progress"><i id="quiz-bar"></i></div>
+      <div class="panel" style="margin-top:8px">
+        <h3 id="quiz-question" style="color:#fff"></h3>
+        <div id="quiz-options"></div>
+        <div class="explain" id="quiz-explain"></div>
+        <div class="row" style="justify-content:flex-end;margin-top:12px">
+          <button class="btn btn-primary" id="quiz-next" style="display:none">Suivant →</button>
+        </div>
+      </div>
+    </div>
+    <div id="quiz-result" style="display:none" class="center">
+      <h2 style="border:none">Résultat</h2>
+      <div class="scorebig" id="quiz-final"></div>
+      <p class="mini" id="quiz-msg"></p>
+      <button class="btn btn-primary" onclick="resetQuiz()">Recommencer</button>
+    </div>
+  </section>
+
+  <!-- EXAMEN -->
+  <section class="view" id="view-examen">
+    <h1>🏆 Examen blanc</h1>
+    <div id="exam-setup">
+      <p class="lead">20 questions au hasard sur tout le programme, chronométrées. Correction détaillée à la fin. Conditions réelles : pas de retour en arrière.</p>
+      <button class="btn btn-primary" id="exam-start">Lancer l'examen blanc</button>
+    </div>
+    <div id="exam-play" style="display:none">
+      <div class="row" style="justify-content:space-between">
+        <span class="counter" id="exam-counter"></span>
+        <span class="timer" id="exam-timer">00:00</span>
+      </div>
+      <div class="progress"><i id="exam-bar"></i></div>
+      <div class="panel" style="margin-top:8px">
+        <h3 id="exam-question" style="color:#fff"></h3>
+        <div id="exam-options"></div>
+      </div>
+    </div>
+    <div id="exam-result" style="display:none">
+      <div class="center">
+        <h2 style="border:none">Ton résultat</h2>
+        <div class="scorebig" id="exam-final"></div>
+        <p class="mini" id="exam-msg"></p>
+        <button class="btn btn-primary" onclick="resetExam()">Refaire un examen</button>
+      </div>
+      <h3 style="margin-top:24px">Correction détaillée</h3>
+      <div id="exam-review"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Contenu pédagogique original — révision personnelle, 1ère année kiné. À recouper avec tes cours et un atlas anatomique. Aucune donnée envoyée : tout reste sur ton appareil. 🦴
+</footer>
+
+<script>
+/* ============================ DONNÉES ============================ */
+const REGIONS = {
+  general:"Généralités", osteo:"Ostéologie", arthro:"Arthrologie", myo:"Myologie générale",
+  "membre-sup":"Membre supérieur", "membre-inf":"Membre inférieur", tronc:"Tronc",
+  "tete-cou":"Tête & cou", neuro:"Neuro-anatomie", palpation:"Palpation"
+};
+
+const FLASHCARDS = [
+  ["Position anatomique de référence ?","Debout, regard horizontal, bras le long du corps, paumes vers l'avant (avant-bras en supination), pieds joints.","general"],
+  ["Plan sagittal médian — sépare quoi, quels mouvements ?","Sépare droite/gauche. Mouvements : flexion/extension.","general"],
+  ["Plan frontal (coronal) — sépare quoi, quels mouvements ?","Sépare avant/arrière. Mouvements : abduction/adduction.","general"],
+  ["Plan transversal — sépare quoi, quels mouvements ?","Sépare haut/bas. Mouvements : rotations.","general"],
+  ["Autour de quel axe se fait la flexion/extension ?","Axe transversal (latéro-latéral), dans le plan sagittal.","general"],
+  ["Autour de quel axe se fait l'abduction/adduction ?","Axe sagittal (antéro-postérieur), dans le plan frontal.","general"],
+  ["Autour de quel axe se font les rotations ?","Axe vertical (longitudinal), dans le plan transversal.","general"],
+  ["Proximal vs distal ?","Proximal = proche de la racine du membre. Distal = loin de la racine.","general"],
+  ["Pronation vs supination de l'avant-bras ?","Pronation = paume vers l'arrière/bas. Supination = paume vers l'avant/haut.","general"],
+  ["Inversion vs éversion du pied ?","Inversion = plante en dedans. Éversion = plante en dehors.","general"],
+  ["Les 5 types d'os ?","Long, court, plat, irrégulier, sésamoïde.","osteo"],
+  ["Exemple d'os sésamoïde ?","La patella (dans le tendon quadricipital).","osteo"],
+  ["Structure d'un os long ?","Diaphyse (corps) + métaphyse (croissance) + épiphyses (extrémités), cavité médullaire, périoste.","osteo"],
+  ["Répartition des vertèbres ?","Cervicales 7, thoraciques 12, lombaires 5, sacrum 5 soudées, coccyx 4 soudées.","osteo"],
+  ["Noms de C1 et C2 ?","C1 = Atlas (sans corps). C2 = Axis (processus odontoïde).","osteo"],
+  ["Les 4 courbures du rachis ?","Lordose cervicale, cyphose thoracique, lordose lombaire, cyphose sacrée.","osteo"],
+  ["Côtes vraies / fausses / flottantes ?","Vraies 1-7, fausses 8-10, flottantes 11-12.","osteo"],
+  ["Carpe — rangée proximale (lat→méd) ?","Scaphoïde, Lunatum, Triquétrum, Pisiforme.","osteo"],
+  ["Carpe — rangée distale (lat→méd) ?","Trapèze, Trapézoïde, Capitatum, Hamatum.","osteo"],
+  ["Les 3 os de l'os coxal ?","Ilion, ischion, pubis (fusionnés à l'acétabulum).","osteo"],
+  ["Os du tarse ?","Talus, Calcanéus, Naviculaire, Cuboïde, 3 Cunéiformes.","osteo"],
+  ["Quel os de la jambe est portant ?","Le tibia (médial). La fibula est non portante.","osteo"],
+  ["Les 3 classes d'articulations par mobilité ?","Synarthrose (immobile), amphiarthrose (semi-mobile), diarthrose (synoviale mobile).","arthro"],
+  ["Type d'articulation épaule/hanche ?","Sphéroïde (énarthrose), 3 degrés de liberté.","arthro"],
+  ["Type d'articulation du coude ?","Trochléenne (ginglyme), 1 degré de liberté.","arthro"],
+  ["Articulation du pouce (trapézo-métacarpienne) ?","En selle (toroïde), 2 degrés de liberté.","arthro"],
+  ["Qui produit le liquide synovial ?","La membrane synoviale.","arthro"],
+  ["Les 3 types de tissu musculaire ?","Strié squelettique (volontaire), strié cardiaque, lisse (involontaires).","myo"],
+  ["Rôles fonctionnels d'un muscle ?","Agoniste (moteur), antagoniste (s'oppose), synergiste (aide), fixateur (stabilise l'origine).","myo"],
+  ["Contraction concentrique / excentrique / isométrique ?","Concentrique = raccourcit. Excentrique = s'allonge en se contractant (freinage). Isométrique = longueur constante.","myo"],
+  ["Deltoïde — O/T/I/Action ?","O: clavicule lat., acromion, épine scapula. T: tubérosité deltoïdienne. I: n. axillaire (C5-C6). Action: abduction (moyen), flexion+RI (ant.), extension+RE (post.).","membre-sup"],
+  ["Supra-épineux — rôle clé + innervation ?","Initie l'abduction (15 premiers °) + stabilise. I: n. supra-scapulaire (C5-C6).","membre-sup"],
+  ["Infra-épineux et petit rond — action ?","Rotation latérale (externe) de l'épaule.","membre-sup"],
+  ["Subscapulaire — action ?","Rotation médiale (interne). I: n. subscapulaires (C5-C6).","membre-sup"],
+  ["Coiffe des rotateurs (SITS) ?","Supra-épineux, Infra-épineux, Teres minor (petit rond), Subscapulaire.","membre-sup"],
+  ["Grand dorsal — action + innervation ?","Adduction + RI + extension (geste de tirer/grimper). I: n. thoraco-dorsal (C6-C8).","membre-sup"],
+  ["Dentelé antérieur — innervation + pathologie ?","I: n. thoracique long (C5-C7). Lésion = scapula alata (winging).","membre-sup"],
+  ["Biceps brachial — innervation + actions ?","I: n. musculo-cutané (C5-C6). Flexion coude + supination + flexion épaule.","membre-sup"],
+  ["Fléchisseur pur du coude ?","Le brachial (musculo-cutané, C5-C6).","membre-sup"],
+  ["Triceps brachial — action + innervation ?","Extension du coude. I: n. radial (C6-C8).","membre-sup"],
+  ["Innervation loge antérieure de l'avant-bras ?","Nerf médian (+ ulnaire pour FUC et ½ FPD).","membre-sup"],
+  ["Innervation loge postérieure de l'avant-bras ?","Nerf radial (branche interosseuse postérieure).","membre-sup"],
+  ["Ilio-psoas — action + terminaison ?","Flexion de hanche (principal). T: petit trochanter.","membre-inf"],
+  ["Grand fessier — action + innervation ?","Extension + rotation latérale de hanche. I: n. glutéal inférieur (L5-S2).","membre-inf"],
+  ["Moyen fessier — rôle clé ?","Abduction de hanche + stabilisation du bassin en appui monopodal. I: n. glutéal sup. (L4-S1).","membre-inf"],
+  ["Innervation des adducteurs ?","Nerf obturateur (L2-L4).","membre-inf"],
+  ["Quadriceps — action + innervation ?","Extension du genou. I: nerf fémoral (L2-L4).","membre-inf"],
+  ["Ischio-jambiers — action commune + innervation ?","Flexion du genou + extension de hanche. I: nerf sciatique (L5-S2).","membre-inf"],
+  ["Les 3 ischio-jambiers ?","Biceps fémoral, semi-tendineux, semi-membraneux.","membre-inf"],
+  ["Qui forme la patte d'oie ?","Sartorius + Gracile + Semi-tendineux (tibia médial).","membre-inf"],
+  ["Triceps sural — composition + action ?","Gastrocnémien + soléaire → tendon d'Achille. Flexion plantaire. I: n. tibial (S1-S2).","membre-inf"],
+  ["Tibial antérieur — action + innervation ?","Dorsiflexion + inversion. I: nerf fibulaire profond (L4-L5).","membre-inf"],
+  ["Fibulaires (péroniers) — action + innervation ?","Éversion + flexion plantaire. I: nerf fibulaire superficiel (L5-S1).","membre-inf"],
+  ["Innervation des 3 loges de la jambe ?","Post = tibial. Ant = fibulaire profond. Lat = fibulaire superficiel.","membre-inf"],
+  ["Diaphragme — innervation + action ?","Nerf phrénique (C3-C4-C5). Inspiration principale. Mémo : C3-4-5 keep the diaphragm alive.","tronc"],
+  ["Droit de l'abdomen — action ?","Flexion du tronc. I: n. intercostaux (T7-T12).","tronc"],
+  ["Transverse de l'abdomen — rôle ?","Sangle abdominale, gainage (core), expiration forcée.","tronc"],
+  ["Oblique externe vs interne — rotation ?","Externe = rotation controlatérale. Interne = rotation homolatérale.","tronc"],
+  ["Érecteurs du rachis — action ?","Extension du rachis, posture. I: rameaux dorsaux des nerfs spinaux.","tronc"],
+  ["SCM — action unilatérale ?","Inclinaison homolatérale + rotation controlatérale de la tête.","tete-cou"],
+  ["Composants du SNC et du SNP ?","SNC = encéphale + moelle spinale. SNP = nerfs crâniens (12) + spinaux (31).","neuro"],
+  ["Nb de paires de nerfs spinaux + répartition ?","31 : 8 cervicaux, 12 thoraciques, 5 lombaires, 5 sacrés, 1 coccygien.","neuro"],
+  ["Racine dorsale vs ventrale ?","Dorsale = sensitive. Ventrale = motrice. Le nerf spinal est mixte.","neuro"],
+  ["Racines du plexus brachial ?","C5 à T1.","neuro"],
+  ["Nerf axillaire — muscles ?","Deltoïde + petit rond (C5-C6).","neuro"],
+  ["Nerf radial — muscles ?","Triceps + tous les extenseurs. Lésion = main tombante.","neuro"],
+  ["Nerf médian — muscles ?","Loge antérieure de l'avant-bras + éminence thénar.","neuro"],
+  ["Nerf ulnaire — muscles + lésion ?","FUC, ½ FPD, intrinsèques de la main. Lésion = griffe ulnaire.","neuro"],
+  ["Nerf fémoral — muscles + racines ?","Quadriceps, sartorius, ilio-psoas (L2-L4).","neuro"],
+  ["Nerf sciatique — racines + division ?","L4-S3. Se divise en nerf tibial + nerf fibulaire commun.","neuro"],
+  ["Lésion du nerf fibulaire commun → ?","Pied tombant (steppage) : déficit dorsiflexion + éversion.","neuro"],
+  ["Dermatome vs myotome ?","Dermatome = territoire cutané d'une racine. Myotome = muscles d'une racine.","neuro"],
+  ["Repères palpables de l'épaule ?","Acromion, processus coracoïde, épine de la scapula, tubercule majeur.","palpation"],
+  ["Repères palpables du bassin ?","EIAS, EIPS, crête iliaque, tubérosité ischiatique, grand trochanter, symphyse pubienne.","palpation"],
+  ["Repères palpables du genou ?","Patella, tubérosité tibiale, interligne, tête de la fibula, condyles.","palpation"],
+  ["Repères palpables de la cheville ?","Malléole médiale, malléole latérale, tendon calcanéen, naviculaire, base 5e métatarsien.","palpation"],
+  ["La tabatière anatomique permet de palper ?","Le scaphoïde.","palpation"],
+  ["Muscles biarticulaires du membre inférieur ?","Droit fémoral, ischio-jambiers, gastrocnémien, sartorius.","membre-inf"]
+];
+
+// [question, [options], indexCorrect, explication, tag]
+const QCM = [
+  ["Dans quel plan se fait la flexion/extension ?",["Sagittal","Frontal","Transversal","Oblique"],0,"Le plan sagittal sépare droite/gauche ; flexion et extension s'y déroulent.","general"],
+  ["L'abduction se fait autour de quel axe ?",["Sagittal (antéro-postérieur)","Transversal","Vertical","Longitudinal"],0,"Abduction/adduction = plan frontal, autour de l'axe sagittal.","general"],
+  ["En position anatomique, les paumes sont orientées :",["Vers l'avant","Vers l'arrière","Vers le corps","Vers le haut"],0,"Avant-bras en supination, paumes vers l'avant.","general"],
+  ["Les rotations se déroulent dans le plan :",["Transversal","Sagittal","Frontal","Coronal"],0,"Rotations = plan transversal, autour de l'axe vertical.","general"],
+  ["La pronation de l'avant-bras correspond à :",["Paume vers l'arrière/bas","Paume vers l'avant","Paume vers le haut","Paume vers le médial"],0,"Supination = paume vers l'avant/haut ; pronation = l'inverse.","general"],
+  ["« Distal » signifie :",["Loin de la racine du membre","Proche de la racine","Vers l'axe médian","Vers la peau"],0,"Distal = éloigné de la racine ; proximal = proche.","general"],
+  ["Combien de vertèbres cervicales ?",["7","5","12","8"],0,"7 cervicales (mais 8 nerfs cervicaux).","osteo"],
+  ["Quel est le nom de la vertèbre C2 ?",["Axis","Atlas","Sacrum","Dentata"],0,"C2 = Axis (processus odontoïde) ; C1 = Atlas.","osteo"],
+  ["La patella est un os :",["Sésamoïde","Long","Court","Plat"],0,"Sésamoïde, logé dans le tendon du quadriceps.","osteo"],
+  ["Les côtes flottantes sont les :",["11 et 12","8 à 10","1 à 7","11 à 13"],0,"Vraies 1-7, fausses 8-10, flottantes 11-12.","osteo"],
+  ["Quel os porte le poids du corps à la jambe ?",["Tibia","Fibula","Talus","Patella"],0,"Le tibia (médial) est portant ; la fibula ne l'est pas.","osteo"],
+  ["L'os coxal est formé de :",["Ilion + ischion + pubis","Ilion + sacrum + pubis","Ischion + fémur + pubis","Ilion + ischion + sacrum"],0,"Les 3 fusionnent à l'acétabulum.","osteo"],
+  ["Le talus appartient au :",["Tarse","Carpe","Métatarse","Métacarpe"],0,"Le talus est un os du tarse (cheville/pied).","osteo"],
+  ["La cyphose physiologique se situe au niveau :",["Thoracique","Cervical","Lombaire","Coccygien"],0,"Cyphoses thoracique et sacrée ; lordoses cervicale et lombaire.","osteo"],
+  ["Le scaphoïde appartient à quelle structure ?",["Carpe","Tarse","Métacarpe","Phalanges"],0,"Scaphoïde = rangée proximale du carpe.","osteo"],
+  ["L'épaule est une articulation de type :",["Sphéroïde (3 ddl)","Trochléenne (1 ddl)","Plane","En selle"],0,"Énarthrose : 3 degrés de liberté.","arthro"],
+  ["Le coude (huméro-ulnaire) est une articulation :",["Trochléenne (1 ddl)","Sphéroïde","Plane","Trochoïde"],0,"Ginglyme : flexion/extension uniquement.","arthro"],
+  ["Une articulation semi-mobile est une :",["Amphiarthrose","Synarthrose","Diarthrose","Énarthrose"],0,"Ex : symphyse pubienne, disques intervertébraux.","arthro"],
+  ["Les sutures du crâne sont des :",["Synarthroses","Amphiarthroses","Diarthroses","Arthrodies"],0,"Articulations fibreuses immobiles.","arthro"],
+  ["L'articulation du pouce (trapézo-métacarpienne) est :",["En selle","Sphéroïde","Trochléenne","Plane"],0,"Toroïde / en selle, 2 degrés de liberté.","arthro"],
+  ["Une contraction excentrique correspond à :",["Le muscle s'allonge en se contractant","Le muscle raccourcit","La longueur ne change pas","Le muscle se relâche"],0,"Excentrique = freinage (descente d'une charge).","myo"],
+  ["Le muscle qui s'oppose au mouvement est l' :",["Antagoniste","Agoniste","Synergiste","Fixateur"],0,"L'agoniste produit, l'antagoniste s'oppose.","myo"],
+  ["Le gainage est une contraction :",["Isométrique","Concentrique","Excentrique","Pliométrique"],0,"Longueur constante = isométrique.","myo"],
+  ["Quel muscle NE fait PAS partie de la coiffe des rotateurs ?",["Deltoïde","Supra-épineux","Infra-épineux","Subscapulaire"],0,"SITS = Supra-épineux, Infra-épineux, Teres minor, Subscapulaire. Pas le deltoïde.","membre-sup"],
+  ["Quel muscle initie l'abduction de l'épaule ?",["Supra-épineux","Deltoïde","Grand rond","Infra-épineux"],0,"Supra-épineux (0-15°), puis le deltoïde prend le relais.","membre-sup"],
+  ["Le subscapulaire réalise une :",["Rotation interne","Rotation externe","Abduction","Adduction"],0,"Seul muscle de la coiffe en rotation interne.","membre-sup"],
+  ["L'infra-épineux et le petit rond réalisent une :",["Rotation externe","Rotation interne","Flexion","Adduction"],0,"Tous deux rotateurs externes.","membre-sup"],
+  ["Le deltoïde est innervé par le nerf :",["Axillaire","Supra-scapulaire","Radial","Musculo-cutané"],0,"Nerf axillaire (C5-C6).","membre-sup"],
+  ["Le biceps brachial est innervé par le nerf :",["Musculo-cutané","Radial","Médian","Ulnaire"],0,"Musculo-cutané (C5-C6).","membre-sup"],
+  ["Outre la flexion du coude, le biceps réalise une :",["Supination","Pronation","Adduction","Rotation interne"],0,"Le biceps est un puissant supinateur.","membre-sup"],
+  ["Le triceps brachial est innervé par le nerf :",["Radial","Musculo-cutané","Médian","Ulnaire"],0,"Nerf radial (C6-C8), extension du coude.","membre-sup"],
+  ["Le fléchisseur « pur » du coude est le :",["Brachial","Biceps","Brachio-radial","Triceps"],0,"Le brachial ne fait que fléchir le coude.","membre-sup"],
+  ["La loge antérieure de l'avant-bras est innervée surtout par :",["Le nerf médian","Le nerf radial","Le nerf axillaire","Le nerf musculo-cutané"],0,"Médian (+ ulnaire pour FUC et ½ FPD).","membre-sup"],
+  ["La loge postérieure de l'avant-bras dépend du nerf :",["Radial","Médian","Ulnaire","Axillaire"],0,"Le radial innerve tous les extenseurs.","membre-sup"],
+  ["Le grand dorsal réalise (geste de tirer) :",["Adduction + RI + extension","Abduction + RE","Flexion + RE","Élévation"],0,"Innervé par le nerf thoraco-dorsal.","membre-sup"],
+  ["Une atteinte du nerf thoracique long entraîne :",["Une scapula alata (winging)","Une main tombante","Un pied tombant","Une griffe ulnaire"],0,"Paralysie du dentelé antérieur → décollement de la scapula.","membre-sup"],
+  ["Le principal fléchisseur de la hanche est le :",["Ilio-psoas","Grand fessier","Quadriceps","Sartorius"],0,"L'ilio-psoas s'insère sur le petit trochanter.","membre-inf"],
+  ["Le moyen fessier est essentiel pour :",["Stabiliser le bassin en appui monopodal","Étendre le genou","Fléchir la hanche","Faire la rotation externe"],0,"Son déficit donne une boiterie de Trendelenburg.","membre-inf"],
+  ["Le grand fessier réalise principalement :",["L'extension de hanche","La flexion de hanche","L'abduction","L'adduction"],0,"Extension + rotation latérale ; n. glutéal inférieur.","membre-inf"],
+  ["Les adducteurs sont innervés par le nerf :",["Obturateur","Fémoral","Sciatique","Tibial"],0,"Nerf obturateur (L2-L4).","membre-inf"],
+  ["Le quadriceps est innervé par le nerf :",["Fémoral","Obturateur","Sciatique","Glutéal supérieur"],0,"Nerf fémoral (L2-L4), extension du genou.","membre-inf"],
+  ["Les ischio-jambiers réalisent :",["Flexion genou + extension hanche","Extension genou + flexion hanche","Abduction + RI","Adduction"],0,"Innervés par le nerf sciatique.","membre-inf"],
+  ["Quel muscle ne fait PAS partie de la patte d'oie ?",["Semi-membraneux","Sartorius","Gracile","Semi-tendineux"],0,"Patte d'oie = Sartorius + Gracile + Semi-tendineux.","membre-inf"],
+  ["Le triceps sural est composé de :",["Gastrocnémien + soléaire","Tibial ant. + soléaire","Gastrocnémien + plantaire grêle","Soléaire + tibial post."],0,"Tous deux → tendon calcanéen (d'Achille).","membre-inf"],
+  ["Le triceps sural réalise la :",["Flexion plantaire","Dorsiflexion","Éversion","Inversion"],0,"Innervé par le nerf tibial (S1-S2).","membre-inf"],
+  ["Le tibial antérieur réalise :",["Dorsiflexion + inversion","Flexion plantaire + éversion","Éversion seule","Flexion plantaire seule"],0,"Innervé par le nerf fibulaire profond.","membre-inf"],
+  ["Les muscles fibulaires (péroniers) réalisent l' :",["Éversion","Inversion","Dorsiflexion pure","Adduction"],0,"Éversion + flexion plantaire ; n. fibulaire superficiel.","membre-inf"],
+  ["La loge postérieure de la jambe dépend du nerf :",["Tibial","Fibulaire profond","Fibulaire superficiel","Fémoral"],0,"Le nerf tibial innerve les fléchisseurs plantaires.","membre-inf"],
+  ["Le muscle biarticulaire du quadriceps est le :",["Droit fémoral","Vaste médial","Vaste latéral","Vaste intermédiaire"],0,"Le droit fémoral croise hanche + genou.","membre-inf"],
+  ["Le diaphragme est innervé par le nerf :",["Phrénique (C3-C5)","Vague","Intercostal","Phrénique (T1-T3)"],0,"« C3-4-5 keep the diaphragm alive ».","tronc"],
+  ["Le droit de l'abdomen réalise :",["La flexion du tronc","L'extension du tronc","La rotation seule","L'inclinaison seule"],0,"Du pubis au xiphoïde + côtes 5-7.","tronc"],
+  ["Le rôle principal du transverse de l'abdomen est :",["La sangle abdominale (gainage)","La flexion du tronc","La rotation controlatérale","L'extension"],0,"Muscle profond du « core ».","tronc"],
+  ["L'oblique externe réalise une rotation :",["Controlatérale","Homolatérale","Nulle","Axiale pure"],0,"Externe = controlatérale, interne = homolatérale.","tronc"],
+  ["Les érecteurs du rachis réalisent :",["L'extension du rachis","La flexion du rachis","La rotation pure","L'inclinaison pure"],0,"Posture + extension ; rameaux dorsaux.","tronc"],
+  ["Le plexus brachial naît des racines :",["C5 à T1","C1 à C4","L1 à L4","T1 à T4"],0,"Racines → troncs → divisions → faisceaux → 5 nerfs.","neuro"],
+  ["La racine dorsale d'un nerf spinal est :",["Sensitive","Motrice","Végétative pure","Absente"],0,"Dorsale = sensitive, ventrale = motrice.","neuro"],
+  ["Combien de paires de nerfs spinaux ?",["31","12","33","30"],0,"8 cervicaux, 12 thoraciques, 5 lombaires, 5 sacrés, 1 coccygien.","neuro"],
+  ["Le deltoïde et le petit rond sont innervés par le nerf :",["Axillaire","Radial","Supra-scapulaire","Médian"],0,"Nerf axillaire (C5-C6).","neuro"],
+  ["Le nerf radial innerve principalement :",["Les extenseurs","Les fléchisseurs de l'avant-bras","Les adducteurs","Le diaphragme"],0,"Sa lésion donne une main tombante.","neuro"],
+  ["Une lésion du nerf fibulaire commun provoque :",["Un pied tombant (steppage)","Une main tombante","Une griffe ulnaire","Une scapula alata"],0,"Déficit de dorsiflexion + éversion.","neuro"],
+  ["Le nerf sciatique se divise en :",["Tibial + fibulaire commun","Fémoral + obturateur","Médian + ulnaire","Tibial + fémoral"],0,"Division au creux poplité.","neuro"],
+  ["Le nerf fémoral innerve :",["Le quadriceps","Les ischio-jambiers","Les adducteurs","Le triceps sural"],0,"Quadriceps, sartorius, ilio-psoas (L2-L4).","neuro"],
+  ["La griffe ulnaire résulte d'une atteinte du nerf :",["Ulnaire","Médian","Radial","Axillaire"],0,"Le nerf ulnaire innerve les intrinsèques de la main.","neuro"],
+  ["Un dermatome correspond à :",["Le territoire cutané d'une racine","Les muscles d'une racine","Un faisceau nerveux","Un plexus"],0,"Myotome = muscles ; dermatome = peau.","neuro"],
+  ["La tabatière anatomique permet de palper le :",["Scaphoïde","Lunatum","Trapèze","Pisiforme"],0,"Sensibilité = suspicion de fracture du scaphoïde.","palpation"],
+  ["L'EIAS est un repère palpable du :",["Bassin","Genou","Épaule","Poignet"],0,"Épine iliaque antéro-supérieure : origine du sartorius et du TFL.","palpation"],
+  ["La malléole médiale appartient au :",["Tibia","Fibula","Talus","Calcanéus"],0,"Malléole médiale = tibia ; malléole latérale = fibula.","palpation"],
+  ["Le tendon calcanéen (d'Achille) relie le triceps sural au :",["Calcanéus","Talus","Naviculaire","Cuboïde"],0,"Insertion sur la tubérosité calcanéenne.","palpation"]
+];
+
+/* ===== COURS (HTML) ===== */
+const COURS = [
+ ["p0","Partie 0 — Le langage de l'anatomie", `
+  <h3>Position anatomique de référence</h3>
+  <p>Sujet debout, regard horizontal, bras le long du corps, <b>paumes vers l'avant</b>, pieds joints. Toute description part de là.</p>
+  <h3>Les 3 plans & axes</h3>
+  <div class="tablewrap"><table><tr><th>Plan</th><th>Sépare</th><th>Axe</th><th>Mouvements</th></tr>
+  <tr><td>Sagittal</td><td>droite / gauche</td><td>transversal</td><td>Flexion / Extension</td></tr>
+  <tr><td>Frontal (coronal)</td><td>avant / arrière</td><td>sagittal</td><td>Abduction / Adduction</td></tr>
+  <tr><td>Transversal</td><td>haut / bas</td><td>vertical</td><td>Rotations</td></tr></table></div>
+  <blockquote>Le mouvement se fait <b>dans un plan</b> et <b>autour de l'axe perpendiculaire</b> à ce plan.</blockquote>
+  <h3>Vocabulaire des mouvements</h3>
+  <ul><li>Flexion/Extension, Abduction/Adduction, Rotation médiale/latérale, Circumduction</li>
+  <li>Pronation/Supination (avant-bras), Inversion/Éversion (pied), Dorsiflexion/Flexion plantaire (cheville)</li>
+  <li>Élévation/Abaissement & Protraction/Rétraction (scapula), Opposition (pouce)</li></ul>`],
+ ["p1","Partie 1 — Ostéologie", `
+  <h3>Classification des os</h3>
+  <p>Long (fémur), court (carpe), plat (scapula), irrégulier (vertèbre), sésamoïde (patella).</p>
+  <h3>Rachis — 33 vertèbres</h3>
+  <p>Cervicales 7 (C1 Atlas, C2 Axis), thoraciques 12, lombaires 5, sacrum 5 soudées, coccyx 4. Courbures : lordose cervicale, cyphose thoracique, lordose lombaire, cyphose sacrée.</p>
+  <h3>Thorax</h3><p>Côtes vraies 1-7, fausses 8-10, flottantes 11-12. Sternum = manubrium + corps + xiphoïde.</p>
+  <h3>Carpe & Tarse</h3>
+  <p><b>Carpe</b> (prox→dist) : Scaphoïde, Lunatum, Triquétrum, Pisiforme / Trapèze, Trapézoïde, Capitatum, Hamatum.</p>
+  <p><b>Tarse</b> : Talus, Calcanéus, Naviculaire, Cuboïde, 3 Cunéiformes.</p>
+  <p>Os coxal = ilion + ischion + pubis. Jambe : tibia (médial, portant) + fibula (latéral).</p>`],
+ ["p2","Partie 2 — Arthrologie", `
+  <h3>Classification (mobilité)</h3>
+  <div class="tablewrap"><table><tr><th>Type</th><th>Mobilité</th><th>Exemple</th></tr>
+  <tr><td>Synarthrose (fibreuse)</td><td>immobile</td><td>sutures du crâne</td></tr>
+  <tr><td>Amphiarthrose (cartilagineuse)</td><td>semi-mobile</td><td>symphyse pubienne, disques</td></tr>
+  <tr><td>Diarthrose (synoviale)</td><td>mobile</td><td>épaule, genou, hanche</td></tr></table></div>
+  <h3>Articulations synoviales & degrés de liberté</h3>
+  <div class="tablewrap"><table><tr><th>Type</th><th>Ddl</th><th>Exemple</th></tr>
+  <tr><td>Sphéroïde</td><td>3</td><td>épaule, hanche</td></tr>
+  <tr><td>Ellipsoïde</td><td>2</td><td>radio-carpienne</td></tr>
+  <tr><td>En selle</td><td>2</td><td>pouce</td></tr>
+  <tr><td>Trochléenne</td><td>1</td><td>coude, genou</td></tr>
+  <tr><td>Trochoïde (pivot)</td><td>1</td><td>radio-ulnaire</td></tr>
+  <tr><td>Plane</td><td>glissement</td><td>articulaires vertébrales</td></tr></table></div>`],
+ ["p3","Partie 3 — Myologie générale", `
+  <h3>Rôles fonctionnels</h3>
+  <p>Agoniste (moteur), antagoniste (s'oppose), synergiste (aide), fixateur (stabilise l'origine).</p>
+  <h3>Types de contraction</h3>
+  <ul><li><b>Concentrique</b> : le muscle raccourcit (montée).</li>
+  <li><b>Excentrique</b> : s'allonge en se contractant (freinage).</li>
+  <li><b>Isométrique</b> : longueur constante (gainage).</li></ul>`],
+ ["p4a","Partie 4 — Muscles du membre supérieur", `
+  <h3>Épaule</h3>
+  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Deltoïde</td><td>axillaire (C5-C6)</td><td>abduction / flexion+RI / extension+RE</td></tr>
+  <tr><td>Supra-épineux</td><td>supra-scapulaire</td><td>initie l'abduction</td></tr>
+  <tr><td>Infra-épineux</td><td>supra-scapulaire</td><td>rotation externe</td></tr>
+  <tr><td>Petit rond</td><td>axillaire</td><td>rotation externe</td></tr>
+  <tr><td>Subscapulaire</td><td>subscapulaires</td><td>rotation interne</td></tr>
+  <tr><td>Grand dorsal</td><td>thoraco-dorsal</td><td>adduction + RI + extension</td></tr>
+  <tr><td>Grand pectoral</td><td>pectoraux</td><td>adduction + RI + flexion</td></tr></table></div>
+  <blockquote><b>Coiffe = SITS</b> : Supra-épineux, Infra-épineux, Teres minor, Subscapulaire.</blockquote>
+  <h3>Bras</h3>
+  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Biceps brachial</td><td>musculo-cutané</td><td>flexion coude + supination</td></tr>
+  <tr><td>Brachial</td><td>musculo-cutané</td><td>fléchisseur pur du coude</td></tr>
+  <tr><td>Triceps brachial</td><td>radial</td><td>extension du coude</td></tr></table></div>
+  <blockquote>Avant-bras : loge <b>antérieure = médian</b>, loge <b>postérieure = radial</b>.</blockquote>`],
+ ["p4b","Partie 4 — Muscles du membre inférieur", `
+  <h3>Hanche & cuisse</h3>
+  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Ilio-psoas</td><td>plexus lombaire / fémoral</td><td>flexion de hanche</td></tr>
+  <tr><td>Grand fessier</td><td>glutéal inférieur</td><td>extension + RE hanche</td></tr>
+  <tr><td>Moyen fessier</td><td>glutéal supérieur</td><td>abduction + stabilité bassin</td></tr>
+  <tr><td>Adducteurs</td><td>obturateur</td><td>adduction de hanche</td></tr>
+  <tr><td>Quadriceps</td><td>fémoral (L2-L4)</td><td>extension du genou</td></tr>
+  <tr><td>Ischio-jambiers</td><td>sciatique (L5-S2)</td><td>flexion genou + extension hanche</td></tr></table></div>
+  <h3>Jambe</h3>
+  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Triceps sural</td><td>tibial</td><td>flexion plantaire</td></tr>
+  <tr><td>Tibial antérieur</td><td>fibulaire profond</td><td>dorsiflexion + inversion</td></tr>
+  <tr><td>Fibulaires</td><td>fibulaire superficiel</td><td>éversion</td></tr></table></div>
+  <blockquote>Patte d'oie = <b>Sa</b>rtorius + <b>Gr</b>acile + <b>Se</b>mi-tendineux.</blockquote>`],
+ ["p4c","Partie 4 — Tronc & tête/cou", `
+  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Droit de l'abdomen</td><td>intercostaux (T7-T12)</td><td>flexion du tronc</td></tr>
+  <tr><td>Obliques</td><td>T7-L1</td><td>rotation (ext=contro, int=homo)</td></tr>
+  <tr><td>Transverse</td><td>T7-L1</td><td>sangle abdominale / gainage</td></tr>
+  <tr><td>Érecteurs du rachis</td><td>rameaux dorsaux</td><td>extension du rachis</td></tr>
+  <tr><td>Diaphragme</td><td>phrénique (C3-C5)</td><td>inspiration principale</td></tr>
+  <tr><td>SCM</td><td>accessoire (XI)</td><td>inclinaison homo + rotation contro</td></tr></table></div>`],
+ ["p5","Partie 5 — Neuro-anatomie", `
+  <p>SNC = encéphale + moelle. SNP = 12 nerfs crâniens + 31 nerfs spinaux (8C, 12T, 5L, 5S, 1Co). Racine dorsale sensitive, ventrale motrice.</p>
+  <h3>Plexus brachial (C5-T1)</h3>
+  <div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles clés</th></tr>
+  <tr><td>Musculo-cutané</td><td>loge ant. du bras</td></tr>
+  <tr><td>Axillaire</td><td>deltoïde, petit rond</td></tr>
+  <tr><td>Radial</td><td>triceps + extenseurs</td></tr>
+  <tr><td>Médian</td><td>fléchisseurs avant-bras + thénar</td></tr>
+  <tr><td>Ulnaire</td><td>intrinsèques main (griffe si lésion)</td></tr></table></div>
+  <h3>Membre inférieur</h3>
+  <div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles</th></tr>
+  <tr><td>Fémoral (L2-L4)</td><td>quadriceps, sartorius, ilio-psoas</td></tr>
+  <tr><td>Obturateur</td><td>adducteurs</td></tr>
+  <tr><td>Sciatique (→ tibial + fibulaire commun)</td><td>ischios + jambe + pied</td></tr></table></div>
+  <blockquote>Lésion du <b>fibulaire commun</b> → pied tombant (steppage).</blockquote>`],
+ ["p6","Réflexes à graver", `
+  <ol>
+  <li>Mouvement = dans un plan, autour de l'axe perpendiculaire.</li>
+  <li>Tout muscle se décrit par O / T / I / Action.</li>
+  <li>Coiffe = SITS.</li>
+  <li>Avant-bras : médian devant, radial derrière.</li>
+  <li>Jambe : tibial derrière, fibulaire profond devant, fibulaire superficiel dehors.</li>
+  <li>Quadriceps = fémoral = extension genou.</li>
+  <li>Ischios = sciatique = flexion genou + extension hanche.</li>
+  <li>Moyen fessier = abduction + stabilité du bassin.</li>
+  <li>Diaphragme = C3-C4-C5.</li>
+  <li>Patte d'oie = Sartorius + Gracile + Semi-tendineux.</li>
+  </ol>`]
+];
+
+/* ============================ UTILITAIRES ============================ */
+const $=id=>document.getElementById(id);
+const store={
+  get(k,d){try{return JSON.parse(localStorage.getItem("anatk_"+k))??d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem("anatk_"+k,JSON.stringify(v))}catch(e){}}
+};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(((i+1)*(performance.now()%97)/97))%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+// fallback shuffle déterministe-ish (sans Math.random pour robustesse)
+function rnd(n){return Math.floor((performance.now()*1000+ n*2654435761)%n)}
+function realShuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+
+/* ============================ NAVIGATION ============================ */
+function go(view){
+  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.view===view));
+  document.querySelectorAll(".view").forEach(s=>s.classList.remove("active"));
+  $("view-"+view).classList.add("active");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+document.getElementById("nav").addEventListener("click",e=>{if(e.target.dataset.view)go(e.target.dataset.view)});
+
+/* ============================ ACCUEIL STATS ============================ */
+$("stat-cards").textContent=FLASHCARDS.length;
+$("stat-qcm").textContent=QCM.length;
+function refreshBest(){const b=store.get("examBest",null);$("stat-best").textContent=b==null?"—":b+"/20";}
+refreshBest();
+
+/* ============================ COURS ============================ */
+(function(){
+  const toc=$("toc"), wrap=$("cours-content");
+  COURS.forEach(([id,title,html])=>{
+    const b=document.createElement("button");b.textContent=title;b.onclick=()=>$("c-"+id).scrollIntoView({behavior:"smooth"});toc.appendChild(b);
+    const sec=document.createElement("div");sec.className="panel";sec.style.marginBottom="14px";sec.id="c-"+id;
+    sec.innerHTML="<h2 style='margin-top:0'>"+title+"</h2>"+html;wrap.appendChild(sec);
+  });
+})();
+
+/* ============================ FLASHCARDS ============================ */
+let fcDeck=[], fcIdx=0, fcFlipped=false;
+(function initFc(){
+  const sel=$("fc-filter");
+  sel.innerHTML='<option value="all">Toutes les régions</option>'+Object.entries(REGIONS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+  sel.onchange=loadFc; loadFc();
+})();
+function loadFc(){
+  const f=$("fc-filter").value;
+  fcDeck=FLASHCARDS.filter(c=>f==="all"||c[2]===f);
+  fcIdx=0; fcFlipped=false; renderFc();
+}
+function renderFc(){
+  if(!fcDeck.length){$("fc-q").textContent="Aucune carte";return;}
+  const c=fcDeck[fcIdx];
+  $("fc-q").textContent=c[0]; $("fc-a").textContent=c[1];
+  $("flashcard").classList.toggle("flip",fcFlipped);
+  $("fc-counter").textContent=`Carte ${fcIdx+1} / ${fcDeck.length} · ${REGIONS[c[2]]}`;
+  const seen=store.get("fcSeen",0), known=store.get("fcKnown",0);
+  $("fc-stats").textContent=`Vues : ${seen} · Sues : ${known}`;
+}
+function toggleFlip(){fcFlipped=!fcFlipped;$("flashcard").classList.toggle("flip",fcFlipped);}
+$("fc-flip").onclick=e=>{e.stopPropagation();toggleFlip();};
+$("fc-next").onclick=()=>{fcIdx=(fcIdx+1)%fcDeck.length;fcFlipped=false;renderFc();};
+$("fc-prev").onclick=()=>{fcIdx=(fcIdx-1+fcDeck.length)%fcDeck.length;fcFlipped=false;renderFc();};
+$("fc-shuffle").onclick=()=>{fcDeck=realShuffle(fcDeck);fcIdx=0;fcFlipped=false;renderFc();};
+$("fc-known").onclick=()=>{store.set("fcSeen",store.get("fcSeen",0)+1);store.set("fcKnown",store.get("fcKnown",0)+1);next();};
+$("fc-unknown").onclick=()=>{store.set("fcSeen",store.get("fcSeen",0)+1);next();};
+function next(){fcIdx=(fcIdx+1)%fcDeck.length;fcFlipped=false;renderFc();}
+
+/* ============================ QUIZ ============================ */
+let qDeck=[], qIdx=0, qScore=0, qAnswered=false;
+(function initQuiz(){
+  const sel=$("quiz-filter");
+  sel.innerHTML='<option value="all">Tout le programme</option>'+Object.entries(REGIONS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+})();
+$("quiz-start").onclick=()=>{
+  const f=$("quiz-filter").value;
+  qDeck=realShuffle(QCM.filter(q=>f==="all"||q[4]===f));
+  if(!qDeck.length){alert("Aucune question pour cette région.");return;}
+  qIdx=0;qScore=0;
+  $("quiz-setup").style.display="none";$("quiz-result").style.display="none";$("quiz-play").style.display="block";
+  renderQuiz();
+};
+function renderQuiz(){
+  qAnswered=false;
+  const q=qDeck[qIdx];
+  $("quiz-counter").textContent=`Question ${qIdx+1} / ${qDeck.length}`;
+  $("quiz-score").textContent=qScore;
+  $("quiz-bar").style.width=(qIdx/qDeck.length*100)+"%";
+  $("quiz-question").textContent=q[0];
+  const box=$("quiz-options");box.innerHTML="";
+  $("quiz-explain").className="explain";$("quiz-next").style.display="none";
+  q[1].forEach((opt,i)=>{
+    const b=document.createElement("button");b.className="opt";b.textContent=opt;
+    b.onclick=()=>answerQuiz(i,b);box.appendChild(b);
+  });
+}
+function answerQuiz(i,btn){
+  if(qAnswered)return; qAnswered=true;
+  const q=qDeck[qIdx], correct=q[2];
+  document.querySelectorAll("#quiz-options .opt").forEach((b,idx)=>{
+    b.disabled=true;
+    if(idx===correct)b.classList.add("correct");
+    else if(idx===i)b.classList.add("wrong");
+  });
+  if(i===correct)qScore++;
+  $("quiz-score").textContent=qScore;
+  const ex=$("quiz-explain");ex.textContent=(i===correct?"✅ Correct. ":"❌ Faux. ")+q[3];ex.classList.add("show");
+  $("quiz-next").style.display="inline-block";
+  $("quiz-next").textContent=qIdx+1<qDeck.length?"Suivant →":"Voir le résultat";
+}
+$("quiz-next").onclick=()=>{
+  if(qIdx+1<qDeck.length){qIdx++;renderQuiz();}
+  else{
+    $("quiz-play").style.display="none";$("quiz-result").style.display="block";
+    const pct=Math.round(qScore/qDeck.length*100);
+    $("quiz-final").textContent=qScore+"/"+qDeck.length;
+    $("quiz-final").style.color=pct>=70?"var(--good)":pct>=50?"var(--warn)":"var(--bad)";
+    $("quiz-msg").textContent=pct>=80?"Excellent, c'est solide ! 🔥":pct>=60?"Bien, encore quelques cartes à revoir.":"À retravailler — refais les flashcards de la région.";
+  }
+};
+function resetQuiz(){$("quiz-result").style.display="none";$("quiz-setup").style.display="block";}
+
+/* ============================ EXAMEN BLANC ============================ */
+let eDeck=[], eIdx=0, eAnswers=[], eTimer=null, eSeconds=0;
+$("exam-start").onclick=()=>{
+  eDeck=realShuffle(QCM).slice(0,Math.min(20,QCM.length));
+  eIdx=0;eAnswers=[];eSeconds=0;
+  $("exam-setup").style.display="none";$("exam-result").style.display="none";$("exam-play").style.display="block";
+  clearInterval(eTimer);
+  eTimer=setInterval(()=>{eSeconds++;const m=String(Math.floor(eSeconds/60)).padStart(2,"0"),s=String(eSeconds%60).padStart(2,"0");$("exam-timer").textContent=m+":"+s;},1000);
+  renderExam();
+};
+function renderExam(){
+  const q=eDeck[eIdx];
+  $("exam-counter").textContent=`Question ${eIdx+1} / ${eDeck.length}`;
+  $("exam-bar").style.width=(eIdx/eDeck.length*100)+"%";
+  $("exam-question").textContent=q[0];
+  const box=$("exam-options");box.innerHTML="";
+  q[1].forEach((opt,i)=>{
+    const b=document.createElement("button");b.className="opt";b.textContent=opt;
+    b.onclick=()=>{eAnswers[eIdx]=i; if(eIdx+1<eDeck.length){eIdx++;renderExam();} else finishExam();};
+    box.appendChild(b);
+  });
+}
+function finishExam(){
+  clearInterval(eTimer);
+  let score=0;
+  eDeck.forEach((q,i)=>{if(eAnswers[i]===q[2])score++;});
+  $("exam-play").style.display="none";$("exam-result").style.display="block";
+  const pct=Math.round(score/eDeck.length*100);
+  $("exam-final").textContent=score+"/"+eDeck.length;
+  $("exam-final").style.color=pct>=70?"var(--good)":pct>=50?"var(--warn)":"var(--bad)";
+  const m=String(Math.floor(eSeconds/60)).padStart(2,"0"),s=String(eSeconds%60).padStart(2,"0");
+  $("exam-msg").textContent=`Temps : ${m}:${s} · ${pct>=80?"Niveau examen atteint ! 🏆":pct>=60?"Presque, continue.":"Reprends les régions faibles."}`;
+  const best=store.get("examBest",null);
+  if(best==null||score>best){store.set("examBest",score);refreshBest();}
+  // review
+  const rev=$("exam-review");rev.innerHTML="";
+  eDeck.forEach((q,i)=>{
+    const ok=eAnswers[i]===q[2];
+    const div=document.createElement("div");div.className="panel";div.style.marginBottom="10px";
+    div.innerHTML=`<div class="${ok?'badge-good':'badge-bad'}">${ok?'✅':'❌'} Q${i+1}. ${q[0]}</div>
+      <div class="mini" style="margin-top:6px">Ta réponse : ${eAnswers[i]!=null?q[1][eAnswers[i]]:'—'}<br>
+      Bonne réponse : <b>${q[1][q[2]]}</b><br>
+      <span style="color:var(--muted)">${q[3]}</span></div>`;
+    rev.appendChild(div);
+  });
+}
+function resetExam(){$("exam-result").style.display="none";$("exam-setup").style.display="block";}
+</script>
+</body>
+</html>
