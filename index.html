@@ -262,6 +262,13 @@
   Contenu pédagogique original — révision personnelle, 1ère année kiné. À recouper avec tes cours et un atlas anatomique. Aucune donnée envoyée : tout reste sur ton appareil. 🦴
 </footer>
 
+<nav id="nav" class="bottomnav">
+  <button class="tab active" data-view="accueil"><span class="ic">🏠</span>Accueil</button>
+  <button class="tab" data-view="cours"><span class="ic">📖</span>Cours</button>
+  <button class="tab" data-view="flashcards"><span class="ic">🃏</span>Cartes</button>
+  <button class="tab" data-view="quiz"><span class="ic">✅</span>Quiz</button>
+  <button class="tab" data-view="examen"><span class="ic">🏆</span>Examen</button>
+</nav>
 <script>
 /* ============================ DONNÉES ============================ */
 const REGIONS = {
@@ -557,7 +564,7 @@ function go(view){
   $("view-"+view).classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
 }
-document.getElementById("nav").addEventListener("click",e=>{const t=e.target.closest(".tab");if(t&&t.dataset.view)go(t.dataset.view)});
+var navEl=document.getElementById("nav"); if(navEl) navEl.addEventListener("click",function(e){var t=e.target.closest(".tab");if(t&&t.dataset.view)go(t.dataset.view)});
 
 /* ============================ ACCUEIL STATS ============================ */
 $("stat-cards").textContent=FLASHCARDS.length;
@@ -707,12 +714,5 @@ function finishExam(){
 }
 function resetExam(){$("exam-result").style.display="none";$("exam-setup").style.display="block";}
 </script>
-<nav id="nav" class="bottomnav">
-  <button class="tab active" data-view="accueil"><span class="ic">🏠</span>Accueil</button>
-  <button class="tab" data-view="cours"><span class="ic">📖</span>Cours</button>
-  <button class="tab" data-view="flashcards"><span class="ic">🃏</span>Cartes</button>
-  <button class="tab" data-view="quiz"><span class="ic">✅</span>Quiz</button>
-  <button class="tab" data-view="examen"><span class="ic">🏆</span>Examen</button>
-</nav>
 </body>
 </html>
