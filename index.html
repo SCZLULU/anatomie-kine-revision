@@ -3,226 +3,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Anatomie Kiné — Révision 1ère année</title>
+<title>Anatomie Kiné — Site de révision</title>
 <style>
   :root{
-    --bg:#0f1720; --panel:#15212e; --panel2:#1c2c3d; --line:#27384b;
-    --txt:#e8eef4; --muted:#9fb3c6; --accent:#23b5a8; --accent2:#2f8fd6;
-    --good:#2ecc8f; --bad:#ec5b6a; --warn:#f0b429; --shadow:0 6px 24px rgba(0,0,0,.35);
-    --nav-h:62px;
+    --bg:#0f1720;--panel:#15212e;--panel2:#1c2c3d;--line:#27384b;
+    --txt:#e8eef4;--muted:#9fb3c6;--accent:#23b5a8;--accent2:#2f8fd6;
+    --good:#2ecc8f;--bad:#ec5b6a;--warn:#f0b429;--gold:#ffcf4d;--shadow:0 6px 24px rgba(0,0,0,.35);--nav-h:60px;
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(35,181,168,.25)}
-  html{-webkit-text-size-adjust:100%}
-  html,body{margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}html,body{margin:0;padding:0}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     background:linear-gradient(160deg,#0c131b,#0f1720 40%,#10202b);background-attachment:fixed;
     color:var(--txt);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;
     padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom) + 14px)}
-  button,select,.opt,.tab,a,.flashcard{touch-action:manipulation}
+  button,select,input,.opt,.tab,a,.flashcard,.chip{touch-action:manipulation}
   img{max-width:100%}
-  /* Header slim */
-  header{position:sticky;top:0;z-index:30;background:rgba(13,20,28,.96);backdrop-filter:blur(8px);
+  header{position:sticky;top:0;z-index:40;background:rgba(13,20,28,.97);backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
-  .bar{max-width:760px;margin:0 auto;padding:14px 16px;display:flex;align-items:center;justify-content:center}
-  .logo{font-weight:800;font-size:18px;letter-spacing:.3px;text-align:center}
-  .logo span{color:var(--accent)}
-  /* Bottom nav (mobile thumb zone) */
-  .bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;
-    background:rgba(13,20,28,.98);backdrop-filter:blur(10px);border-top:1px solid var(--line);
-    padding-bottom:env(safe-area-inset-bottom)}
-  .bottomnav .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-    background:none;border:none;color:var(--muted);font-size:10.5px;font-weight:700;
-    padding:8px 2px;min-height:var(--nav-h);cursor:pointer;border-top:3px solid transparent;transition:.12s}
-  .bottomnav .tab .ic{font-size:21px;line-height:1}
-  .bottomnav .tab.active{color:var(--accent);border-top-color:var(--accent);background:rgba(35,181,168,.07)}
-  .bottomnav .tab:active{background:rgba(35,181,168,.14)}
-  main{max-width:760px;margin:0 auto;padding:18px 14px 24px}
-  section.view{display:none;animation:fade .2s ease}
-  section.view.active{display:block}
+  .bar{max-width:780px;margin:0 auto;padding:11px 14px;display:flex;align-items:center;gap:10px}
+  .logo{font-weight:800;font-size:16px;white-space:nowrap}.logo span{color:var(--accent)}
+  .searchbox{flex:1;display:flex;align-items:center;gap:8px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:12px;padding:0 12px}
+  .searchbox input{flex:1;background:none;border:none;outline:none;color:var(--txt);font-size:16px;padding:11px 0;min-width:0}
+  .searchbox .si{opacity:.7;font-size:15px}
+  main{max-width:780px;margin:0 auto;padding:18px 14px 24px}
+  section.view{display:none;animation:fade .2s ease}section.view.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-  h1{font-size:24px;margin:.2em 0 .5em;line-height:1.25}
-  h2{font-size:20px;margin:1.3em 0 .5em;color:#fff;border-left:4px solid var(--accent);padding-left:10px}
-  h3{font-size:16px;margin:1em 0 .4em;color:var(--accent)}
-  p{margin:.5em 0}
-  a{color:var(--accent2)}
-  .lead{color:var(--muted);font-size:15.5px}
-  .mini{font-size:13.5px;color:var(--muted)}
-  ul{margin:.4em 0 .6em;padding-left:20px}li{margin:.25em 0}
-  ol{padding-left:22px}
-  .grid{display:grid;gap:14px}
-  .cards3{grid-template-columns:1fr}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+  h1{font-size:23px;margin:.2em 0 .5em;line-height:1.25}
+  h2{font-size:19px;margin:1.2em 0 .5em;color:#fff;border-left:4px solid var(--accent);padding-left:10px}
+  h3{font-size:15.5px;margin:1em 0 .4em;color:var(--accent)}
+  p{margin:.5em 0}a{color:var(--accent2)}
+  .lead{color:var(--muted);font-size:15px}.mini{font-size:13.5px;color:var(--muted)}
+  ul{margin:.4em 0 .6em;padding-left:20px}li{margin:.25em 0}ol{padding-left:22px}
+  .grid{display:grid;gap:13px}.cards2{grid-template-columns:1fr 1fr}.cards3{grid-template-columns:1fr}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;box-shadow:var(--shadow)}
   .panel h3{margin-top:0}
-  .big{font-size:34px;font-weight:800;color:var(--accent)}
-  .pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--panel2);color:var(--muted);border:1px solid var(--line)}
-  /* Buttons — big touch targets */
-  button.btn{cursor:pointer;border:none;border-radius:14px;padding:15px 18px;font-weight:800;font-size:16px;
-    min-height:54px;transition:transform .08s,filter .15s;width:100%}
+  .big{font-size:30px;font-weight:800;color:var(--accent)}
+  button.btn{cursor:pointer;border:none;border-radius:13px;padding:14px 16px;font-weight:800;font-size:15.5px;
+    min-height:52px;transition:transform .08s,filter .15s;width:100%}
   button.btn:active{transform:scale(.97)}
   .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06141a}
   .btn-ghost{background:var(--panel2);color:var(--txt);border:1px solid var(--line)!important}
   .btn-ghost:active{background:#22384b}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .row .btn{width:auto;flex:1 1 28%;min-width:96px}
+  .btn-gold{background:linear-gradient(135deg,#f0b429,#ffcf4d);color:#2a1d00}
+  .btn-sm{min-height:44px;padding:10px 13px;font-size:14px;width:auto}
+  .row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .row .btn{width:auto;flex:1 1 28%;min-width:90px}
   .center{text-align:center}
-  select{width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:12px;
-    padding:14px 12px;font-size:16px;font-weight:600;min-height:52px;margin:6px 0}
-  /* Tables (scroll horizontal sur mobile) */
+  label.fld{display:block;font-size:12.5px;color:var(--muted);font-weight:700;margin:8px 0 2px;text-transform:uppercase;letter-spacing:.4px}
+  select,input.txt{width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:11px;
+    padding:13px 12px;font-size:16px;font-weight:600;min-height:50px}
+  /* segmented (chips) */
+  .seg{display:flex;gap:7px;flex-wrap:wrap;margin:6px 0}
+  .chip{flex:1;min-width:90px;text-align:center;background:var(--panel2);border:1px solid var(--line);color:var(--muted);
+    border-radius:999px;padding:10px 12px;font-size:13.5px;font-weight:700;cursor:pointer;min-height:44px}
+  .chip.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06141a;border-color:transparent}
+  .chip:active{transform:scale(.97)}
   .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;border:1px solid var(--line);margin:.6em 0}
-  table{border-collapse:collapse;width:100%;font-size:14px;min-width:380px}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:380px}
   th,td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
-  th{background:var(--panel2);color:#fff;font-size:13px}
-  tr td:last-child,tr th:last-child{border-right:none}
+  th{background:var(--panel2);color:#fff;font-size:12.5px}tr td:last-child,tr th:last-child{border-right:none}
   blockquote{margin:.7em 0;padding:11px 14px;background:rgba(35,181,168,.08);border-left:3px solid var(--accent);
-    border-radius:0 10px 10px 0;color:#cfe0ee;font-size:14.5px}
-  .toc{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px}
-  .toc button{font-size:13px;padding:10px 13px;border-radius:10px;background:var(--panel2);border:1px solid var(--line);
-    color:var(--txt);cursor:pointer;min-height:44px}
-  .toc button:active{border-color:var(--accent)}
-  /* Flashcards */
-  .fcwrap{max-width:560px;margin:14px auto;text-align:center}
-  .flashcard{position:relative;height:300px;margin:12px 0;cursor:pointer;perspective:1400px;-webkit-perspective:1400px}
-  .fcinner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d;-webkit-transform-style:preserve-3d}
+    border-radius:0 10px 10px 0;color:#cfe0ee;font-size:14px}
+  mark{background:var(--gold);color:#2a1d00;border-radius:3px;padding:0 2px}
+  /* course list */
+  .courseitem{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);
+    border-radius:14px;padding:15px;cursor:pointer;margin:9px 0;color:var(--txt);transition:.12s}
+  .courseitem:active{border-color:var(--accent)}
+  .courseitem .cic{font-size:27px;width:34px;text-align:center}
+  .courseitem .ct{font-weight:800;font-size:15.5px}.courseitem .cs{font-size:12.5px;color:var(--muted)}
+  .courseitem .cgo{margin-left:auto;color:var(--muted);font-size:20px}
+  /* result item */
+  .res{display:block;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:13px;
+    padding:13px 14px;margin:8px 0;cursor:pointer;color:var(--txt)}
+  .res:active{border-color:var(--accent)}
+  .res .rtag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:99px;margin-bottom:5px}
+  .rt-cours{background:rgba(47,143,214,.2);color:#bcdcff}.rt-carte{background:rgba(35,181,168,.2);color:#bdf3ec}
+  .rt-quiz{background:rgba(240,180,41,.2);color:#ffe4a8}
+  .res .rq{font-weight:700;font-size:14.5px}.res .ra{font-size:13.5px;color:var(--muted);margin-top:3px}
+  /* flashcards */
+  .fcwrap{max-width:560px;margin:10px auto;text-align:center}
+  .flashcard{position:relative;height:300px;margin:12px 0;cursor:pointer;perspective:1400px}
+  .fcinner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
   .flashcard.flip .fcinner{transform:rotateY(180deg)}
-  .fcface{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:18px;
-    padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .fcface{position:absolute;inset:0;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:18px;padding:22px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--line);box-shadow:var(--shadow)}
   .fcfront{background:linear-gradient(150deg,var(--panel),var(--panel2))}
   .fcback{background:linear-gradient(150deg,#14302c,#10242f);transform:rotateY(180deg);border-color:var(--accent)}
-  .fcface .q{font-size:19px;font-weight:700}
-  .fcface .a{font-size:16px;color:#dff5f1}
-  .fctip{color:var(--muted);font-size:12.5px;margin-top:16px}
-  .counter{color:var(--muted);font-size:14px;font-weight:700}
-  /* Quiz */
-  .opt{display:block;width:100%;text-align:left;margin:10px 0;padding:16px;border-radius:14px;background:var(--panel2);
-    border:1.5px solid var(--line);color:var(--txt);cursor:pointer;font-size:16px;line-height:1.4;transition:.1s;min-height:54px}
-  .opt:active:not(:disabled){transform:scale(.99);border-color:var(--accent)}
-  .opt:disabled{cursor:default}
+  .fcface .q{font-size:18.5px;font-weight:700}.fcface .a{font-size:15.5px;color:#dff5f1}
+  .fctip{color:var(--muted);font-size:12px;margin-top:14px}
+  .fcstar{position:absolute;top:12px;right:14px;font-size:24px;cursor:pointer;z-index:3;line-height:1;background:none;border:none}
+  .counter{color:var(--muted);font-size:13.5px;font-weight:700}
+  /* quiz */
+  .opt{display:block;width:100%;text-align:left;margin:9px 0;padding:15px;border-radius:13px;background:var(--panel2);
+    border:1.5px solid var(--line);color:var(--txt);cursor:pointer;font-size:15.5px;line-height:1.4;min-height:52px}
+  .opt:active:not(:disabled){transform:scale(.99);border-color:var(--accent)}.opt:disabled{cursor:default}
   .opt.correct{background:rgba(46,204,143,.18);border-color:var(--good);color:#c6f7e1}
   .opt.wrong{background:rgba(236,91,106,.18);border-color:var(--bad);color:#ffd2d7}
-  .explain{margin-top:12px;padding:13px 14px;border-radius:12px;background:rgba(47,143,214,.12);border:1px solid #2f8fd655;
-    font-size:14.5px;color:#d6e8f7;display:none}
-  .explain.show{display:block}
-  .progress{height:9px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:12px 0}
+  .explain{margin-top:11px;padding:12px 14px;border-radius:12px;background:rgba(47,143,214,.12);border:1px solid #2f8fd655;
+    font-size:14px;color:#d6e8f7;display:none}.explain.show{display:block}
+  .progress{height:9px;background:var(--panel2);border-radius:99px;overflow:hidden;margin:11px 0}
   .progress>i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .3s}
-  .scorebig{font-size:52px;font-weight:800;margin:6px 0}
+  .scorebig{font-size:48px;font-weight:800;margin:6px 0}
   .timer{font-variant-numeric:tabular-nums;font-weight:800;color:var(--warn);font-size:16px}
-  .badge-good{color:var(--good);font-weight:700}
-  .badge-bad{color:var(--bad);font-weight:700}
-  footer{max-width:760px;margin:0 auto;padding:22px 16px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);text-align:center}
-  .nojs{background:#f0b429;color:#1a1300;padding:14px 16px;font-weight:700;text-align:center;font-size:15px}
-  /* base mobile width for action buttons */
-  .panel .btn{width:100%}
-  #quiz-start,#exam-start{width:100%;margin-top:8px}
-  /* Desktop niceties */
+  .badge-good{color:var(--good);font-weight:700}.badge-bad{color:var(--bad);font-weight:700}
+  /* progress bars per region */
+  .prbar{margin:9px 0}.prbar .lab{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+  .prbar .track{height:8px;background:var(--panel2);border-radius:99px;overflow:hidden}
+  .prbar .fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  footer{max-width:780px;margin:0 auto;padding:20px 16px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);text-align:center}
+  .nojs{background:#f0b429;color:#1a1300;padding:13px 16px;font-weight:700;text-align:center;font-size:15px}
+  /* bottom nav */
+  .bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;background:rgba(13,20,28,.98);
+    backdrop-filter:blur(10px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+  .bottomnav .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:none;
+    border:none;color:var(--muted);font-size:9.5px;font-weight:700;padding:7px 1px;min-height:var(--nav-h);cursor:pointer;
+    border-top:3px solid transparent}
+  .bottomnav .tab .ic{font-size:19px;line-height:1}
+  .bottomnav .tab.active{color:var(--accent);border-top-color:var(--accent);background:rgba(35,181,168,.07)}
+  .bottomnav .tab:active{background:rgba(35,181,168,.14)}
+  .panel .btn,#quiz-start,#quiz-redo,#exam-start,#pr-reset{width:100%}
   @media(min-width:680px){
-    .cards3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-    .bottomnav{max-width:760px;left:50%;transform:translateX(-50%);border-radius:18px 18px 0 0;border:1px solid var(--line);border-bottom:none}
-    button.btn{width:auto}
-    .panel .btn,#quiz-start,#exam-start{width:auto}
-    select{max-width:360px}
+    .cards3{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+    .bottomnav{max-width:780px;left:50%;transform:translateX(-50%);border-radius:18px 18px 0 0;border:1px solid var(--line);border-bottom:none}
+    button.btn{width:auto}.panel .btn,#quiz-start,#quiz-redo,#exam-start,#pr-reset{width:auto}
+    select,input.txt{max-width:380px}
   }
 </style>
 </head>
 <body>
-<noscript><div class="nojs">⚠️ Pour que les boutons marchent, ouvre ce fichier dans <b>Chrome</b> ou <b>Safari</b> — pas dans l'aperçu du mail ni dans un lecteur de fichiers.</div></noscript>
+<noscript><div class="nojs">⚠️ Ouvre ce fichier dans Chrome ou Safari (pas dans l'aperçu du mail) pour que tout fonctionne.</div></noscript>
 <header>
   <div class="bar">
-    <div class="logo">🦴 Anatomie<span>Kiné</span> · Révision</div>
+    <div class="logo">🦴<span>AnatKiné</span></div>
+    <div class="searchbox"><span class="si">🔎</span><input id="globalSearch" type="search" placeholder="Rechercher un muscle, nerf, os…" autocomplete="off"></div>
   </div>
 </header>
 
 <main>
   <!-- ACCUEIL -->
   <section class="view active" id="view-accueil">
-    <h1>Révision Anatomie — 1ère année Kiné</h1>
-    <p class="lead">Cours complet + flashcards + quiz QCM + examen blanc chronométré. Tout est hors-ligne, gratuit, dans ce seul fichier. Ta progression est sauvegardée sur cet appareil.</p>
-    <div class="grid cards3" style="margin-top:18px">
-      <div class="panel"><div class="big" id="stat-cards">0</div><div class="mini">flashcards disponibles</div></div>
+    <h1>Ton site de révision Anatomie 🦴</h1>
+    <p class="lead">Cours complets, flashcards, quiz et examens blancs. Recherche en haut, filtres partout, progression sauvegardée. 100% gratuit, hors-ligne.</p>
+    <div class="grid cards3" style="margin-top:16px">
+      <div class="panel"><div class="big" id="stat-cards">0</div><div class="mini">flashcards</div></div>
       <div class="panel"><div class="big" id="stat-qcm">0</div><div class="mini">questions de quiz</div></div>
-      <div class="panel"><div class="big" id="stat-best">—</div><div class="mini">meilleur score examen blanc</div></div>
+      <div class="panel"><div class="big" id="stat-courses">0</div><div class="mini">cours</div></div>
     </div>
-    <h2>Par où commencer ?</h2>
+    <h2>Accès rapide</h2>
     <div class="grid cards3">
-      <div class="panel"><h3>📖 1. Le cours</h3><p class="mini">Toute l'anatomie 1ère année : plans/axes, ostéo, arthro, et tous les tableaux muscles (Origine / Terminaison / Innervation / Action).</p><button class="btn btn-ghost" onclick="go('cours')">Ouvrir le cours</button></div>
-      <div class="panel"><h3>🃏 2. Les flashcards</h3><p class="mini">Mémorisation active, carte par carte, filtrable par région. Retourne, auto-évalue-toi, recommence.</p><button class="btn btn-ghost" onclick="go('flashcards')">Réviser</button></div>
-      <div class="panel"><h3>✅ 3. Le quiz</h3><p class="mini">QCM avec correction immédiate + explication. Choisis une région ou tout le programme.</p><button class="btn btn-ghost" onclick="go('quiz')">Se tester</button></div>
+      <div class="panel"><h3>📖 Cours</h3><p class="mini">Plusieurs cours structurés et approfondis.</p><button class="btn btn-ghost" onclick="go('cours')">Ouvrir</button></div>
+      <div class="panel"><h3>🃏 Flashcards</h3><p class="mini">Filtre, trie, mets en favori, révise tes points faibles.</p><button class="btn btn-ghost" onclick="go('cartes')">Réviser</button></div>
+      <div class="panel"><h3>✅ Quiz</h3><p class="mini">QCM corrigés + mode « refaire mes ratés ».</p><button class="btn btn-ghost" onclick="go('quiz')">Se tester</button></div>
+      <div class="panel"><h3>🏆 Examen blanc</h3><p class="mini">10/20/40 questions, chronométré.</p><button class="btn btn-ghost" onclick="go('examen')">Lancer</button></div>
+      <div class="panel"><h3>📊 Progression</h3><p class="mini">Suis ta maîtrise région par région.</p><button class="btn btn-ghost" onclick="go('progres')">Voir</button></div>
     </div>
-    <h2>Quand tu te sens prêt</h2>
-    <div class="panel">
-      <h3>🏆 Examen blanc</h3>
-      <p class="mini">20 questions tirées au hasard, chronométrées, comme le jour J. Score + correction détaillée à la fin.</p>
-      <button class="btn btn-primary" onclick="go('examen')">Lancer un examen blanc</button>
-    </div>
-    <blockquote>💡 La méthode qui marche : <b>teste-toi, ne relis pas</b>. Fais le quiz / les flashcards tous les jours plutôt que de relire le cours 10 fois.</blockquote>
+    <blockquote>💡 La règle d'or : <b>teste-toi</b>, ne relis pas. Flashcards + quiz tous les jours.</blockquote>
+  </section>
+
+  <!-- RECHERCHE -->
+  <section class="view" id="view-recherche">
+    <h1>🔎 Recherche</h1>
+    <p class="mini" id="search-info">Tape au moins 2 lettres dans la barre en haut.</p>
+    <div id="search-results"></div>
   </section>
 
   <!-- COURS -->
   <section class="view" id="view-cours">
-    <h1>📖 Le cours complet</h1>
-    <p class="lead">Clique sur une partie pour y aller directement.</p>
-    <div class="toc" id="toc"></div>
-    <div id="cours-content"></div>
+    <div id="course-list-wrap">
+      <h1>📖 Les cours</h1>
+      <p class="lead">Choisis un cours.</p>
+      <div id="course-list"></div>
+    </div>
+    <div id="course-detail" style="display:none">
+      <button class="btn btn-ghost btn-sm" id="course-back">← Tous les cours</button>
+      <h1 id="course-title" style="margin-top:12px"></h1>
+      <div id="course-body"></div>
+      <button class="btn btn-ghost btn-sm" onclick="go('cours');showCourseList()" style="margin-top:18px">← Retour à la liste</button>
+    </div>
   </section>
 
-  <!-- FLASHCARDS -->
-  <section class="view" id="view-flashcards">
+  <!-- CARTES -->
+  <section class="view" id="view-cartes">
     <h1>🃏 Flashcards</h1>
-    <div class="row" style="justify-content:flex-start">
-      <label class="mini">Région :</label>
-      <select id="fc-filter"></select>
-      <button class="btn btn-ghost" id="fc-shuffle">🔀 Mélanger</button>
+    <div class="panel">
+      <label class="fld">Région</label>
+      <select id="fc-region"></select>
+      <div class="row" style="margin-top:8px">
+        <div style="flex:1"><label class="fld">Tri</label>
+          <select id="fc-sort"><option value="ordre">Ordre</option><option value="alea">Aléatoire</option><option value="az">A → Z</option></select></div>
+      </div>
+      <label class="fld" style="margin-top:8px">Sélection</label>
+      <div class="seg" id="fc-scope">
+        <div class="chip on" data-scope="all">Toutes</div>
+        <div class="chip" data-scope="fav">⭐ Favoris</div>
+        <div class="chip" data-scope="review">🔁 À revoir</div>
+      </div>
+      <label class="fld" style="margin-top:8px">Filtrer par mot</label>
+      <input class="txt" id="fc-search" type="search" placeholder="ex : nerf, fémoral, coiffe…" autocomplete="off">
     </div>
     <div class="fcwrap">
       <div class="counter" id="fc-counter">—</div>
-      <div class="flashcard" id="flashcard" onclick="toggleFlip()">
+      <div class="flashcard" id="flashcard" onclick="fcFlip()">
+        <button class="fcstar" id="fc-star" onclick="event.stopPropagation();toggleFav()">☆</button>
         <div class="fcinner">
-          <div class="fcface fcfront"><div class="q" id="fc-q">…</div><div class="fctip">Clique pour retourner</div></div>
-          <div class="fcface fcback"><div class="a" id="fc-a">…</div><div class="fctip">Clique pour revenir</div></div>
+          <div class="fcface fcfront"><div class="q" id="fc-q">…</div><div class="fctip">Touche pour retourner</div></div>
+          <div class="fcface fcback"><div class="a" id="fc-a">…</div><div class="fctip">Touche pour revenir</div></div>
         </div>
       </div>
-      <div class="row">
-        <button class="btn btn-ghost" id="fc-prev">← Précédent</button>
-        <button class="btn btn-ghost" id="fc-flip">Retourner</button>
-        <button class="btn btn-ghost" id="fc-next">Suivant →</button>
-      </div>
-      <div class="row" style="margin-top:14px">
-        <button class="btn btn-ghost" id="fc-unknown" style="border-color:#ec5b6a55!important">😕 À revoir</button>
-        <button class="btn btn-primary" id="fc-known">😎 Je savais</button>
-      </div>
-      <div class="mini" id="fc-stats" style="margin-top:10px"></div>
+      <div id="fc-empty" class="mini" style="display:none">Aucune carte pour ce filtre.</div>
+      <div class="row"><button class="btn btn-ghost" id="fc-prev">←</button><button class="btn btn-ghost" id="fc-flip">Retourner</button><button class="btn btn-ghost" id="fc-next">→</button></div>
+      <div class="row" style="margin-top:11px"><button class="btn btn-ghost" id="fc-again" style="border-color:#ec5b6a55!important">🔁 À revoir</button><button class="btn btn-primary" id="fc-known">😎 Je savais</button></div>
     </div>
   </section>
 
   <!-- QUIZ -->
   <section class="view" id="view-quiz">
-    <h1>✅ Quiz QCM</h1>
+    <h1>✅ Quiz</h1>
     <div id="quiz-setup">
-      <p class="lead">Choisis une région (ou tout), puis enchaîne les questions avec correction immédiate.</p>
-      <div class="row" style="justify-content:flex-start">
-        <label class="mini">Région :</label>
-        <select id="quiz-filter"></select>
-        <button class="btn btn-primary" id="quiz-start">Commencer</button>
+      <div class="panel">
+        <label class="fld">Région</label>
+        <select id="quiz-region"></select>
+        <button class="btn btn-primary" id="quiz-start" style="margin-top:12px">Commencer</button>
+        <button class="btn btn-gold" id="quiz-redo" style="margin-top:10px">🔁 Refaire mes ratés</button>
+        <p class="mini" id="quiz-redo-info" style="margin-top:8px"></p>
       </div>
     </div>
     <div id="quiz-play" style="display:none">
-      <div class="row" style="justify-content:space-between">
-        <span class="counter" id="quiz-counter"></span>
-        <span class="counter">Score : <b id="quiz-score">0</b></span>
-      </div>
+      <div class="row" style="justify-content:space-between"><span class="counter" id="quiz-counter"></span><span class="counter">Score : <b id="quiz-score">0</b></span></div>
       <div class="progress"><i id="quiz-bar"></i></div>
       <div class="panel" style="margin-top:8px">
         <h3 id="quiz-question" style="color:#fff"></h3>
         <div id="quiz-options"></div>
         <div class="explain" id="quiz-explain"></div>
-        <div class="row" style="justify-content:flex-end;margin-top:12px">
-          <button class="btn btn-primary" id="quiz-next" style="display:none">Suivant →</button>
-        </div>
+        <div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn btn-primary btn-sm" id="quiz-next" style="display:none">Suivant →</button></div>
       </div>
     </div>
     <div id="quiz-result" style="display:none" class="center">
-      <h2 style="border:none">Résultat</h2>
-      <div class="scorebig" id="quiz-final"></div>
-      <p class="mini" id="quiz-msg"></p>
+      <h2 style="border:none">Résultat</h2><div class="scorebig" id="quiz-final"></div><p class="mini" id="quiz-msg"></p>
       <button class="btn btn-primary" onclick="resetQuiz()">Recommencer</button>
     </div>
   </section>
@@ -231,54 +249,62 @@
   <section class="view" id="view-examen">
     <h1>🏆 Examen blanc</h1>
     <div id="exam-setup">
-      <p class="lead">20 questions au hasard sur tout le programme, chronométrées. Correction détaillée à la fin. Conditions réelles : pas de retour en arrière.</p>
-      <button class="btn btn-primary" id="exam-start">Lancer l'examen blanc</button>
+      <div class="panel">
+        <label class="fld">Nombre de questions</label>
+        <select id="exam-len"><option value="10">10 (rapide)</option><option value="20" selected>20 (standard)</option><option value="40">40 (marathon)</option></select>
+        <label class="fld" style="margin-top:8px">Région</label>
+        <select id="exam-region"></select>
+        <button class="btn btn-primary" id="exam-start" style="margin-top:12px">Lancer l'examen</button>
+        <p class="mini" style="margin-top:8px">Chronométré, pas de retour en arrière. Correction détaillée à la fin.</p>
+      </div>
     </div>
     <div id="exam-play" style="display:none">
-      <div class="row" style="justify-content:space-between">
-        <span class="counter" id="exam-counter"></span>
-        <span class="timer" id="exam-timer">00:00</span>
-      </div>
+      <div class="row" style="justify-content:space-between"><span class="counter" id="exam-counter"></span><span class="timer" id="exam-timer">00:00</span></div>
       <div class="progress"><i id="exam-bar"></i></div>
-      <div class="panel" style="margin-top:8px">
-        <h3 id="exam-question" style="color:#fff"></h3>
-        <div id="exam-options"></div>
-      </div>
+      <div class="panel" style="margin-top:8px"><h3 id="exam-question" style="color:#fff"></h3><div id="exam-options"></div></div>
     </div>
     <div id="exam-result" style="display:none">
-      <div class="center">
-        <h2 style="border:none">Ton résultat</h2>
-        <div class="scorebig" id="exam-final"></div>
-        <p class="mini" id="exam-msg"></p>
-        <button class="btn btn-primary" onclick="resetExam()">Refaire un examen</button>
-      </div>
-      <h3 style="margin-top:24px">Correction détaillée</h3>
-      <div id="exam-review"></div>
+      <div class="center"><h2 style="border:none">Ton résultat</h2><div class="scorebig" id="exam-final"></div><p class="mini" id="exam-msg"></p>
+      <button class="btn btn-primary" onclick="resetExam()">Refaire</button></div>
+      <h3 style="margin-top:22px">Correction détaillée</h3><div id="exam-review"></div>
     </div>
+  </section>
+
+  <!-- PROGRES -->
+  <section class="view" id="view-progres">
+    <h1>📊 Progression</h1>
+    <div class="grid cards3">
+      <div class="panel"><div class="big" id="pr-known">0</div><div class="mini">cartes sues</div></div>
+      <div class="panel"><div class="big" id="pr-seen">0</div><div class="mini">cartes vues</div></div>
+      <div class="panel"><div class="big" id="pr-fav">0</div><div class="mini">⭐ favoris</div></div>
+      <div class="panel"><div class="big" id="pr-review">0</div><div class="mini">🔁 à revoir</div></div>
+      <div class="panel"><div class="big" id="pr-acc">—</div><div class="mini">précision quiz</div></div>
+      <div class="panel"><div class="big" id="pr-exam">—</div><div class="mini">record examen</div></div>
+    </div>
+    <h2>Maîtrise par région</h2>
+    <div class="panel" id="pr-regions"></div>
+    <p class="mini" id="pr-quiz" style="margin-top:10px"></p>
+    <button class="btn btn-ghost" id="pr-reset" style="margin-top:14px">🗑️ Réinitialiser ma progression</button>
   </section>
 </main>
 
-<footer>
-  Contenu pédagogique original — révision personnelle, 1ère année kiné. À recouper avec tes cours et un atlas anatomique. Aucune donnée envoyée : tout reste sur ton appareil. 🦴
-</footer>
+<footer>Contenu pédagogique original — révision 1ère année kiné. À recouper avec tes cours et un atlas. Tout reste sur ton appareil. 🦴</footer>
 
 <nav id="nav" class="bottomnav">
   <button class="tab active" data-view="accueil"><span class="ic">🏠</span>Accueil</button>
   <button class="tab" data-view="cours"><span class="ic">📖</span>Cours</button>
-  <button class="tab" data-view="flashcards"><span class="ic">🃏</span>Cartes</button>
+  <button class="tab" data-view="cartes"><span class="ic">🃏</span>Cartes</button>
   <button class="tab" data-view="quiz"><span class="ic">✅</span>Quiz</button>
-  <button class="tab" data-view="examen"><span class="ic">🏆</span>Examen</button>
+  <button class="tab" data-view="examen"><span class="ic">🏆</span>Exam</button>
+  <button class="tab" data-view="progres"><span class="ic">📊</span>Progrès</button>
 </nav>
-<script>
-/* ============================ DONNÉES ============================ */
-const REGIONS = {
-  general:"Généralités", osteo:"Ostéologie", arthro:"Arthrologie", myo:"Myologie générale",
-  "membre-sup":"Membre supérieur", "membre-inf":"Membre inférieur", tronc:"Tronc",
-  "tete-cou":"Tête & cou", neuro:"Neuro-anatomie", palpation:"Palpation"
-};
 
-const FLASHCARDS = [
-  ["Position anatomique de référence ?","Debout, regard horizontal, bras le long du corps, paumes vers l'avant (avant-bras en supination), pieds joints.","general"],
+<script>
+/* ===================== DONNÉES ===================== */
+const REGIONS={general:"Généralités",osteo:"Ostéologie",arthro:"Arthrologie",myo:"Myologie générale","membre-sup":"Membre supérieur","membre-inf":"Membre inférieur",tronc:"Tronc","tete-cou":"Tête & cou",neuro:"Neuro-anatomie",palpation:"Palpation"};
+
+const FLASHCARDS=[
+["Position anatomique de référence ?","Debout, regard horizontal, bras le long du corps, paumes vers l'avant (avant-bras en supination), pieds joints.","general"],
   ["Plan sagittal médian — sépare quoi, quels mouvements ?","Sépare droite/gauche. Mouvements : flexion/extension.","general"],
   ["Plan frontal (coronal) — sépare quoi, quels mouvements ?","Sépare avant/arrière. Mouvements : abduction/adduction.","general"],
   ["Plan transversal — sépare quoi, quels mouvements ?","Sépare haut/bas. Mouvements : rotations.","general"],
@@ -355,12 +381,54 @@ const FLASHCARDS = [
   ["Repères palpables du genou ?","Patella, tubérosité tibiale, interligne, tête de la fibula, condyles.","palpation"],
   ["Repères palpables de la cheville ?","Malléole médiale, malléole latérale, tendon calcanéen, naviculaire, base 5e métatarsien.","palpation"],
   ["La tabatière anatomique permet de palper ?","Le scaphoïde.","palpation"],
-  ["Muscles biarticulaires du membre inférieur ?","Droit fémoral, ischio-jambiers, gastrocnémien, sartorius.","membre-inf"]
+  ["Muscles biarticulaires du membre inférieur ?","Droit fémoral, ischio-jambiers, gastrocnémien, sartorius.","membre-inf"],
+["Circumduction — définition ?","Mouvement combinant successivement flexion, abduction, extension et adduction (décrit un cône). Possible aux articulations à 3 degrés de liberté.","general"],
+  ["Combien d'os dans le squelette humain adulte ?","Environ 206 os.","osteo"],
+  ["Que contient le foramen vertébral ?","La moelle spinale (l'empilement des foramens forme le canal vertébral).","osteo"],
+  ["Col anatomique vs col chirurgical de l'humérus ?","Col anatomique = juste sous la tête. Col chirurgical = sous les tubercules (zone fréquente de fracture).","osteo"],
+  ["Que sépare la trochlée et le capitulum de l'humérus ?","Trochlée = s'articule avec l'ulna. Capitulum = s'articule avec la tête radiale.","osteo"],
+  ["Où passe le tendon du long biceps à l'humérus ?","Dans le sillon (gouttière) intertuberculaire / bicipital, entre tubercules majeur et mineur.","osteo"],
+  ["Repère de l'angle sternal (de Louis) ?","Jonction manubrium/corps du sternum, en regard de la 2e côte — repère pour compter les côtes.","osteo"],
+  ["Rôle des ligaments croisés du genou ?","LCA : empêche le tiroir antérieur du tibia. LCP : empêche le tiroir postérieur. Stabilité antéro-postérieure.","arthro"],
+  ["Rôle des ménisques du genou ?","Congruence + amortissement + répartition des charges entre fémur et tibia (médial et latéral).","arthro"],
+  ["Qu'est-ce qu'un labrum ?","Bourrelet fibro-cartilagineux qui agrandit et stabilise une cavité articulaire (épaule = glène, hanche = acétabulum).","arthro"],
+  ["Combien d'articulations dans le coude ?","Trois : huméro-ulnaire, huméro-radiale, et radio-ulnaire proximale.","arthro"],
+  ["Type d'articulation de la cheville (talo-crurale) ?","Trochléenne (ginglyme), 1 degré de liberté : flexion dorsale / flexion plantaire.","arthro"],
+  ["Qu'est-ce qu'une unité motrice ?","Un motoneurone + toutes les fibres musculaires qu'il innerve. Plus elles sont peu nombreuses, plus le mouvement est fin.","myo"],
+  ["Protéines contractiles du sarcomère ?","Actine (filament fin) et myosine (filament épais) — leur glissement produit la contraction.","myo"],
+  ["Muscle penné : avantage / inconvénient ?","Plus de force (plus de fibres par volume) mais course (amplitude de raccourcissement) plus faible.","myo"],
+  ["Innervation de l'éminence thénar ?","Nerf médian (sauf l'adducteur du pouce = ulnaire).","membre-sup"],
+  ["Quel nerf passe dans le canal carpien ?","Le nerf médian (sa compression = syndrome du canal carpien).","membre-sup"],
+  ["Innervation des muscles intrinsèques de la main ?","Surtout le nerf ulnaire (sauf thénar + 2 premiers lombricaux = médian).","membre-sup"],
+  ["Action du carré pronateur ?","Pronation de l'avant-bras (muscle profond distal). I : nerf interosseux antérieur (médian).","membre-sup"],
+  ["Autre nom du brachio-radial et particularité ?","« Long supinateur ». Muscle de la loge postérieure mais fléchisseur du coude, innervé par le nerf radial.","membre-sup"],
+  ["Rôle de la coiffe des rotateurs (fonction globale) ?","Centrer et stabiliser la tête humérale dans la glène pendant les mouvements de l'épaule.","membre-sup"],
+  ["Rhomboïdes — action et innervation ?","Rétraction (adduction) de la scapula + sonnette médiale. I : nerf dorsal de la scapula (C4-C5).","membre-sup"],
+  ["Le tractus ilio-tibial : tendu par quels muscles ?","Le TFL et une partie du grand fessier ; il stabilise le genou en latéral.","membre-inf"],
+  ["Rapport entre le piriforme et le nerf sciatique ?","Le sciatique sort du bassin sous le piriforme ; un piriforme contracturé peut le comprimer (syndrome du piriforme).","membre-inf"],
+  ["Action du tibial postérieur ?","Flexion plantaire + inversion du pied + soutien de la voûte plantaire. I : nerf tibial.","membre-inf"],
+  ["Action du pectiné et son innervation ?","Flexion + adduction de hanche. I : nerf fémoral (parfois obturateur).","membre-inf"],
+  ["Action du gracile ?","Adduction de hanche + flexion du genou (muscle biarticulaire, va à la patte d'oie). I : nerf obturateur.","membre-inf"],
+  ["Les 3 muscles fessiers et leur ordre de profondeur ?","Grand fessier (superficiel), moyen fessier, petit fessier (profond).","membre-inf"],
+  ["Quel muscle relève le pied (anti-steppage) ?","Le tibial antérieur (n. fibulaire profond). Son déficit = pied tombant.","membre-inf"],
+  ["Plexus cervical — racines et nerf moteur majeur ?","C1-C4. Nerf majeur : le nerf phrénique (C3-C4-C5) pour le diaphragme.","neuro"],
+  ["Dermatome du pouce / majeur / auriculaire ?","Pouce = C6, majeur = C7, auriculaire = C8.","neuro"],
+  ["Dermatome de la malléole médiale / dos du pied / talon ?","Malléole médiale = L4, dos du pied et gros orteil = L5, talon/plante = S1.","neuro"],
+  ["Racines du réflexe rotulien (patellaire) ?","L4 (quadriceps / nerf fémoral).","neuro"],
+  ["Racines du réflexe achilléen ?","S1 (triceps sural / nerf tibial).","neuro"],
+  ["Racines du réflexe bicipital ?","C5-C6 (biceps / nerf musculo-cutané).","neuro"],
+  ["Le nerf sciatique : plus gros nerf du corps, il innerve quoi ?","Toute la loge postérieure de la cuisse, puis toute la jambe et le pied (via tibial + fibulaire commun).","neuro"],
+  ["Différence motoneurone supérieur / inférieur ?","Supérieur = dans le SNC (cortex→moelle). Inférieur = de la corne antérieure au muscle. Atteinte inférieure = paralysie flasque.","neuro"],
+  ["Muscles de la mastication (les 4) ?","Masséter, temporal, ptérygoïdiens médial et latéral. Innervation : nerf trijumeau (V3).","tete-cou"],
+  ["Action des scalènes ?","Inclinaison du cou (unilatéral), inspirateurs accessoires (élèvent les 2 premières côtes).","tete-cou"],
+  ["Le diaphragme : forme et action à la contraction ?","Coupole musculo-tendineuse ; en se contractant il s'abaisse → augmente le volume thoracique → inspiration.","tronc"],
+  ["Muscles de la sangle abdominale (de la profonde à la superficielle) ?","Transverse (profond), oblique interne, oblique externe, droit de l'abdomen.","tronc"],
+  ["Rôle du carré des lombes ?","Inclinaison latérale du tronc, fixe la 12e côte, stabilise le rachis lombaire. I : plexus lombaire (T12-L3).","tronc"]
 ];
 
-// [question, [options], indexCorrect, explication, tag]
-const QCM = [
-  ["Dans quel plan se fait la flexion/extension ?",["Sagittal","Frontal","Transversal","Oblique"],0,"Le plan sagittal sépare droite/gauche ; flexion et extension s'y déroulent.","general"],
+// [question,[options],indexCorrect,explication,tag]
+const QCM=[
+["Dans quel plan se fait la flexion/extension ?",["Sagittal","Frontal","Transversal","Oblique"],0,"Le plan sagittal sépare droite/gauche ; flexion et extension s'y déroulent.","general"],
   ["L'abduction se fait autour de quel axe ?",["Sagittal (antéro-postérieur)","Transversal","Vertical","Longitudinal"],0,"Abduction/adduction = plan frontal, autour de l'axe sagittal.","general"],
   ["En position anatomique, les paumes sont orientées :",["Vers l'avant","Vers l'arrière","Vers le corps","Vers le haut"],0,"Avant-bras en supination, paumes vers l'avant.","general"],
   ["Les rotations se déroulent dans le plan :",["Transversal","Sagittal","Frontal","Coronal"],0,"Rotations = plan transversal, autour de l'axe vertical.","general"],
@@ -427,292 +495,396 @@ const QCM = [
   ["La tabatière anatomique permet de palper le :",["Scaphoïde","Lunatum","Trapèze","Pisiforme"],0,"Sensibilité = suspicion de fracture du scaphoïde.","palpation"],
   ["L'EIAS est un repère palpable du :",["Bassin","Genou","Épaule","Poignet"],0,"Épine iliaque antéro-supérieure : origine du sartorius et du TFL.","palpation"],
   ["La malléole médiale appartient au :",["Tibia","Fibula","Talus","Calcanéus"],0,"Malléole médiale = tibia ; malléole latérale = fibula.","palpation"],
-  ["Le tendon calcanéen (d'Achille) relie le triceps sural au :",["Calcanéus","Talus","Naviculaire","Cuboïde"],0,"Insertion sur la tubérosité calcanéenne.","palpation"]
+  ["Le tendon calcanéen (d'Achille) relie le triceps sural au :",["Calcanéus","Talus","Naviculaire","Cuboïde"],0,"Insertion sur la tubérosité calcanéenne.","palpation"],
+["Combien d'os compte le squelette humain adulte ?",["206","210","186","256"],0,"Environ 206 os chez l'adulte.","osteo"],
+  ["Le col chirurgical de l'humérus se situe :",["Sous les tubercules","Juste sous la tête","Au niveau de la trochlée","À la diaphyse moyenne"],0,"Zone fréquente de fracture, sous les tubercules.","osteo"],
+  ["Le capitulum de l'humérus s'articule avec :",["La tête radiale","L'ulna","Le scaphoïde","La clavicule"],0,"Capitulum ↔ radius ; trochlée ↔ ulna.","osteo"],
+  ["Le ligament croisé antérieur (LCA) empêche surtout :",["Le tiroir antérieur du tibia","Le tiroir postérieur","L'abduction","La rotation externe pure"],0,"Le LCA limite la translation antérieure du tibia.","arthro"],
+  ["Le labrum de l'épaule entoure :",["La cavité glénoïde","La tête humérale","L'acromion","La clavicule"],0,"Bourrelet qui approfondit la glène et stabilise.","arthro"],
+  ["Le coude comprend combien d'articulations ?",["Trois","Une","Deux","Quatre"],0,"Huméro-ulnaire, huméro-radiale, radio-ulnaire proximale.","arthro"],
+  ["L'articulation talo-crurale (cheville) est de type :",["Trochléenne","Sphéroïde","Plane","En selle"],0,"1 degré de liberté : flexion dorsale/plantaire.","arthro"],
+  ["Une unité motrice, c'est :",["Un motoneurone + les fibres qu'il innerve","Une fibre musculaire isolée","Un faisceau de tendons","Un sarcomère"],0,"Plus l'unité est petite, plus le geste est fin.","myo"],
+  ["Les protéines contractiles du muscle sont :",["Actine et myosine","Collagène et élastine","Kératine et tubuline","Troponine et calcium"],0,"Leur glissement (théorie des filaments glissants) crée la contraction.","myo"],
+  ["Le nerf qui passe dans le canal carpien est :",["Le médian","L'ulnaire","Le radial","Le musculo-cutané"],0,"Sa compression = syndrome du canal carpien.","membre-sup"],
+  ["Les muscles intrinsèques de la main sont surtout innervés par :",["Le nerf ulnaire","Le nerf médian","Le nerf radial","Le nerf axillaire"],0,"Sauf thénar + 2 premiers lombricaux (médian).","membre-sup"],
+  ["Le brachio-radial (long supinateur) est innervé par :",["Le nerf radial","Le nerf médian","Le nerf ulnaire","Le nerf musculo-cutané"],0,"Exception : muscle fléchisseur du coude mais nerf radial.","membre-sup"],
+  ["Le carré pronateur réalise :",["La pronation","La supination","La flexion du poignet","L'extension des doigts"],0,"Muscle profond distal, n. interosseux antérieur.","membre-sup"],
+  ["La fonction principale de la coiffe des rotateurs est de :",["Centrer la tête humérale dans la glène","Étendre le coude","Fléchir le poignet","Abaisser la clavicule"],0,"Stabilisateur dynamique de l'épaule.","membre-sup"],
+  ["Le tractus ilio-tibial est tendu par le TFL et :",["Le grand fessier","Le moyen fessier","Le quadriceps","Le sartorius"],0,"Il stabilise la face latérale du genou.","membre-inf"],
+  ["Le nerf sciatique sort du bassin généralement :",["Sous le muscle piriforme","Au-dessus du moyen fessier","Dans le canal inguinal","Sous le ligament inguinal"],0,"D'où le syndrome du piriforme s'il est comprimé.","membre-inf"],
+  ["Le tibial postérieur réalise :",["Flexion plantaire + inversion","Dorsiflexion + éversion","Éversion pure","Extension des orteils"],0,"Il soutient aussi la voûte plantaire. N. tibial.","membre-inf"],
+  ["Le gracile est innervé par le nerf :",["Obturateur","Fémoral","Sciatique","Glutéal supérieur"],0,"Adducteur + fléchisseur du genou (patte d'oie).","membre-inf"],
+  ["Le muscle le plus profond des fessiers est le :",["Petit fessier","Grand fessier","Moyen fessier","Piriforme"],0,"Ordre : grand (superficiel) → moyen → petit (profond).","membre-inf"],
+  ["Le plexus cervical naît des racines :",["C1 à C4","C5 à T1","C3 à C8","L1 à L4"],0,"Il donne notamment le nerf phrénique.","neuro"],
+  ["Le dermatome du pouce correspond à la racine :",["C6","C7","C8","T1"],0,"Pouce C6, majeur C7, auriculaire C8.","neuro"],
+  ["Le réflexe rotulien (patellaire) explore la racine :",["L4","S1","L2","C7"],0,"Quadriceps / nerf fémoral.","neuro"],
+  ["Le réflexe achilléen explore la racine :",["S1","L4","L5","C6"],0,"Triceps sural / nerf tibial.","neuro"],
+  ["Une atteinte du motoneurone inférieur donne une paralysie :",["Flasque","Spastique","Sans amyotrophie","Avec Babinski"],0,"Atteinte périphérique = paralysie flasque + amyotrophie.","neuro"],
+  ["Le dermatome S1 correspond à :",["Talon / bord latéral du pied","Pouce","Face antérieure de cuisse","Épaule"],0,"S1 = talon, malléole latérale, plante.","neuro"],
+  ["Les muscles de la mastication sont innervés par le nerf :",["Trijumeau (V3)","Facial (VII)","Accessoire (XI)","Hypoglosse (XII)"],0,"Masséter, temporal, ptérygoïdiens.","tete-cou"],
+  ["Le diaphragme, en se contractant :",["S'abaisse et provoque l'inspiration","S'élève et provoque l'expiration","Reste immobile","Ferme la glotte"],0,"Son abaissement augmente le volume thoracique.","tronc"],
+  ["Le muscle abdominal le plus profond est le :",["Transverse de l'abdomen","Droit de l'abdomen","Oblique externe","Oblique interne"],0,"Vrai muscle de gainage / sangle.","tronc"],
+  ["Le carré des lombes réalise surtout :",["L'inclinaison latérale du tronc","La rotation du tronc","La flexion du cou","L'extension du genou"],0,"Il fixe aussi la 12e côte. Plexus lombaire.","tronc"],
+  ["L'angle sternal (de Louis) repère :",["La 2e côte","La 5e côte","La clavicule","Le processus xiphoïde"],0,"Jonction manubrium/corps du sternum.","osteo"]
 ];
 
-/* ===== COURS (HTML) ===== */
-const COURS = [
- ["p0","Partie 0 — Le langage de l'anatomie", `
-  <h3>Position anatomique de référence</h3>
-  <p>Sujet debout, regard horizontal, bras le long du corps, <b>paumes vers l'avant</b>, pieds joints. Toute description part de là.</p>
-  <h3>Les 3 plans & axes</h3>
-  <div class="tablewrap"><table><tr><th>Plan</th><th>Sépare</th><th>Axe</th><th>Mouvements</th></tr>
-  <tr><td>Sagittal</td><td>droite / gauche</td><td>transversal</td><td>Flexion / Extension</td></tr>
-  <tr><td>Frontal (coronal)</td><td>avant / arrière</td><td>sagittal</td><td>Abduction / Adduction</td></tr>
-  <tr><td>Transversal</td><td>haut / bas</td><td>vertical</td><td>Rotations</td></tr></table></div>
-  <blockquote>Le mouvement se fait <b>dans un plan</b> et <b>autour de l'axe perpendiculaire</b> à ce plan.</blockquote>
-  <h3>Vocabulaire des mouvements</h3>
-  <ul><li>Flexion/Extension, Abduction/Adduction, Rotation médiale/latérale, Circumduction</li>
-  <li>Pronation/Supination (avant-bras), Inversion/Éversion (pied), Dorsiflexion/Flexion plantaire (cheville)</li>
-  <li>Élévation/Abaissement & Protraction/Rétraction (scapula), Opposition (pouce)</li></ul>`],
- ["p1","Partie 1 — Ostéologie", `
-  <h3>Classification des os</h3>
-  <p>Long (fémur), court (carpe), plat (scapula), irrégulier (vertèbre), sésamoïde (patella).</p>
-  <h3>Rachis — 33 vertèbres</h3>
-  <p>Cervicales 7 (C1 Atlas, C2 Axis), thoraciques 12, lombaires 5, sacrum 5 soudées, coccyx 4. Courbures : lordose cervicale, cyphose thoracique, lordose lombaire, cyphose sacrée.</p>
-  <h3>Thorax</h3><p>Côtes vraies 1-7, fausses 8-10, flottantes 11-12. Sternum = manubrium + corps + xiphoïde.</p>
-  <h3>Carpe & Tarse</h3>
-  <p><b>Carpe</b> (prox→dist) : Scaphoïde, Lunatum, Triquétrum, Pisiforme / Trapèze, Trapézoïde, Capitatum, Hamatum.</p>
-  <p><b>Tarse</b> : Talus, Calcanéus, Naviculaire, Cuboïde, 3 Cunéiformes.</p>
-  <p>Os coxal = ilion + ischion + pubis. Jambe : tibia (médial, portant) + fibula (latéral).</p>`],
- ["p2","Partie 2 — Arthrologie", `
-  <h3>Classification (mobilité)</h3>
-  <div class="tablewrap"><table><tr><th>Type</th><th>Mobilité</th><th>Exemple</th></tr>
-  <tr><td>Synarthrose (fibreuse)</td><td>immobile</td><td>sutures du crâne</td></tr>
+const COURSES=[
+{icon:"🧭",title:"Le langage anatomique",sections:[
+  {h:"Position de référence & plans",html:`<p>Toute description part de la <b>position anatomique de référence</b> : debout, regard horizontal, bras le long du corps, <b>paumes vers l'avant</b> (avant-bras en supination), pieds joints.</p>
+  <div class="tablewrap"><table><tr><th>Plan</th><th>Sépare</th><th>Mouvements</th></tr>
+  <tr><td>Sagittal (médian)</td><td>droite / gauche</td><td>Flexion / Extension</td></tr>
+  <tr><td>Frontal (coronal)</td><td>avant / arrière</td><td>Abduction / Adduction</td></tr>
+  <tr><td>Transversal (horizontal)</td><td>haut / bas</td><td>Rotations</td></tr></table></div>`},
+  {h:"Axes & mouvements",html:`<ul><li><b>Axe sagittal</b> → abduction/adduction (plan frontal)</li>
+  <li><b>Axe transversal</b> → flexion/extension (plan sagittal)</li>
+  <li><b>Axe vertical</b> → rotations (plan transversal)</li></ul>
+  <p>Vocabulaire : flexion/extension, abduction/adduction, rotation médiale/latérale, <b>circumduction</b> (cône), pronation/supination (avant-bras), inversion/éversion (pied), flexion dorsale/plantaire (cheville), élévation/abaissement & protraction/rétraction (scapula), opposition (pouce).</p>
+  <blockquote>Le mouvement se fait <b>dans un plan</b> et <b>autour de l'axe perpendiculaire</b> à ce plan.</blockquote>`},
+  {h:"Termes de position",html:`<div class="tablewrap"><table><tr><th>Terme</th><th>Sens</th></tr>
+  <tr><td>Supérieur / Inférieur</td><td>vers la tête / vers les pieds</td></tr>
+  <tr><td>Antérieur / Postérieur</td><td>avant / arrière</td></tr>
+  <tr><td>Médial / Latéral</td><td>vers l'axe / loin de l'axe</td></tr>
+  <tr><td>Proximal / Distal</td><td>proche / loin de la racine du membre</td></tr>
+  <tr><td>Superficiel / Profond</td><td>proche / loin de la peau</td></tr>
+  <tr><td>Homo / Controlatéral</td><td>même côté / côté opposé</td></tr></table></div>`}
+]},
+{icon:"🦴",title:"Ostéologie",sections:[
+  {h:"Classification des os",html:`<div class="tablewrap"><table><tr><th>Type</th><th>Exemple</th></tr>
+  <tr><td>Long</td><td>fémur, humérus</td></tr><tr><td>Court</td><td>carpe, tarse</td></tr>
+  <tr><td>Plat</td><td>scapula, sternum</td></tr><tr><td>Irrégulier</td><td>vertèbre, os coxal</td></tr>
+  <tr><td>Sésamoïde</td><td>patella</td></tr></table></div>
+  <p><b>Os long</b> : diaphyse (corps, os compact + cavité médullaire), métaphyse (croissance), épiphyses (extrémités, os spongieux), périoste.</p>`},
+  {h:"Rachis (colonne vertébrale)",html:`<p>33 vertèbres : <b>cervicales 7</b> (C1 Atlas, C2 Axis), <b>thoraciques 12</b>, <b>lombaires 5</b>, <b>sacrum 5</b> soudées, <b>coccyx 4</b>.</p>
+  <p>Courbures : lordose cervicale, cyphose thoracique, lordose lombaire, cyphose sacrée.</p>
+  <p><b>Vertèbre type</b> : corps, arc (pédicules + lames), processus épineux, 2 transverses, 4 articulaires, foramen vertébral (→ moelle spinale).</p>`},
+  {h:"Thorax & ceintures",html:`<p>12 paires de côtes : <b>vraies 1-7</b>, <b>fausses 8-10</b>, <b>flottantes 11-12</b>. Sternum = manubrium + corps + xiphoïde. <b>Angle sternal (Louis)</b> = 2e côte.</p>
+  <p><b>Ceinture scapulaire</b> : clavicule + scapula (épine, acromion, coracoïde, glène). <b>Ceinture pelvienne</b> : os coxal = ilion + ischion + pubis.</p>`},
+  {h:"Os du membre supérieur",html:`<p><b>Humérus</b> : tête, cols, tubercules majeur/mineur, sillon bicipital, trochlée + capitulum, épicondyles. <b>Ulna</b> (médial) : olécrâne, coronoïde. <b>Radius</b> (latéral) : tête, styloïde.</p>
+  <p><b>Carpe</b> (prox→dist) : Scaphoïde, Lunatum, Triquétrum, Pisiforme / Trapèze, Trapézoïde, Capitatum, Hamatum.</p>`},
+  {h:"Os du membre inférieur",html:`<p><b>Fémur</b> : tête, col, grand/petit trochanter, ligne âpre, condyles. <b>Patella</b> (sésamoïde). <b>Tibia</b> (médial, portant) + <b>Fibula</b> (latéral).</p>
+  <p><b>Tarse</b> : Talus, Calcanéus, Naviculaire, Cuboïde, 3 Cunéiformes.</p>`}
+]},
+{icon:"🔗",title:"Arthrologie",sections:[
+  {h:"Classification & structure",html:`<div class="tablewrap"><table><tr><th>Type</th><th>Mobilité</th><th>Exemple</th></tr>
+  <tr><td>Synarthrose (fibreuse)</td><td>immobile</td><td>sutures crâne</td></tr>
   <tr><td>Amphiarthrose (cartilagineuse)</td><td>semi-mobile</td><td>symphyse pubienne, disques</td></tr>
   <tr><td>Diarthrose (synoviale)</td><td>mobile</td><td>épaule, genou, hanche</td></tr></table></div>
-  <h3>Articulations synoviales & degrés de liberté</h3>
-  <div class="tablewrap"><table><tr><th>Type</th><th>Ddl</th><th>Exemple</th></tr>
+  <p><b>Synoviale</b> : cartilage hyalin, capsule, membrane synoviale (+ liquide), cavité, ligaments, parfois ménisques / labrum / bourses.</p>`},
+  {h:"Types d'articulations synoviales",html:`<div class="tablewrap"><table><tr><th>Type</th><th>Ddl</th><th>Exemple</th></tr>
   <tr><td>Sphéroïde</td><td>3</td><td>épaule, hanche</td></tr>
   <tr><td>Ellipsoïde</td><td>2</td><td>radio-carpienne</td></tr>
   <tr><td>En selle</td><td>2</td><td>pouce</td></tr>
-  <tr><td>Trochléenne</td><td>1</td><td>coude, genou</td></tr>
+  <tr><td>Trochléenne</td><td>1</td><td>coude, genou, cheville</td></tr>
   <tr><td>Trochoïde (pivot)</td><td>1</td><td>radio-ulnaire</td></tr>
-  <tr><td>Plane</td><td>glissement</td><td>articulaires vertébrales</td></tr></table></div>`],
- ["p3","Partie 3 — Myologie générale", `
-  <h3>Rôles fonctionnels</h3>
-  <p>Agoniste (moteur), antagoniste (s'oppose), synergiste (aide), fixateur (stabilise l'origine).</p>
-  <h3>Types de contraction</h3>
-  <ul><li><b>Concentrique</b> : le muscle raccourcit (montée).</li>
-  <li><b>Excentrique</b> : s'allonge en se contractant (freinage).</li>
-  <li><b>Isométrique</b> : longueur constante (gainage).</li></ul>`],
- ["p4a","Partie 4 — Muscles du membre supérieur", `
-  <h3>Épaule</h3>
-  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
-  <tr><td>Deltoïde</td><td>axillaire (C5-C6)</td><td>abduction / flexion+RI / extension+RE</td></tr>
+  <tr><td>Plane</td><td>glissement</td><td>articulaires vertébrales</td></tr></table></div>`},
+  {h:"Articulations clés",html:`<p><b>Épaule</b> : très mobile, peu stable → labrum + coiffe. <b>Coude</b> : 3 articulations (huméro-ulnaire, huméro-radiale, radio-ulnaire prox.). <b>Genou</b> : LCA (anti tiroir antérieur), LCP (anti tiroir postérieur), ménisques (amortissement). <b>Cheville</b> : trochléenne, stabilisée par les ligaments collatéraux.</p>`}
+]},
+{icon:"💪",title:"Myologie générale",sections:[
+  {h:"Tissu & architecture",html:`<p>3 tissus : <b>strié squelettique</b> (volontaire, notre sujet), strié cardiaque, lisse (involontaires).</p>
+  <p>Architecture : fusiforme, penné (uni/bi/multipenné), circulaire (sphincter), digastrique. <b>Unité motrice</b> = motoneurone + fibres innervées. <b>Sarcomère</b> : actine + myosine (filaments glissants).</p>
+  <blockquote>Plus un muscle est penné → plus de <b>force</b>, mais moins de <b>course</b> (amplitude).</blockquote>`},
+  {h:"Rôles & types de contraction",html:`<p><b>Rôles</b> : agoniste (moteur), antagoniste (s'oppose), synergiste (aide), fixateur (stabilise l'origine).</p>
+  <ul><li><b>Concentrique</b> : le muscle raccourcit (montée de charge).</li>
+  <li><b>Excentrique</b> : s'allonge en se contractant (freinage, descente).</li>
+  <li><b>Isométrique</b> : longueur constante (gainage).</li></ul>`}
+]},
+{icon:"🦾",title:"Membre supérieur",sections:[
+  {h:"Ceinture & épaule (coiffe)",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Deltoïde</td><td>axillaire</td><td>abduction / flexion+RI / extension+RE</td></tr>
   <tr><td>Supra-épineux</td><td>supra-scapulaire</td><td>initie l'abduction</td></tr>
-  <tr><td>Infra-épineux</td><td>supra-scapulaire</td><td>rotation externe</td></tr>
-  <tr><td>Petit rond</td><td>axillaire</td><td>rotation externe</td></tr>
+  <tr><td>Infra-épineux / petit rond</td><td>supra-scap. / axillaire</td><td>rotation externe</td></tr>
   <tr><td>Subscapulaire</td><td>subscapulaires</td><td>rotation interne</td></tr>
-  <tr><td>Grand dorsal</td><td>thoraco-dorsal</td><td>adduction + RI + extension</td></tr>
-  <tr><td>Grand pectoral</td><td>pectoraux</td><td>adduction + RI + flexion</td></tr></table></div>
-  <blockquote><b>Coiffe = SITS</b> : Supra-épineux, Infra-épineux, Teres minor, Subscapulaire.</blockquote>
-  <h3>Bras</h3>
-  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Grand dorsal</td><td>thoraco-dorsal</td><td>adduction+RI+extension</td></tr>
+  <tr><td>Dentelé antérieur</td><td>thoracique long</td><td>protraction (lésion = scapula alata)</td></tr></table></div>
+  <blockquote>Coiffe = <b>SITS</b> (Supra, Infra, Teres minor, Subscapulaire) → centre la tête humérale.</blockquote>`},
+  {h:"Bras & avant-bras",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
   <tr><td>Biceps brachial</td><td>musculo-cutané</td><td>flexion coude + supination</td></tr>
   <tr><td>Brachial</td><td>musculo-cutané</td><td>fléchisseur pur du coude</td></tr>
-  <tr><td>Triceps brachial</td><td>radial</td><td>extension du coude</td></tr></table></div>
-  <blockquote>Avant-bras : loge <b>antérieure = médian</b>, loge <b>postérieure = radial</b>.</blockquote>`],
- ["p4b","Partie 4 — Muscles du membre inférieur", `
-  <h3>Hanche & cuisse</h3>
-  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Triceps brachial</td><td>radial</td><td>extension du coude</td></tr>
+  <tr><td>Brachio-radial</td><td>radial</td><td>flexion coude (neutre)</td></tr></table></div>
+  <blockquote>Avant-bras : loge <b>antérieure = médian</b> (fléchisseurs) · loge <b>postérieure = radial</b> (extenseurs). Canal carpien = nerf médian.</blockquote>`},
+  {h:"Innervation (plexus brachial C5-T1)",html:`<div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles</th><th>Lésion</th></tr>
+  <tr><td>Musculo-cutané</td><td>loge ant. bras</td><td>—</td></tr>
+  <tr><td>Axillaire</td><td>deltoïde, petit rond</td><td>—</td></tr>
+  <tr><td>Radial</td><td>triceps + extenseurs</td><td>main tombante</td></tr>
+  <tr><td>Médian</td><td>fléchisseurs + thénar</td><td>canal carpien</td></tr>
+  <tr><td>Ulnaire</td><td>intrinsèques main</td><td>griffe ulnaire</td></tr></table></div>`}
+]},
+{icon:"🦵",title:"Membre inférieur",sections:[
+  {h:"Hanche & fessiers",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
   <tr><td>Ilio-psoas</td><td>plexus lombaire / fémoral</td><td>flexion de hanche</td></tr>
-  <tr><td>Grand fessier</td><td>glutéal inférieur</td><td>extension + RE hanche</td></tr>
+  <tr><td>Grand fessier</td><td>glutéal inférieur</td><td>extension + RE</td></tr>
   <tr><td>Moyen fessier</td><td>glutéal supérieur</td><td>abduction + stabilité bassin</td></tr>
-  <tr><td>Adducteurs</td><td>obturateur</td><td>adduction de hanche</td></tr>
+  <tr><td>Adducteurs</td><td>obturateur</td><td>adduction</td></tr></table></div>
+  <blockquote>Moyen fessier déficient → boiterie de Trendelenburg (bascule du bassin).</blockquote>`},
+  {h:"Cuisse",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
   <tr><td>Quadriceps</td><td>fémoral (L2-L4)</td><td>extension du genou</td></tr>
+  <tr><td>Sartorius</td><td>fémoral</td><td>flexion+abduction+RE hanche</td></tr>
   <tr><td>Ischio-jambiers</td><td>sciatique (L5-S2)</td><td>flexion genou + extension hanche</td></tr></table></div>
-  <h3>Jambe</h3>
-  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
-  <tr><td>Triceps sural</td><td>tibial</td><td>flexion plantaire</td></tr>
-  <tr><td>Tibial antérieur</td><td>fibulaire profond</td><td>dorsiflexion + inversion</td></tr>
-  <tr><td>Fibulaires</td><td>fibulaire superficiel</td><td>éversion</td></tr></table></div>
-  <blockquote>Patte d'oie = <b>Sa</b>rtorius + <b>Gr</b>acile + <b>Se</b>mi-tendineux.</blockquote>`],
- ["p4c","Partie 4 — Tronc & tête/cou", `
-  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
-  <tr><td>Droit de l'abdomen</td><td>intercostaux (T7-T12)</td><td>flexion du tronc</td></tr>
-  <tr><td>Obliques</td><td>T7-L1</td><td>rotation (ext=contro, int=homo)</td></tr>
-  <tr><td>Transverse</td><td>T7-L1</td><td>sangle abdominale / gainage</td></tr>
-  <tr><td>Érecteurs du rachis</td><td>rameaux dorsaux</td><td>extension du rachis</td></tr>
-  <tr><td>Diaphragme</td><td>phrénique (C3-C5)</td><td>inspiration principale</td></tr>
-  <tr><td>SCM</td><td>accessoire (XI)</td><td>inclinaison homo + rotation contro</td></tr></table></div>`],
- ["p5","Partie 5 — Neuro-anatomie", `
-  <p>SNC = encéphale + moelle. SNP = 12 nerfs crâniens + 31 nerfs spinaux (8C, 12T, 5L, 5S, 1Co). Racine dorsale sensitive, ventrale motrice.</p>
-  <h3>Plexus brachial (C5-T1)</h3>
-  <div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles clés</th></tr>
-  <tr><td>Musculo-cutané</td><td>loge ant. du bras</td></tr>
-  <tr><td>Axillaire</td><td>deltoïde, petit rond</td></tr>
-  <tr><td>Radial</td><td>triceps + extenseurs</td></tr>
-  <tr><td>Médian</td><td>fléchisseurs avant-bras + thénar</td></tr>
-  <tr><td>Ulnaire</td><td>intrinsèques main (griffe si lésion)</td></tr></table></div>
-  <h3>Membre inférieur</h3>
-  <div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles</th></tr>
+  <blockquote>Patte d'oie = <b>Sa</b>rtorius + <b>Gr</b>acile + <b>Se</b>mi-tendineux. Droit fémoral = biarticulaire.</blockquote>`},
+  {h:"Jambe & pied",html:`<div class="tablewrap"><table><tr><th>Loge</th><th>Muscles</th><th>Nerf · Action</th></tr>
+  <tr><td>Postérieure</td><td>triceps sural, tibial post.</td><td>tibial · flexion plantaire</td></tr>
+  <tr><td>Antérieure</td><td>tibial antérieur</td><td>fibulaire profond · dorsiflexion</td></tr>
+  <tr><td>Latérale</td><td>fibulaires</td><td>fibulaire superficiel · éversion</td></tr></table></div>`},
+  {h:"Innervation (plexus lombo-sacré)",html:`<div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles</th></tr>
   <tr><td>Fémoral (L2-L4)</td><td>quadriceps, sartorius, ilio-psoas</td></tr>
-  <tr><td>Obturateur</td><td>adducteurs</td></tr>
-  <tr><td>Sciatique (→ tibial + fibulaire commun)</td><td>ischios + jambe + pied</td></tr></table></div>
-  <blockquote>Lésion du <b>fibulaire commun</b> → pied tombant (steppage).</blockquote>`],
- ["p6","Réflexes à graver", `
-  <ol>
-  <li>Mouvement = dans un plan, autour de l'axe perpendiculaire.</li>
-  <li>Tout muscle se décrit par O / T / I / Action.</li>
-  <li>Coiffe = SITS.</li>
-  <li>Avant-bras : médian devant, radial derrière.</li>
-  <li>Jambe : tibial derrière, fibulaire profond devant, fibulaire superficiel dehors.</li>
-  <li>Quadriceps = fémoral = extension genou.</li>
-  <li>Ischios = sciatique = flexion genou + extension hanche.</li>
-  <li>Moyen fessier = abduction + stabilité du bassin.</li>
-  <li>Diaphragme = C3-C4-C5.</li>
-  <li>Patte d'oie = Sartorius + Gracile + Semi-tendineux.</li>
-  </ol>`]
+  <tr><td>Obturateur (L2-L4)</td><td>adducteurs</td></tr>
+  <tr><td>Sciatique (L4-S3)</td><td>ischios + jambe + pied (→ tibial + fibulaire commun)</td></tr></table></div>
+  <blockquote>Lésion du <b>fibulaire commun</b> → pied tombant (steppage).</blockquote>`}
+]},
+{icon:"🫁",title:"Tronc & respiration",sections:[
+  {h:"Muscles du dos",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Action</th></tr>
+  <tr><td>Érecteurs du rachis</td><td>extension + posture</td></tr>
+  <tr><td>Transversaire épineux (multifides)</td><td>rotation + stabilité segmentaire</td></tr>
+  <tr><td>Carré des lombes</td><td>inclinaison latérale, fixe 12e côte</td></tr></table></div>
+  <p>Innervation : rameaux dorsaux des nerfs spinaux.</p>`},
+  {h:"Abdomen & respiration",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Action</th></tr>
+  <tr><td>Droit de l'abdomen</td><td>flexion du tronc</td></tr>
+  <tr><td>Oblique externe / interne</td><td>rotation (contro / homolatérale)</td></tr>
+  <tr><td>Transverse</td><td>sangle / gainage</td></tr>
+  <tr><td>Diaphragme</td><td>inspiration (n. phrénique C3-C5)</td></tr></table></div>
+  <blockquote>« C3-4-5 keep the diaphragm alive. »</blockquote>`}
+]},
+{icon:"🧠",title:"Neuro-anatomie",sections:[
+  {h:"Organisation SNC / SNP",html:`<p><b>SNC</b> = encéphale + moelle spinale. <b>SNP</b> = 12 nerfs crâniens + 31 nerfs spinaux (8C, 12T, 5L, 5S, 1Co).</p>
+  <p>Nerf spinal = racine <b>dorsale (sensitive)</b> + racine <b>ventrale (motrice)</b> → mixte. <b>Dermatome</b> = peau d'une racine ; <b>myotome</b> = muscles d'une racine.</p>
+  <p>Motoneurone <b>supérieur</b> (SNC) vs <b>inférieur</b> (corne antérieure → muscle ; lésion = paralysie flasque + amyotrophie).</p>`},
+  {h:"Plexus & nerfs",html:`<p><b>Cervical</b> (C1-C4) → nerf phrénique. <b>Brachial</b> (C5-T1) → musculo-cutané, axillaire, radial, médian, ulnaire. <b>Lombaire</b> (L1-L4) → fémoral, obturateur. <b>Sacré</b> (L4-S4) → sciatique, glutéaux, pudendal.</p>`},
+  {h:"Dermatomes & réflexes",html:`<div class="tablewrap"><table><tr><th>Repère</th><th>Racine</th></tr>
+  <tr><td>Pouce</td><td>C6</td></tr><tr><td>Majeur</td><td>C7</td></tr><tr><td>Auriculaire</td><td>C8</td></tr>
+  <tr><td>Malléole médiale</td><td>L4</td></tr><tr><td>Dos du pied / gros orteil</td><td>L5</td></tr><tr><td>Talon / bord latéral</td><td>S1</td></tr></table></div>
+  <div class="tablewrap"><table><tr><th>Réflexe</th><th>Racine</th></tr>
+  <tr><td>Bicipital</td><td>C5-C6</td></tr><tr><td>Tricipital</td><td>C7</td></tr><tr><td>Rotulien</td><td>L4</td></tr><tr><td>Achilléen</td><td>S1</td></tr></table></div>`}
+]},
+{icon:"✋",title:"Palpation & repères",sections:[
+  {h:"Repères par région",html:`<ul>
+  <li><b>Épaule</b> : acromion, coracoïde, épine scapula, tubercule majeur</li>
+  <li><b>Coude</b> : épicondyles, olécrâne, tête radiale</li>
+  <li><b>Poignet</b> : styloïdes radiale/ulnaire, tubercule de Lister, scaphoïde (tabatière)</li>
+  <li><b>Bassin</b> : EIAS, EIPS, crête iliaque, tubérosité ischiatique, grand trochanter</li>
+  <li><b>Genou</b> : patella, tubérosité tibiale, interligne, tête fibula</li>
+  <li><b>Cheville</b> : malléoles médiale/latérale, tendon calcanéen, naviculaire</li></ul>`},
+  {h:"Notions cliniques kiné",html:`<p>Penser <b>couples agoniste/antagoniste</b> (quadriceps ↔ ischios, biceps ↔ triceps), <b>stabilisateurs</b> (coiffe à l'épaule, moyen fessier au bassin, transverse + multifides au rachis), et <b>chaînes cinétiques</b> ouverte (pied libre) vs fermée (pied au sol).</p>
+  <blockquote>Comprendre l'<b>action</b> d'un muscle = regarder son trajet par rapport à l'axe de l'articulation, plutôt que la réciter.</blockquote>`}
+]}
 ];
 
-/* ============================ UTILITAIRES ============================ */
+/* ===================== UTILITAIRES ===================== */
 const $=id=>document.getElementById(id);
-const store={
-  get(k,d){try{return JSON.parse(localStorage.getItem("anatk_"+k))??d}catch(e){return d}},
-  set(k,v){try{localStorage.setItem("anatk_"+k,JSON.stringify(v))}catch(e){}}
-};
-function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(((i+1)*(performance.now()%97)/97))%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
-// fallback shuffle déterministe-ish (sans Math.random pour robustesse)
-function rnd(n){return Math.floor((performance.now()*1000+ n*2654435761)%n)}
-function realShuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+const store={get(k,d){try{const v=localStorage.getItem("ank2_"+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+  set(k,v){try{localStorage.setItem("ank2_"+k,JSON.stringify(v))}catch(e){}}};
+function rnd(n){return Math.floor((performance.now()*1000+n*2654435761)%n)}
+function shuf(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+function strip(h){return String(h).replace(/<[^>]+>/g," ").replace(/\s+/g," ").trim()}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+function norm(s){return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")}
 
-/* ============================ NAVIGATION ============================ */
+let fav=new Set(store.get("fav",[]));
+let review=new Set(store.get("review",[]));
+let wrongQ=new Set(store.get("wrongQ",[]));
+let seenCards=new Set(store.get("seen",[]));
+let quizStats=store.get("quizStats",{ans:0,ok:0});
+function saveSets(){store.set("fav",[...fav]);store.set("review",[...review]);store.set("wrongQ",[...wrongQ]);store.set("seen",[...seenCards]);store.set("quizStats",quizStats)}
+
+/* ===================== NAVIGATION ===================== */
 function go(view){
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.view===view));
   document.querySelectorAll(".view").forEach(s=>s.classList.remove("active"));
-  $("view-"+view).classList.add("active");
+  const el=$("view-"+view); if(el)el.classList.add("active");
   window.scrollTo({top:0,behavior:"smooth"});
+  if(view==="progres")renderProgress();
 }
-var navEl=document.getElementById("nav"); if(navEl) navEl.addEventListener("click",function(e){var t=e.target.closest(".tab");if(t&&t.dataset.view)go(t.dataset.view)});
+var navEl=$("nav"); if(navEl) navEl.addEventListener("click",function(e){var t=e.target.closest(".tab");if(t&&t.dataset.view)go(t.dataset.view)});
 
-/* ============================ ACCUEIL STATS ============================ */
+/* ===================== STATS ACCUEIL ===================== */
 $("stat-cards").textContent=FLASHCARDS.length;
 $("stat-qcm").textContent=QCM.length;
-function refreshBest(){const b=store.get("examBest",null);$("stat-best").textContent=b==null?"—":b+"/20";}
-refreshBest();
+$("stat-courses").textContent=COURSES.length;
 
-/* ============================ COURS ============================ */
-(function(){
-  const toc=$("toc"), wrap=$("cours-content");
-  COURS.forEach(([id,title,html])=>{
-    const b=document.createElement("button");b.textContent=title;b.onclick=()=>$("c-"+id).scrollIntoView({behavior:"smooth"});toc.appendChild(b);
-    const sec=document.createElement("div");sec.className="panel";sec.style.marginBottom="14px";sec.id="c-"+id;
-    sec.innerHTML="<h2 style='margin-top:0'>"+title+"</h2>"+html;wrap.appendChild(sec);
+/* ===================== RECHERCHE GLOBALE ===================== */
+let INDEX=null;
+function buildIndex(){
+  INDEX=[];
+  COURSES.forEach((c,ci)=>c.sections.forEach((s,si)=>{
+    INDEX.push({type:"cours",ci,si,title:c.title+" · "+s.h,text:norm(s.h+" "+strip(s.html)),snippet:strip(s.html).slice(0,120)});
+  }));
+  FLASHCARDS.forEach((c,i)=>INDEX.push({type:"carte",i,title:c[0],text:norm(c[0]+" "+c[1]),snippet:c[1]}));
+  QCM.forEach((q,i)=>INDEX.push({type:"quiz",i,title:q[0],text:norm(q[0]+" "+q[1].join(" ")),snippet:"Réponse : "+q[1][q[2]]}));
+}
+function doSearch(term){
+  if(!INDEX)buildIndex();
+  const t=norm(term);
+  const box=$("search-results"),info=$("search-info");
+  if(t.length<2){box.innerHTML="";info.textContent="Tape au moins 2 lettres dans la barre en haut.";return;}
+  const res=INDEX.filter(x=>x.text.includes(t)).slice(0,50);
+  info.textContent=res.length+" résultat(s) pour « "+term+" »";
+  box.innerHTML=res.map((x,k)=>{
+    const cls=x.type==="cours"?"rt-cours":x.type==="carte"?"rt-carte":"rt-quiz";
+    const lab=x.type==="cours"?"COURS":x.type==="carte"?"FLASHCARD":"QUIZ";
+    return '<button class="res" data-k="'+k+'"><span class="rtag '+cls+'">'+lab+'</span><div class="rq">'+esc(x.title)+'</div><div class="ra">'+esc(x.snippet)+'</div></button>';
+  }).join("");
+  box._res=res;
+  [...box.querySelectorAll(".res")].forEach(b=>b.onclick=()=>{
+    const x=box._res[+b.dataset.k];
+    if(x.type==="cours"){openCourse(x.ci);go("cours");}
   });
-})();
+}
+const gs=$("globalSearch");
+if(gs)gs.addEventListener("input",()=>{go("recherche");doSearch(gs.value)});
 
-/* ============================ FLASHCARDS ============================ */
-let fcDeck=[], fcIdx=0, fcFlipped=false;
-(function initFc(){
-  const sel=$("fc-filter");
-  sel.innerHTML='<option value="all">Toutes les régions</option>'+Object.entries(REGIONS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
-  sel.onchange=loadFc; loadFc();
+/* ===================== COURS ===================== */
+function showCourseList(){$("course-detail").style.display="none";$("course-list-wrap").style.display="block"}
+function openCourse(ci){
+  const c=COURSES[ci];if(!c)return;
+  $("course-list-wrap").style.display="none";$("course-detail").style.display="block";
+  $("course-title").textContent=c.icon+" "+c.title;
+  $("course-body").innerHTML=c.sections.map(s=>'<div class="panel" style="margin-bottom:12px"><h2 style="margin-top:0">'+esc(s.h)+'</h2>'+s.html+'</div>').join("");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+(function(){
+  const list=$("course-list");
+  list.innerHTML=COURSES.map((c,ci)=>'<button class="courseitem" data-ci="'+ci+'"><span class="cic">'+c.icon+'</span><span><span class="ct">'+esc(c.title)+'</span><br><span class="cs">'+c.sections.length+' parties</span></span><span class="cgo">›</span></button>').join("");
+  [...list.querySelectorAll(".courseitem")].forEach(b=>b.onclick=()=>openCourse(+b.dataset.ci));
+})();
+$("course-back").onclick=showCourseList;
+
+/* ===================== FLASHCARDS ===================== */
+let fcDeck=[],fcIdx=0,fcFlipped=false,fcScope="all";
+(function(){
+  const sel=$("fc-region");
+  sel.innerHTML='<option value="all">Toutes les régions</option>'+Object.entries(REGIONS).map(([k,v])=>'<option value="'+k+'">'+v+'</option>').join("");
+  sel.onchange=loadFc;$("fc-sort").onchange=loadFc;$("fc-search").addEventListener("input",loadFc);
+  [...$("fc-scope").querySelectorAll(".chip")].forEach(c=>c.onclick=()=>{
+    $("fc-scope").querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));c.classList.add("on");fcScope=c.dataset.scope;loadFc();
+  });
 })();
 function loadFc(){
-  const f=$("fc-filter").value;
-  fcDeck=FLASHCARDS.filter(c=>f==="all"||c[2]===f);
-  fcIdx=0; fcFlipped=false; renderFc();
+  const reg=$("fc-region").value,q=norm($("fc-search").value),sort=$("fc-sort").value;
+  let arr=FLASHCARDS.map((c,i)=>({c,i})).filter(o=>reg==="all"||o.c[2]===reg);
+  if(fcScope==="fav")arr=arr.filter(o=>fav.has(o.i));
+  if(fcScope==="review")arr=arr.filter(o=>review.has(o.i));
+  if(q)arr=arr.filter(o=>norm(o.c[0]+" "+o.c[1]).includes(q));
+  if(sort==="alea")arr=shuf(arr);
+  else if(sort==="az")arr.sort((a,b)=>a.c[0].localeCompare(b.c[0]));
+  fcDeck=arr;fcIdx=0;fcFlipped=false;renderFc();
 }
 function renderFc(){
-  if(!fcDeck.length){$("fc-q").textContent="Aucune carte";return;}
-  const c=fcDeck[fcIdx];
-  $("fc-q").textContent=c[0]; $("fc-a").textContent=c[1];
+  const empty=!fcDeck.length;
+  $("fc-empty").style.display=empty?"block":"none";
+  $("flashcard").style.display=empty?"none":"block";
+  if(empty){$("fc-counter").textContent="0 carte";return;}
+  if(fcIdx>=fcDeck.length)fcIdx=0;
+  const o=fcDeck[fcIdx],c=o.c;
+  $("fc-q").textContent=c[0];$("fc-a").textContent=c[1];
   $("flashcard").classList.toggle("flip",fcFlipped);
-  $("fc-counter").textContent=`Carte ${fcIdx+1} / ${fcDeck.length} · ${REGIONS[c[2]]}`;
-  const seen=store.get("fcSeen",0), known=store.get("fcKnown",0);
-  $("fc-stats").textContent=`Vues : ${seen} · Sues : ${known}`;
+  $("fc-counter").textContent=(fcIdx+1)+" / "+fcDeck.length+" · "+REGIONS[c[2]];
+  $("fc-star").textContent=fav.has(o.i)?"⭐":"☆";
 }
-function toggleFlip(){fcFlipped=!fcFlipped;$("flashcard").classList.toggle("flip",fcFlipped);}
-$("fc-flip").onclick=e=>{e.stopPropagation();toggleFlip();};
-$("fc-next").onclick=()=>{fcIdx=(fcIdx+1)%fcDeck.length;fcFlipped=false;renderFc();};
-$("fc-prev").onclick=()=>{fcIdx=(fcIdx-1+fcDeck.length)%fcDeck.length;fcFlipped=false;renderFc();};
-$("fc-shuffle").onclick=()=>{fcDeck=realShuffle(fcDeck);fcIdx=0;fcFlipped=false;renderFc();};
-$("fc-known").onclick=()=>{store.set("fcSeen",store.get("fcSeen",0)+1);store.set("fcKnown",store.get("fcKnown",0)+1);next();};
-$("fc-unknown").onclick=()=>{store.set("fcSeen",store.get("fcSeen",0)+1);next();};
-function next(){fcIdx=(fcIdx+1)%fcDeck.length;fcFlipped=false;renderFc();}
+function fcFlip(){fcFlipped=!fcFlipped;$("flashcard").classList.toggle("flip",fcFlipped)}
+function toggleFav(){if(!fcDeck.length)return;const i=fcDeck[fcIdx].i;if(fav.has(i))fav.delete(i);else fav.add(i);saveSets();renderFc()}
+function fcNext(){if(!fcDeck.length)return;fcIdx=(fcIdx+1)%fcDeck.length;fcFlipped=false;renderFc()}
+function fcPrev(){if(!fcDeck.length)return;fcIdx=(fcIdx-1+fcDeck.length)%fcDeck.length;fcFlipped=false;renderFc()}
+$("fc-flip").onclick=e=>{e.stopPropagation();fcFlip()};
+$("fc-next").onclick=fcNext;$("fc-prev").onclick=fcPrev;
+$("fc-known").onclick=()=>{if(!fcDeck.length)return;const i=fcDeck[fcIdx].i;seenCards.add(i);review.delete(i);saveSets();fcNext()};
+$("fc-again").onclick=()=>{if(!fcDeck.length)return;const i=fcDeck[fcIdx].i;seenCards.add(i);review.add(i);saveSets();fcNext()};
 
-/* ============================ QUIZ ============================ */
-let qDeck=[], qIdx=0, qScore=0, qAnswered=false;
-(function initQuiz(){
-  const sel=$("quiz-filter");
-  sel.innerHTML='<option value="all">Tout le programme</option>'+Object.entries(REGIONS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+/* ===================== QUIZ ===================== */
+let qDeck=[],qIdx=0,qScore=0,qAnswered=false,qRedo=false;
+(function(){
+  const sel=$("quiz-region");
+  sel.innerHTML='<option value="all">Tout le programme</option>'+Object.entries(REGIONS).map(([k,v])=>'<option value="'+k+'">'+v+'</option>').join("");
+  updateRedoInfo();
 })();
-$("quiz-start").onclick=()=>{
-  const f=$("quiz-filter").value;
-  qDeck=realShuffle(QCM.filter(q=>f==="all"||q[4]===f));
-  if(!qDeck.length){alert("Aucune question pour cette région.");return;}
-  qIdx=0;qScore=0;
-  $("quiz-setup").style.display="none";$("quiz-result").style.display="none";$("quiz-play").style.display="block";
-  renderQuiz();
-};
-function renderQuiz(){
-  qAnswered=false;
-  const q=qDeck[qIdx];
-  $("quiz-counter").textContent=`Question ${qIdx+1} / ${qDeck.length}`;
-  $("quiz-score").textContent=qScore;
-  $("quiz-bar").style.width=(qIdx/qDeck.length*100)+"%";
-  $("quiz-question").textContent=q[0];
-  const box=$("quiz-options");box.innerHTML="";
-  $("quiz-explain").className="explain";$("quiz-next").style.display="none";
-  q[1].forEach((opt,i)=>{
-    const b=document.createElement("button");b.className="opt";b.textContent=opt;
-    b.onclick=()=>answerQuiz(i,b);box.appendChild(b);
-  });
+function updateRedoInfo(){
+  const n=wrongQ.size;const b=$("quiz-redo");
+  $("quiz-redo-info").textContent=n?("Tu as "+n+" question(s) ratée(s) à retravailler."):"Aucune question ratée pour l'instant — fais un quiz d'abord.";
+  b.style.opacity=n?"1":".5";
 }
-function answerQuiz(i,btn){
-  if(qAnswered)return; qAnswered=true;
-  const q=qDeck[qIdx], correct=q[2];
-  document.querySelectorAll("#quiz-options .opt").forEach((b,idx)=>{
-    b.disabled=true;
-    if(idx===correct)b.classList.add("correct");
-    else if(idx===i)b.classList.add("wrong");
-  });
-  if(i===correct)qScore++;
+function startQuiz(list,redo){
+  qDeck=list;qRedo=!!redo;if(!qDeck.length){alert(redo?"Aucune question ratée !":"Aucune question pour cette région.");return;}
+  qIdx=0;qScore=0;$("quiz-setup").style.display="none";$("quiz-result").style.display="none";$("quiz-play").style.display="block";renderQuiz();
+}
+$("quiz-start").onclick=()=>{const f=$("quiz-region").value;startQuiz(shuf(QCM.map((q,i)=>({q,i})).filter(o=>f==="all"||o.q[4]===f)),false)};
+$("quiz-redo").onclick=()=>{startQuiz(shuf([...wrongQ].map(i=>({q:QCM[i],i})).filter(o=>o.q)),true)};
+function renderQuiz(){
+  qAnswered=false;const o=qDeck[qIdx],q=o.q;
+  $("quiz-counter").textContent=(qIdx+1)+" / "+qDeck.length+(qRedo?" · ratés":"");
+  $("quiz-score").textContent=qScore;$("quiz-bar").style.width=(qIdx/qDeck.length*100)+"%";
+  $("quiz-question").textContent=q[0];
+  const box=$("quiz-options");box.innerHTML="";$("quiz-explain").className="explain";$("quiz-next").style.display="none";
+  shuf(q[1].map((opt,idx)=>idx)).forEach(idx=>{const b=document.createElement("button");b.className="opt";b.textContent=q[1][idx];b.dataset.orig=idx;b.onclick=()=>answerQuiz(idx,o);box.appendChild(b)});
+}
+function answerQuiz(i,o){
+  if(qAnswered)return;qAnswered=true;const q=o.q,correct=q[2];
+  document.querySelectorAll("#quiz-options .opt").forEach(b=>{b.disabled=true;const oi=+b.dataset.orig;if(oi===correct)b.classList.add("correct");else if(oi===i)b.classList.add("wrong")});
+  quizStats.ans++;
+  if(i===correct){qScore++;quizStats.ok++;if(qRedo)wrongQ.delete(o.i)}
+  else{wrongQ.add(o.i)}
+  saveSets();updateRedoInfo();
   $("quiz-score").textContent=qScore;
   const ex=$("quiz-explain");ex.textContent=(i===correct?"✅ Correct. ":"❌ Faux. ")+q[3];ex.classList.add("show");
-  $("quiz-next").style.display="inline-block";
-  $("quiz-next").textContent=qIdx+1<qDeck.length?"Suivant →":"Voir le résultat";
+  const nx=$("quiz-next");nx.style.display="inline-block";nx.textContent=qIdx+1<qDeck.length?"Suivant →":"Voir le résultat";
 }
 $("quiz-next").onclick=()=>{
-  if(qIdx+1<qDeck.length){qIdx++;renderQuiz();}
-  else{
-    $("quiz-play").style.display="none";$("quiz-result").style.display="block";
-    const pct=Math.round(qScore/qDeck.length*100);
-    $("quiz-final").textContent=qScore+"/"+qDeck.length;
+  if(qIdx+1<qDeck.length){qIdx++;renderQuiz()}
+  else{$("quiz-play").style.display="none";$("quiz-result").style.display="block";
+    const pct=Math.round(qScore/qDeck.length*100);$("quiz-final").textContent=qScore+"/"+qDeck.length;
     $("quiz-final").style.color=pct>=70?"var(--good)":pct>=50?"var(--warn)":"var(--bad)";
-    $("quiz-msg").textContent=pct>=80?"Excellent, c'est solide ! 🔥":pct>=60?"Bien, encore quelques cartes à revoir.":"À retravailler — refais les flashcards de la région.";
-  }
+    $("quiz-msg").textContent=pct>=80?"Excellent ! 🔥":pct>=60?"Bien, continue.":"À retravailler — vise tes ratés.";}
 };
-function resetQuiz(){$("quiz-result").style.display="none";$("quiz-setup").style.display="block";}
+function resetQuiz(){$("quiz-result").style.display="none";$("quiz-setup").style.display="block";updateRedoInfo()}
 
-/* ============================ EXAMEN BLANC ============================ */
-let eDeck=[], eIdx=0, eAnswers=[], eTimer=null, eSeconds=0;
+/* ===================== EXAMEN ===================== */
+let eDeck=[],eIdx=0,eAns=[],eTimer=null,eSec=0;
+(function(){const sel=$("exam-region");sel.innerHTML='<option value="all">Tout le programme</option>'+Object.entries(REGIONS).map(([k,v])=>'<option value="'+k+'">'+v+'</option>').join("")})();
 $("exam-start").onclick=()=>{
-  eDeck=realShuffle(QCM).slice(0,Math.min(20,QCM.length));
-  eIdx=0;eAnswers=[];eSeconds=0;
+  const len=+$("exam-len").value,reg=$("exam-region").value;
+  let pool=QCM.map((q,i)=>({q,i})).filter(o=>reg==="all"||o.q[4]===reg);
+  if(pool.length<3){alert("Pas assez de questions pour cette région.");return;}
+  eDeck=shuf(pool).slice(0,Math.min(len,pool.length));eIdx=0;eAns=[];eSec=0;
   $("exam-setup").style.display="none";$("exam-result").style.display="none";$("exam-play").style.display="block";
-  clearInterval(eTimer);
-  eTimer=setInterval(()=>{eSeconds++;const m=String(Math.floor(eSeconds/60)).padStart(2,"0"),s=String(eSeconds%60).padStart(2,"0");$("exam-timer").textContent=m+":"+s;},1000);
-  renderExam();
+  clearInterval(eTimer);eTimer=setInterval(()=>{eSec++;$("exam-timer").textContent=fmt(eSec)},1000);renderExam();
 };
+function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
 function renderExam(){
-  const q=eDeck[eIdx];
-  $("exam-counter").textContent=`Question ${eIdx+1} / ${eDeck.length}`;
-  $("exam-bar").style.width=(eIdx/eDeck.length*100)+"%";
-  $("exam-question").textContent=q[0];
-  const box=$("exam-options");box.innerHTML="";
-  q[1].forEach((opt,i)=>{
-    const b=document.createElement("button");b.className="opt";b.textContent=opt;
-    b.onclick=()=>{eAnswers[eIdx]=i; if(eIdx+1<eDeck.length){eIdx++;renderExam();} else finishExam();};
-    box.appendChild(b);
-  });
+  const o=eDeck[eIdx],q=o.q;
+  $("exam-counter").textContent=(eIdx+1)+" / "+eDeck.length;$("exam-bar").style.width=(eIdx/eDeck.length*100)+"%";
+  $("exam-question").textContent=q[0];const box=$("exam-options");box.innerHTML="";
+  shuf(q[1].map((opt,idx)=>idx)).forEach(idx=>{const b=document.createElement("button");b.className="opt";b.textContent=q[1][idx];
+    b.onclick=()=>{eAns[eIdx]=idx;if(eIdx+1<eDeck.length){eIdx++;renderExam()}else finishExam()};box.appendChild(b)});
 }
 function finishExam(){
-  clearInterval(eTimer);
-  let score=0;
-  eDeck.forEach((q,i)=>{if(eAnswers[i]===q[2])score++;});
+  clearInterval(eTimer);let score=0;eDeck.forEach((o,i)=>{if(eAns[i]===o.q[2])score++;else wrongQ.add(o.i)});saveSets();updateRedoInfo();
   $("exam-play").style.display="none";$("exam-result").style.display="block";
-  const pct=Math.round(score/eDeck.length*100);
-  $("exam-final").textContent=score+"/"+eDeck.length;
+  const pct=Math.round(score/eDeck.length*100);$("exam-final").textContent=score+"/"+eDeck.length;
   $("exam-final").style.color=pct>=70?"var(--good)":pct>=50?"var(--warn)":"var(--bad)";
-  const m=String(Math.floor(eSeconds/60)).padStart(2,"0"),s=String(eSeconds%60).padStart(2,"0");
-  $("exam-msg").textContent=`Temps : ${m}:${s} · ${pct>=80?"Niveau examen atteint ! 🏆":pct>=60?"Presque, continue.":"Reprends les régions faibles."}`;
-  const best=store.get("examBest",null);
-  if(best==null||score>best){store.set("examBest",score);refreshBest();}
-  // review
+  $("exam-msg").textContent="Temps : "+fmt(eSec)+" · "+(pct>=80?"Niveau examen ! 🏆":pct>=60?"Presque.":"Reprends tes ratés.");
+  const best=store.get("examBest",null);if(best==null||pct>best)store.set("examBest",pct);
   const rev=$("exam-review");rev.innerHTML="";
-  eDeck.forEach((q,i)=>{
-    const ok=eAnswers[i]===q[2];
-    const div=document.createElement("div");div.className="panel";div.style.marginBottom="10px";
-    div.innerHTML=`<div class="${ok?'badge-good':'badge-bad'}">${ok?'✅':'❌'} Q${i+1}. ${q[0]}</div>
-      <div class="mini" style="margin-top:6px">Ta réponse : ${eAnswers[i]!=null?q[1][eAnswers[i]]:'—'}<br>
-      Bonne réponse : <b>${q[1][q[2]]}</b><br>
-      <span style="color:var(--muted)">${q[3]}</span></div>`;
-    rev.appendChild(div);
-  });
+  eDeck.forEach((o,i)=>{const q=o.q,ok=eAns[i]===q[2];const d=document.createElement("div");d.className="panel";d.style.marginBottom="10px";
+    d.innerHTML='<div class="'+(ok?"badge-good":"badge-bad")+'">'+(ok?"✅":"❌")+" Q"+(i+1)+". "+esc(q[0])+'</div><div class="mini" style="margin-top:6px">Ta réponse : '+esc(eAns[i]!=null?q[1][eAns[i]]:"—")+'<br>Bonne réponse : <b>'+esc(q[1][q[2]])+'</b><br><span style="color:var(--muted)">'+esc(q[3])+'</span></div>';rev.appendChild(d)});
 }
-function resetExam(){$("exam-result").style.display="none";$("exam-setup").style.display="block";}
+function resetExam(){$("exam-result").style.display="none";$("exam-setup").style.display="block"}
+
+/* ===================== PROGRESSION ===================== */
+function renderProgress(){
+  $("pr-known").textContent=[...review].length?seenCards.size-review.size:seenCards.size>0?seenCards.size-review.size:0;
+  $("pr-known").textContent=Math.max(0,seenCards.size-review.size);
+  $("pr-seen").textContent=seenCards.size;
+  $("pr-fav").textContent=fav.size;$("pr-review").textContent=review.size;
+  $("pr-acc").textContent=quizStats.ans?Math.round(quizStats.ok/quizStats.ans*100)+"%":"—";
+  const eb=store.get("examBest",null);$("pr-exam").textContent=eb==null?"—":eb+"%";
+  $("pr-quiz").textContent="Quiz : "+quizStats.ok+" bonnes / "+quizStats.ans+" répondues.";
+  // par région
+  const tot={},kn={};FLASHCARDS.forEach((c,i)=>{tot[c[2]]=(tot[c[2]]||0)+1;if(seenCards.has(i)&&!review.has(i))kn[c[2]]=(kn[c[2]]||0)+1});
+  $("pr-regions").innerHTML=Object.entries(REGIONS).map(([k,v])=>{const t=tot[k]||0,n=kn[k]||0,p=t?Math.round(n/t*100):0;
+    return '<div class="prbar"><div class="lab"><span>'+v+'</span><span class="mini">'+n+'/'+t+'</span></div><div class="track"><div class="fill" style="width:'+p+'%"></div></div></div>';}).join("");
+}
+$("pr-reset").onclick=()=>{if(confirm("Effacer toute ta progression (favoris, ratés, stats) ?")){fav=new Set();review=new Set();wrongQ=new Set();seenCards=new Set();quizStats={ans:0,ok:0};store.set("examBest",null);saveSets();renderProgress();updateRedoInfo();loadFc();alert("Progression réinitialisée.")}};
+
+/* ===================== INIT ===================== */
+loadFc();
 </script>
 </body>
 </html>
