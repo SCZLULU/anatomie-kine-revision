@@ -112,6 +112,23 @@
   @media(min-width:700px){.cards3{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
     .bottomnav{max-width:820px;left:50%;transform:translateX(-50%);border-radius:18px 18px 0 0;border:1px solid var(--line);border-bottom:none}
     button.btn{width:auto}.panel .btn,#quiz-start,#quiz-redo,#exam-start,#pr-reset,#jour-start{width:auto}select,input.txt{max-width:380px}}
+  /* ===== v4 : cours colorés, encadrés, schémas SVG, cartes mentales ===== */
+  .callout{border-radius:12px;padding:11px 14px;margin:11px 0;border-left:4px solid;font-size:14.5px}
+  .callout .ct{font-weight:800;display:block;margin-bottom:3px;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px}
+  .def{background:rgba(47,143,214,.12);border-color:#2f8fd6}.def .ct{color:#2f8fd6}
+  .key{background:rgba(240,180,41,.14);border-color:#f0b429}.key .ct{color:#c9930f}
+  .clin{background:rgba(236,91,106,.12);border-color:#ec5b6a}.clin .ct{color:#e0445a}
+  .mnemo{background:rgba(35,181,168,.13);border-color:#23b5a8}.mnemo .ct{color:#179b8e}
+  .essbox{background:linear-gradient(135deg,rgba(35,181,168,.16),rgba(47,143,214,.10));border:1.5px solid var(--accent);border-radius:14px;padding:14px 16px}
+  .essbox ul{margin:.2em 0;padding-left:20px}.essbox li{margin:.4em 0;font-weight:600;font-size:14.5px}
+  .essbox li b{color:var(--accent)}
+  .svgbox{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px 12px;margin:13px 0;text-align:center;color:var(--txt)}
+  .svgbox svg{width:100%;max-width:460px;height:auto;display:inline-block}
+  .svgcap{font-size:12.5px;color:var(--muted);margin-top:7px;font-style:italic}
+  .schema .lbl{font-size:11px;font-weight:700;fill:currentColor}
+  .schema .lblsm{font-size:9.5px;fill:var(--muted)}
+  .mm-c{font-weight:800}
+
 </style>
 </head>
 <body>
@@ -589,168 +606,313 @@ const QCM=[
 ];
 const COURSES=[
 {icon:"🧭",title:"Le langage anatomique",sections:[
-  {h:"Position de référence & plans",html:`<p>Toute description part de la <b>position anatomique de référence</b> : debout, regard horizontal, bras le long du corps, <b>paumes vers l'avant</b> (avant-bras en supination), pieds joints.</p>
-  <div class="tablewrap"><table><tr><th>Plan</th><th>Sépare</th><th>Mouvements</th></tr>
-  <tr><td>Sagittal (médian)</td><td>droite / gauche</td><td>Flexion / Extension</td></tr>
-  <tr><td>Frontal (coronal)</td><td>avant / arrière</td><td>Abduction / Adduction</td></tr>
-  <tr><td>Transversal (horizontal)</td><td>haut / bas</td><td>Rotations</td></tr></table></div>`},
-  {h:"Axes & mouvements",html:`<ul><li><b>Axe sagittal</b> → abduction/adduction (plan frontal)</li>
-  <li><b>Axe transversal</b> → flexion/extension (plan sagittal)</li>
-  <li><b>Axe vertical</b> → rotations (plan transversal)</li></ul>
-  <p>Vocabulaire : flexion/extension, abduction/adduction, rotation médiale/latérale, <b>circumduction</b> (cône), pronation/supination (avant-bras), inversion/éversion (pied), flexion dorsale/plantaire (cheville), élévation/abaissement & protraction/rétraction (scapula), opposition (pouce).</p>
-  <blockquote>Le mouvement se fait <b>dans un plan</b> et <b>autour de l'axe perpendiculaire</b> à ce plan.</blockquote>`},
-  {h:"Termes de position",html:`<div class="tablewrap"><table><tr><th>Terme</th><th>Sens</th></tr>
+  {h:"Pourquoi un langage commun ?",html:`<p>Avant de décrire le moindre muscle, il faut un <b>repère universel</b>. Tous les soignants du monde décrivent le corps depuis la même posture et avec les mêmes mots : c'est ce qui évite toute ambiguïté entre un kiné, un médecin et un chirurgien.</p>
+  <div class="callout def"><span class="ct">📘 Définition — Position anatomique de référence</span>Sujet debout, regard horizontal, bras le long du corps, <b>paumes vers l'avant</b> (avant-bras en supination), pieds joints. <b>Toute</b> description part de cette position.</div>`},
+  {h:"Les 3 plans de l'espace",html:`<p>On découpe le corps par trois plans perpendiculaires. Chaque plan « autorise » une famille de mouvements, autour d'un axe qui lui est perpendiculaire.</p>
+  <div class="svgbox"><svg viewBox="0 0 300 230" class="schema" role="img" aria-label="Plans anatomiques">
+    <ellipse cx="150" cy="40" rx="22" ry="24" fill="none" stroke="currentColor" stroke-width="2"/>
+    <rect x="120" y="62" width="60" height="120" rx="18" fill="none" stroke="currentColor" stroke-width="2"/>
+    <rect x="150" y="14" width="2" height="180" fill="#2f8fd6"/>
+    <text x="158" y="22" class="lbl" fill="#2f8fd6">plan sagittal</text>
+    <line x1="92" y1="120" x2="208" y2="120" stroke="#f0b429" stroke-width="2"/>
+    <text x="210" y="118" class="lbl" fill="#c9930f">transversal</text>
+    <ellipse cx="150" cy="120" rx="46" ry="14" fill="none" stroke="#23b5a8" stroke-width="2"/>
+    <text x="40" y="205" class="lbl" fill="#179b8e">plan frontal (face)</text>
+  </svg><div class="svgcap">Schéma — les 3 plans de référence</div></div>
+  <div class="tablewrap"><table><tr><th>Plan</th><th>Sépare</th><th>Axe ⟂</th><th>Mouvements</th></tr>
+  <tr><td>Sagittal</td><td>droite / gauche</td><td>transversal</td><td>Flexion / Extension</td></tr>
+  <tr><td>Frontal</td><td>avant / arrière</td><td>sagittal</td><td>Abduction / Adduction</td></tr>
+  <tr><td>Transversal</td><td>haut / bas</td><td>vertical</td><td>Rotations</td></tr></table></div>
+  <div class="callout key"><span class="ct">⭐ À retenir</span>Un mouvement se fait <b>DANS un plan</b> et <b>AUTOUR de l'axe perpendiculaire</b> à ce plan. C'est la clé pour déduire l'action d'un muscle sans l'apprendre par cœur.</div>`},
+  {h:"Le vocabulaire de position",html:`<div class="tablewrap"><table><tr><th>Terme</th><th>Sens</th></tr>
   <tr><td>Supérieur / Inférieur</td><td>vers la tête / vers les pieds</td></tr>
-  <tr><td>Antérieur / Postérieur</td><td>avant / arrière</td></tr>
-  <tr><td>Médial / Latéral</td><td>vers l'axe / loin de l'axe</td></tr>
+  <tr><td>Antérieur / Postérieur</td><td>avant (ventral) / arrière (dorsal)</td></tr>
+  <tr><td>Médial / Latéral</td><td>vers l'axe médian / loin de l'axe</td></tr>
   <tr><td>Proximal / Distal</td><td>proche / loin de la racine du membre</td></tr>
   <tr><td>Superficiel / Profond</td><td>proche / loin de la peau</td></tr>
-  <tr><td>Homo / Controlatéral</td><td>même côté / côté opposé</td></tr></table></div>`}
+  <tr><td>Homo / Controlatéral</td><td>même côté / côté opposé</td></tr></table></div>
+  <div class="callout mnemo"><span class="ct">🧠 Mémo mouvements</span>Pronation/supination (avant-bras), inversion/éversion (pied), flexion dorsale/plantaire (cheville), protraction/rétraction (scapula). La <b>circumduction</b> = cône (flexion→abduction→extension→adduction enchaînées).</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>Tout part de la <b>position anatomique</b> (paumes en avant).</li>
+  <li><b>Sagittal</b> → flexion/extension · <b>Frontal</b> → abduction/adduction · <b>Transversal</b> → rotations.</li>
+  <li>Mouvement = dans un plan, autour de l'<b>axe perpendiculaire</b>.</li>
+  <li>Maîtriser médial/latéral et proximal/distal : c'est la base de TOUTES les descriptions.</li>
+  </ul></div>`}
 ]},
 {icon:"🦴",title:"Ostéologie",sections:[
-  {h:"Classification des os",html:`<div class="tablewrap"><table><tr><th>Type</th><th>Exemple</th></tr>
-  <tr><td>Long</td><td>fémur, humérus</td></tr><tr><td>Court</td><td>carpe, tarse</td></tr>
-  <tr><td>Plat</td><td>scapula, sternum</td></tr><tr><td>Irrégulier</td><td>vertèbre, os coxal</td></tr>
-  <tr><td>Sésamoïde</td><td>patella</td></tr></table></div>
-  <p><b>Os long</b> : diaphyse (corps, os compact + cavité médullaire), métaphyse (croissance), épiphyses (extrémités, os spongieux), périoste.</p>`},
-  {h:"Rachis (colonne vertébrale)",html:`<p>33 vertèbres : <b>cervicales 7</b> (C1 Atlas, C2 Axis), <b>thoraciques 12</b>, <b>lombaires 5</b>, <b>sacrum 5</b> soudées, <b>coccyx 4</b>.</p>
-  <p>Courbures : lordose cervicale, cyphose thoracique, lordose lombaire, cyphose sacrée.</p>
-  <p><b>Vertèbre type</b> : corps, arc (pédicules + lames), processus épineux, 2 transverses, 4 articulaires, foramen vertébral (→ moelle spinale).</p>`},
-  {h:"Thorax & ceintures",html:`<p>12 paires de côtes : <b>vraies 1-7</b>, <b>fausses 8-10</b>, <b>flottantes 11-12</b>. Sternum = manubrium + corps + xiphoïde. <b>Angle sternal (Louis)</b> = 2e côte.</p>
-  <p><b>Ceinture scapulaire</b> : clavicule + scapula (épine, acromion, coracoïde, glène). <b>Ceinture pelvienne</b> : os coxal = ilion + ischion + pubis.</p>`},
-  {h:"Os du membre supérieur",html:`<p><b>Humérus</b> : tête, cols, tubercules majeur/mineur, sillon bicipital, trochlée + capitulum, épicondyles. <b>Ulna</b> (médial) : olécrâne, coronoïde. <b>Radius</b> (latéral) : tête, styloïde.</p>
-  <p><b>Carpe</b> (prox→dist) : Scaphoïde, Lunatum, Triquétrum, Pisiforme / Trapèze, Trapézoïde, Capitatum, Hamatum.</p>`},
-  {h:"Os du membre inférieur",html:`<p><b>Fémur</b> : tête, col, grand/petit trochanter, ligne âpre, condyles. <b>Patella</b> (sésamoïde). <b>Tibia</b> (médial, portant) + <b>Fibula</b> (latéral).</p>
-  <p><b>Tarse</b> : Talus, Calcanéus, Naviculaire, Cuboïde, 3 Cunéiformes.</p>`}
+  {h:"À quoi sert l'os ?",html:`<p>L'os n'est pas une structure morte : c'est un <b>tissu vivant</b>, vascularisé, qui se remodèle en permanence. Il assure 4 grands rôles : <b>soutien</b>, <b>protection</b> (crâne, thorax), <b>levier</b> du mouvement, et <b>réservoir</b> (calcium, moelle hématopoïétique).</p>
+  <div class="callout def"><span class="ct">📘 Les 5 types d'os</span><b>Long</b> (fémur), <b>court</b> (carpe/tarse), <b>plat</b> (scapula, sternum), <b>irrégulier</b> (vertèbre), <b>sésamoïde</b> (patella, dans un tendon).</div>
+  <p>Un <b>os long</b> comprend : la <b>diaphyse</b> (corps, os compact + cavité médullaire), la <b>métaphyse</b> (ancienne zone de croissance), et les <b>épiphyses</b> (extrémités, os spongieux). Le tout est enveloppé du <b>périoste</b>, richement innervé (d'où la douleur des fractures).</p>`},
+  {h:"La colonne vertébrale",html:`<p>33 vertèbres empilées, avec 4 courbures qui amortissent les contraintes comme un ressort.</p>
+  <div class="svgbox"><svg viewBox="0 0 300 320" class="schema" role="img" aria-label="Courbures du rachis">
+    <path d="M150 20 C 128 50 128 72 150 96" fill="none" stroke="#23b5a8" stroke-width="6" stroke-linecap="round"/>
+    <path d="M150 96 C 176 132 176 162 150 190" fill="none" stroke="#2f8fd6" stroke-width="6" stroke-linecap="round"/>
+    <path d="M150 190 C 126 216 126 238 150 258" fill="none" stroke="#f0b429" stroke-width="6" stroke-linecap="round"/>
+    <path d="M150 258 C 170 280 170 296 160 308" fill="none" stroke="#ec5b6a" stroke-width="6" stroke-linecap="round"/>
+    <text x="186" y="58" class="lbl" fill="#179b8e">Cervicales (7) — lordose</text>
+    <text x="186" y="150" class="lbl" fill="#2f8fd6">Thoraciques (12) — cyphose</text>
+    <text x="40" y="228" class="lbl" fill="#c9930f">Lombaires (5) — lordose</text>
+    <text x="180" y="298" class="lbl" fill="#e0445a">Sacrum + coccyx — cyphose</text>
+  </svg><div class="svgcap">Schéma — les 4 courbures, vue de profil</div></div>
+  <div class="callout mnemo"><span class="ct">🧠 Mémo</span><b>C1 = Atlas</b> (porte la tête, pas de corps) · <b>C2 = Axis</b> (le pivot, processus odontoïde). « Atlas porte le monde, l'Axe le fait tourner. »</div>
+  <div class="callout clin"><span class="ct">🩺 Clinique kiné</span>Une hyperlordose lombaire (bascule antérieure du bassin) est une cause fréquente de lombalgie : c'est un grand classique du bilan postural.</div>`},
+  {h:"Membres : les os à connaître",html:`<p><b>Membre supérieur</b> — Humérus (tête, cols, tubercules majeur/mineur, trochlée + capitulum, épicondyles), Ulna (médial : olécrâne), Radius (latéral : tête, styloïde).</p>
+  <div class="callout key"><span class="ct">⭐ Carpe & Tarse par cœur</span><b>Carpe</b> (prox→dist) : Scaphoïde, Lunatum, Triquétrum, Pisiforme / Trapèze, Trapézoïde, Capitatum, Hamatum.<br><b>Tarse</b> : Talus, Calcanéus, Naviculaire, Cuboïde, 3 Cunéiformes.</div>
+  <p><b>Membre inférieur</b> — Os coxal (ilion + ischion + pubis), Fémur (tête, col, trochanters, ligne âpre), Patella (sésamoïde), Tibia (médial, <b>portant</b>) + Fibula (latéral, non portant).</p>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>5 types d'os ; l'os long = diaphyse + métaphyse + épiphyses + <b>périoste</b>.</li>
+  <li>Rachis = 7 C, 12 T, 5 L, sacrum, coccyx ; <b>4 courbures</b> (lordose/cyphose alternées).</li>
+  <li><b>C1 Atlas, C2 Axis.</b></li>
+  <li>Carpe et tarse : à réciter dans l'ordre, c'est tombable en examen.</li>
+  <li>Jambe : <b>tibia portant</b>, fibula non portante.</li>
+  </ul></div>`}
 ]},
 {icon:"🔗",title:"Arthrologie",sections:[
-  {h:"Classification & structure",html:`<div class="tablewrap"><table><tr><th>Type</th><th>Mobilité</th><th>Exemple</th></tr>
-  <tr><td>Synarthrose (fibreuse)</td><td>immobile</td><td>sutures crâne</td></tr>
+  {h:"Classer une articulation",html:`<p>Une articulation, c'est la <b>jonction entre deux os</b>. On les classe selon leur mobilité.</p>
+  <div class="tablewrap"><table><tr><th>Type</th><th>Mobilité</th><th>Exemple</th></tr>
+  <tr><td>Synarthrose (fibreuse)</td><td>immobile</td><td>sutures du crâne</td></tr>
   <tr><td>Amphiarthrose (cartilagineuse)</td><td>semi-mobile</td><td>symphyse pubienne, disques</td></tr>
-  <tr><td>Diarthrose (synoviale)</td><td>mobile</td><td>épaule, genou, hanche</td></tr></table></div>
-  <p><b>Synoviale</b> : cartilage hyalin, capsule, membrane synoviale (+ liquide), cavité, ligaments, parfois ménisques / labrum / bourses.</p>`},
-  {h:"Types d'articulations synoviales",html:`<div class="tablewrap"><table><tr><th>Type</th><th>Ddl</th><th>Exemple</th></tr>
+  <tr><td>Diarthrose (synoviale)</td><td>très mobile</td><td>épaule, genou, hanche</td></tr></table></div>`},
+  {h:"L'articulation synoviale en détail",html:`<p>C'est le modèle le plus mobile, et le plus important en kiné.</p>
+  <div class="svgbox"><svg viewBox="0 0 300 210" class="schema" role="img" aria-label="Articulation synoviale">
+    <path d="M70 10 q-18 60 4 90 h44 q-10 -45 0 -90 z" fill="#cdd7e1" stroke="currentColor" stroke-width="1.5"/>
+    <path d="M70 200 q-18 -60 4 -90 h44 q-10 45 0 90 z" fill="#cdd7e1" stroke="currentColor" stroke-width="1.5"/>
+    <rect x="72" y="96" width="44" height="6" fill="#23b5a8"/>
+    <rect x="72" y="108" width="44" height="6" fill="#23b5a8"/>
+    <ellipse cx="94" cy="105" rx="46" ry="34" fill="none" stroke="#f0b429" stroke-width="2.5"/>
+    <text x="150" y="60" class="lbl" fill="currentColor">os</text>
+    <text x="150" y="100" class="lbl" fill="#179b8e">cartilage hyalin</text>
+    <text x="150" y="130" class="lbl" fill="#c9930f">capsule + membrane synoviale</text>
+    <text x="150" y="160" class="lblsm">(la cavité contient le liquide synovial)</text>
+  </svg><div class="svgcap">Schéma — coupe d'une articulation synoviale</div></div>
+  <div class="callout def"><span class="ct">📘 Composants</span>Cartilage hyalin · capsule · membrane synoviale (sécrète le liquide) · cavité articulaire · ligaments · parfois ménisques / labrum / bourses séreuses.</div>
+  <div class="tablewrap"><table><tr><th>Type synovial</th><th>Ddl</th><th>Exemple</th></tr>
   <tr><td>Sphéroïde</td><td>3</td><td>épaule, hanche</td></tr>
-  <tr><td>Ellipsoïde</td><td>2</td><td>radio-carpienne</td></tr>
-  <tr><td>En selle</td><td>2</td><td>pouce</td></tr>
   <tr><td>Trochléenne</td><td>1</td><td>coude, genou, cheville</td></tr>
   <tr><td>Trochoïde (pivot)</td><td>1</td><td>radio-ulnaire</td></tr>
-  <tr><td>Plane</td><td>glissement</td><td>articulaires vertébrales</td></tr></table></div>`},
-  {h:"Articulations clés",html:`<p><b>Épaule</b> : très mobile, peu stable → labrum + coiffe. <b>Coude</b> : 3 articulations (huméro-ulnaire, huméro-radiale, radio-ulnaire prox.). <b>Genou</b> : LCA (anti tiroir antérieur), LCP (anti tiroir postérieur), ménisques (amortissement). <b>Cheville</b> : trochléenne, stabilisée par les ligaments collatéraux.</p>`}
+  <tr><td>En selle</td><td>2</td><td>pouce</td></tr>
+  <tr><td>Plane</td><td>glissement</td><td>articulaires vertébrales</td></tr></table></div>
+  <div class="callout clin"><span class="ct">🩺 Clinique kiné</span>Plus une articulation est mobile, moins elle est stable : l'<b>épaule</b> (sphéroïde) est la plus mobile du corps → la plus luxée. Elle compense par le <b>labrum</b> et la <b>coiffe des rotateurs</b>.</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>3 classes : <b>syn</b>arthrose (fixe), <b>amphi</b>arthrose (semi), <b>di</b>arthrose (mobile).</li>
+  <li>Synoviale = cartilage + capsule + <b>membrane synoviale</b> + cavité + ligaments.</li>
+  <li>Sphéroïde = 3 ddl ; trochléenne = 1 ddl.</li>
+  <li><b>Mobilité ↔ stabilité</b> : l'épaule gagne en amplitude ce qu'elle perd en stabilité.</li>
+  </ul></div>`}
 ]},
 {icon:"💪",title:"Myologie générale",sections:[
-  {h:"Tissu & architecture",html:`<p>3 tissus : <b>strié squelettique</b> (volontaire, notre sujet), strié cardiaque, lisse (involontaires).</p>
-  <p>Architecture : fusiforme, penné (uni/bi/multipenné), circulaire (sphincter), digastrique. <b>Unité motrice</b> = motoneurone + fibres innervées. <b>Sarcomère</b> : actine + myosine (filaments glissants).</p>
-  <blockquote>Plus un muscle est penné → plus de <b>force</b>, mais moins de <b>course</b> (amplitude).</blockquote>`},
-  {h:"Rôles & types de contraction",html:`<p><b>Rôles</b> : agoniste (moteur), antagoniste (s'oppose), synergiste (aide), fixateur (stabilise l'origine).</p>
-  <ul><li><b>Concentrique</b> : le muscle raccourcit (montée de charge).</li>
-  <li><b>Excentrique</b> : s'allonge en se contractant (freinage, descente).</li>
-  <li><b>Isométrique</b> : longueur constante (gainage).</li></ul>`}
+  {h:"Lire n'importe quel muscle",html:`<p>La fiche d'identité d'un muscle tient en 4 lettres : <b>O / T / I / Action</b>. Une fois ce réflexe acquis, tu peux apprendre n'importe quel muscle de la même façon.</p>
+  <div class="svgbox"><svg viewBox="0 0 320 200" class="schema" role="img" aria-label="Carte mentale du muscle">
+    <ellipse cx="160" cy="100" rx="54" ry="30" fill="#23b5a8"/>
+    <text x="160" y="105" text-anchor="middle" class="mm-c" font-size="15" fill="#06141a">MUSCLE</text>
+    <line x1="112" y1="84" x2="50" y2="40" stroke="#2f8fd6" stroke-width="2"/>
+    <line x1="208" y1="84" x2="270" y2="40" stroke="#f0b429" stroke-width="2"/>
+    <line x1="112" y1="116" x2="50" y2="160" stroke="#ec5b6a" stroke-width="2"/>
+    <line x1="208" y1="116" x2="270" y2="160" stroke="#179b8e" stroke-width="2"/>
+    <text x="50" y="36" text-anchor="middle" class="lbl" fill="#2f8fd6">Origine</text>
+    <text x="270" y="36" text-anchor="middle" class="lbl" fill="#c9930f">Terminaison</text>
+    <text x="50" y="176" text-anchor="middle" class="lbl" fill="#e0445a">Innervation</text>
+    <text x="270" y="176" text-anchor="middle" class="lbl" fill="#179b8e">Action</text>
+  </svg><div class="svgcap">Carte mentale — la fiche d'identité d'un muscle</div></div>
+  <div class="callout key"><span class="ct">⭐ À retenir</span>L'<b>origine</b> est le point fixe (proximal), la <b>terminaison</b> le point mobile (distal). L'action, c'est le rapprochement des deux : déduis-la du trajet du muscle par rapport à l'axe de l'articulation.</div>`},
+  {h:"Rôles & types de contraction",html:`<div class="callout def"><span class="ct">📘 Rôles</span><b>Agoniste</b> (moteur) · <b>antagoniste</b> (s'oppose/freine) · <b>synergiste</b> (aide) · <b>fixateur</b> (stabilise l'origine).</div>
+  <ul><li><b>Concentrique</b> : le muscle raccourcit (monter une charge).</li>
+  <li><b>Excentrique</b> : il s'allonge en se contractant (freiner la descente). C'est le mode qui crée le plus de courbatures.</li>
+  <li><b>Isométrique</b> : longueur constante (gainage, maintien postural).</li></ul>
+  <div class="callout mnemo"><span class="ct">🧠 Mémo</span>Plus un muscle est <b>penné</b> (fibres obliques en plumes), plus il est <b>puissant</b> mais avec une <b>course</b> (amplitude) faible. Fusiforme = l'inverse.</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>Tout muscle = <b>Origine / Terminaison / Innervation / Action</b>.</li>
+  <li>Origine = point fixe proximal ; terminaison = point mobile distal.</li>
+  <li>Contractions : <b>concentrique</b> (raccourcit), <b>excentrique</b> (freine), <b>isométrique</b> (maintient).</li>
+  <li>Rôles : agoniste / antagoniste / synergiste / fixateur.</li>
+  </ul></div>`}
 ]},
 {icon:"🦾",title:"Membre supérieur",sections:[
-  {h:"Ceinture & épaule (coiffe)",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  {h:"Ceinture & épaule — la coiffe",html:`<p>L'épaule sacrifie la stabilité pour la mobilité. Quatre petits muscles, la <b>coiffe des rotateurs</b>, recentrent en permanence la tête humérale dans la glène.</p>
+  <div class="callout mnemo"><span class="ct">🧠 Mémo coiffe = SITS</span><b>S</b>upra-épineux (initie l'abduction) · <b>I</b>nfra-épineux (rotation externe) · <b>T</b>eres minor = petit rond (rotation externe) · <b>S</b>ubscapulaire (rotation interne).</div>
+  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
   <tr><td>Deltoïde</td><td>axillaire</td><td>abduction / flexion+RI / extension+RE</td></tr>
-  <tr><td>Supra-épineux</td><td>supra-scapulaire</td><td>initie l'abduction</td></tr>
-  <tr><td>Infra-épineux / petit rond</td><td>supra-scap. / axillaire</td><td>rotation externe</td></tr>
-  <tr><td>Subscapulaire</td><td>subscapulaires</td><td>rotation interne</td></tr>
-  <tr><td>Grand dorsal</td><td>thoraco-dorsal</td><td>adduction+RI+extension</td></tr>
+  <tr><td>Grand dorsal</td><td>thoraco-dorsal</td><td>adduction + RI + extension (tirer)</td></tr>
   <tr><td>Dentelé antérieur</td><td>thoracique long</td><td>protraction (lésion = scapula alata)</td></tr></table></div>
-  <blockquote>Coiffe = <b>SITS</b> (Supra, Infra, Teres minor, Subscapulaire) → centre la tête humérale.</blockquote>`},
+  <div class="callout clin"><span class="ct">🩺 Clinique kiné</span>La tendinopathie de la coiffe (surtout le supra-épineux) est LE motif n°1 de consultation à l'épaule. Le conflit sous-acromial pince le tendon lors de l'abduction.</div>`},
   {h:"Bras & avant-bras",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
-  <tr><td>Biceps brachial</td><td>musculo-cutané</td><td>flexion coude + supination</td></tr>
+  <tr><td>Biceps brachial</td><td>musculo-cutané</td><td>flexion coude + <b>supination</b></td></tr>
   <tr><td>Brachial</td><td>musculo-cutané</td><td>fléchisseur pur du coude</td></tr>
-  <tr><td>Triceps brachial</td><td>radial</td><td>extension du coude</td></tr>
-  <tr><td>Brachio-radial</td><td>radial</td><td>flexion coude (neutre)</td></tr></table></div>
-  <blockquote>Avant-bras : loge <b>antérieure = médian</b> (fléchisseurs) · loge <b>postérieure = radial</b> (extenseurs). Canal carpien = nerf médian.</blockquote>`},
-  {h:"Innervation (plexus brachial C5-T1)",html:`<div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles</th><th>Lésion</th></tr>
-  <tr><td>Musculo-cutané</td><td>loge ant. bras</td><td>—</td></tr>
+  <tr><td>Triceps brachial</td><td>radial</td><td>extension du coude</td></tr></table></div>
+  <div class="callout key"><span class="ct">⭐ Règle d'or avant-bras</span>Loge <b>antérieure = nerf médian</b> (fléchisseurs, + ulnaire pour 2 muscles) · loge <b>postérieure = nerf radial</b> (extenseurs).</div>`},
+  {h:"Innervation — le plexus brachial",html:`<p>Cinq nerfs terminaux naissent des racines <b>C5 à T1</b>.</p>
+  <div class="svgbox"><svg viewBox="0 0 320 210" class="schema" role="img" aria-label="Plexus brachial">
+    <g class="lbl" fill="currentColor" font-size="11">
+      <text x="20" y="30">C5</text><text x="20" y="62">C6</text><text x="20" y="94">C7</text><text x="20" y="126">C8</text><text x="20" y="158">T1</text></g>
+    <g stroke="#2f8fd6" stroke-width="2" fill="none">
+      <path d="M40 26 C 120 26 120 30 175 34"/><path d="M40 58 C 120 58 120 60 175 70"/>
+      <path d="M40 90 C 120 90 120 100 175 106"/><path d="M40 122 C 120 122 120 130 175 142"/>
+      <path d="M40 154 C 120 154 120 150 175 178"/></g>
+    <g class="lbl" font-size="11" font-weight="800">
+      <text x="182" y="38" fill="#179b8e">Musculo-cutané</text>
+      <text x="182" y="74" fill="#179b8e">Axillaire</text>
+      <text x="182" y="110" fill="#e0445a">Radial</text>
+      <text x="182" y="146" fill="#c9930f">Médian</text>
+      <text x="182" y="182" fill="#2f8fd6">Ulnaire</text></g>
+  </svg><div class="svgcap">Schéma — racines C5-T1 → 5 nerfs terminaux</div></div>
+  <div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles</th><th>Lésion typique</th></tr>
   <tr><td>Axillaire</td><td>deltoïde, petit rond</td><td>—</td></tr>
   <tr><td>Radial</td><td>triceps + extenseurs</td><td>main tombante</td></tr>
   <tr><td>Médian</td><td>fléchisseurs + thénar</td><td>canal carpien</td></tr>
-  <tr><td>Ulnaire</td><td>intrinsèques main</td><td>griffe ulnaire</td></tr></table></div>`}
+  <tr><td>Ulnaire</td><td>intrinsèques de la main</td><td>griffe ulnaire</td></tr></table></div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>Coiffe = <b>SITS</b> ; elle recentre la tête humérale.</li>
+  <li>Biceps = flexion + <b>supination</b> ; triceps = extension (radial).</li>
+  <li>Avant-bras : <b>médian devant, radial derrière</b>.</li>
+  <li>Plexus brachial <b>C5-T1</b> → 5 nerfs ; radial = main tombante, ulnaire = griffe, médian = canal carpien.</li>
+  </ul></div>`}
 ]},
 {icon:"🦵",title:"Membre inférieur",sections:[
-  {h:"Hanche & fessiers",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
-  <tr><td>Ilio-psoas</td><td>plexus lombaire / fémoral</td><td>flexion de hanche</td></tr>
+  {h:"Hanche & fessiers",html:`<p>Le membre inférieur est conçu pour la <b>stabilité et la propulsion</b>. Les fessiers en sont les moteurs.</p>
+  <div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <tr><td>Ilio-psoas</td><td>fémoral / plexus lombaire</td><td>flexion de hanche (le plus puissant)</td></tr>
   <tr><td>Grand fessier</td><td>glutéal inférieur</td><td>extension + RE</td></tr>
-  <tr><td>Moyen fessier</td><td>glutéal supérieur</td><td>abduction + stabilité bassin</td></tr>
+  <tr><td>Moyen fessier</td><td>glutéal supérieur</td><td>abduction + stabilité du bassin</td></tr>
   <tr><td>Adducteurs</td><td>obturateur</td><td>adduction</td></tr></table></div>
-  <blockquote>Moyen fessier déficient → boiterie de Trendelenburg (bascule du bassin).</blockquote>`},
-  {h:"Cuisse",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Innervation</th><th>Action</th></tr>
+  <div class="callout clin"><span class="ct">🩺 Clinique kiné</span>Un moyen fessier déficient = <b>boiterie de Trendelenburg</b> : le bassin bascule du côté opposé à l'appui. Test postural incontournable.</div>`},
+  {h:"Cuisse & jambe",html:`<div class="tablewrap"><table><tr><th>Groupe</th><th>Nerf</th><th>Action</th></tr>
   <tr><td>Quadriceps</td><td>fémoral (L2-L4)</td><td>extension du genou</td></tr>
-  <tr><td>Sartorius</td><td>fémoral</td><td>flexion+abduction+RE hanche</td></tr>
-  <tr><td>Ischio-jambiers</td><td>sciatique (L5-S2)</td><td>flexion genou + extension hanche</td></tr></table></div>
-  <blockquote>Patte d'oie = <b>Sa</b>rtorius + <b>Gr</b>acile + <b>Se</b>mi-tendineux. Droit fémoral = biarticulaire.</blockquote>`},
-  {h:"Jambe & pied",html:`<div class="tablewrap"><table><tr><th>Loge</th><th>Muscles</th><th>Nerf · Action</th></tr>
-  <tr><td>Postérieure</td><td>triceps sural, tibial post.</td><td>tibial · flexion plantaire</td></tr>
-  <tr><td>Antérieure</td><td>tibial antérieur</td><td>fibulaire profond · dorsiflexion</td></tr>
-  <tr><td>Latérale</td><td>fibulaires</td><td>fibulaire superficiel · éversion</td></tr></table></div>`},
-  {h:"Innervation (plexus lombo-sacré)",html:`<div class="tablewrap"><table><tr><th>Nerf</th><th>Muscles</th></tr>
-  <tr><td>Fémoral (L2-L4)</td><td>quadriceps, sartorius, ilio-psoas</td></tr>
-  <tr><td>Obturateur (L2-L4)</td><td>adducteurs</td></tr>
-  <tr><td>Sciatique (L4-S3)</td><td>ischios + jambe + pied (→ tibial + fibulaire commun)</td></tr></table></div>
-  <blockquote>Lésion du <b>fibulaire commun</b> → pied tombant (steppage).</blockquote>`}
+  <tr><td>Ischio-jambiers</td><td>sciatique (L5-S2)</td><td>flexion genou + extension hanche</td></tr>
+  <tr><td>Triceps sural</td><td>tibial</td><td>flexion plantaire</td></tr>
+  <tr><td>Tibial antérieur</td><td>fibulaire profond</td><td>dorsiflexion + inversion</td></tr>
+  <tr><td>Fibulaires</td><td>fibulaire superficiel</td><td>éversion</td></tr></table></div>
+  <div class="callout mnemo"><span class="ct">🧠 Mémo</span>Patte d'oie = <b>Sa</b>rtorius + <b>Gr</b>acile + <b>Se</b>mi-tendineux. Jambe : <b>tibial derrière</b>, <b>fibulaire profond devant</b>, <b>fibulaire superficiel dehors</b>.</div>
+  <div class="callout clin"><span class="ct">🩺 Clinique kiné</span>Lésion du <b>nerf fibulaire commun</b> (au col de la fibula) → <b>pied tombant</b> (steppage) : le patient ne relève plus le pied.</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>Ilio-psoas = fléchisseur de hanche ; grand fessier = extension ; <b>moyen fessier = stabilité du bassin</b>.</li>
+  <li>Quadriceps (fémoral) ↔ ischio-jambiers (sciatique) : couple extension/flexion du genou.</li>
+  <li>Jambe : tibial (post), fibulaire profond (ant), fibulaire superficiel (lat).</li>
+  <li><b>Fibulaire commun lésé = pied tombant.</b></li>
+  </ul></div>`}
 ]},
 {icon:"🫁",title:"Tronc & respiration",sections:[
-  {h:"Muscles du dos",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Action</th></tr>
+  {h:"Le caisson : dos & abdomen",html:`<p>Le tronc est un <b>caisson</b> qui protège les viscères et transmet les forces entre haut et bas du corps. Sa stabilité (« gainage ») est centrale en kiné.</p>
+  <div class="tablewrap"><table><tr><th>Muscle</th><th>Action</th></tr>
   <tr><td>Érecteurs du rachis</td><td>extension + posture</td></tr>
-  <tr><td>Transversaire épineux (multifides)</td><td>rotation + stabilité segmentaire</td></tr>
-  <tr><td>Carré des lombes</td><td>inclinaison latérale, fixe 12e côte</td></tr></table></div>
-  <p>Innervation : rameaux dorsaux des nerfs spinaux.</p>`},
-  {h:"Abdomen & respiration",html:`<div class="tablewrap"><table><tr><th>Muscle</th><th>Action</th></tr>
   <tr><td>Droit de l'abdomen</td><td>flexion du tronc</td></tr>
-  <tr><td>Oblique externe / interne</td><td>rotation (contro / homolatérale)</td></tr>
-  <tr><td>Transverse</td><td>sangle / gainage</td></tr>
-  <tr><td>Diaphragme</td><td>inspiration (n. phrénique C3-C5)</td></tr></table></div>
-  <blockquote>« C3-4-5 keep the diaphragm alive. »</blockquote>`}
+  <tr><td>Obliques (ext/int)</td><td>rotation (contro / homolatérale)</td></tr>
+  <tr><td>Transverse</td><td>sangle abdominale / gainage</td></tr></table></div>
+  <div class="callout key"><span class="ct">⭐ À retenir</span>Le <b>transverse</b> + les <b>multifides</b> forment le « core » : ce sont eux que l'on renforce en premier dans une lombalgie, pas les abdos « superficiels ».</div>`},
+  {h:"La respiration",html:`<div class="callout def"><span class="ct">📘 Le diaphragme</span>Coupole musculo-tendineuse, principal muscle inspiratoire. En se contractant, il <b>s'abaisse</b> → le volume thoracique augmente → l'air entre.</div>
+  <div class="callout mnemo"><span class="ct">🧠 Mémo</span>Innervation du diaphragme = <b>nerf phrénique (C3-C4-C5)</b>. « C3-4-5 keep the diaphragm alive. »</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>Sangle abdominale (de profond à superficiel) : <b>transverse</b> → obliques → droit.</li>
+  <li>Obliques : externe = rotation controlatérale, interne = homolatérale.</li>
+  <li>Diaphragme = inspiration, innervé par le <b>phrénique (C3-C5)</b>.</li>
+  <li>Gainage = transverse + multifides (clé de la lombalgie).</li>
+  </ul></div>`}
 ]},
 {icon:"🧠",title:"Neuro-anatomie",sections:[
-  {h:"Organisation SNC / SNP",html:`<p><b>SNC</b> = encéphale + moelle spinale. <b>SNP</b> = 12 nerfs crâniens + 31 nerfs spinaux (8C, 12T, 5L, 5S, 1Co).</p>
-  <p>Nerf spinal = racine <b>dorsale (sensitive)</b> + racine <b>ventrale (motrice)</b> → mixte. <b>Dermatome</b> = peau d'une racine ; <b>myotome</b> = muscles d'une racine.</p>
-  <p>Motoneurone <b>supérieur</b> (SNC) vs <b>inférieur</b> (corne antérieure → muscle ; lésion = paralysie flasque + amyotrophie).</p>`},
-  {h:"Plexus & nerfs",html:`<p><b>Cervical</b> (C1-C4) → nerf phrénique. <b>Brachial</b> (C5-T1) → musculo-cutané, axillaire, radial, médian, ulnaire. <b>Lombaire</b> (L1-L4) → fémoral, obturateur. <b>Sacré</b> (L4-S4) → sciatique, glutéaux, pudendal.</p>`},
-  {h:"Dermatomes & réflexes",html:`<div class="tablewrap"><table><tr><th>Repère</th><th>Racine</th></tr>
-  <tr><td>Pouce</td><td>C6</td></tr><tr><td>Majeur</td><td>C7</td></tr><tr><td>Auriculaire</td><td>C8</td></tr>
-  <tr><td>Malléole médiale</td><td>L4</td></tr><tr><td>Dos du pied / gros orteil</td><td>L5</td></tr><tr><td>Talon / bord latéral</td><td>S1</td></tr></table></div>
-  <div class="tablewrap"><table><tr><th>Réflexe</th><th>Racine</th></tr>
-  <tr><td>Bicipital</td><td>C5-C6</td></tr><tr><td>Tricipital</td><td>C7</td></tr><tr><td>Rotulien</td><td>L4</td></tr><tr><td>Achilléen</td><td>S1</td></tr></table></div>`}
+  {h:"L'organisation du système nerveux",html:`<div class="callout def"><span class="ct">📘 SNC vs SNP</span><b>SNC</b> = encéphale + moelle spinale. <b>SNP</b> = 12 nerfs crâniens + 31 nerfs spinaux (8 C, 12 T, 5 L, 5 S, 1 Co).</div>
+  <p>Chaque <b>nerf spinal</b> est mixte : une racine <b>dorsale (sensitive)</b> et une racine <b>ventrale (motrice)</b>.</p>
+  <div class="callout key"><span class="ct">⭐ Définitions clés</span><b>Dermatome</b> = territoire cutané d'une racine. <b>Myotome</b> = muscles d'une racine. Base de la localisation d'une lésion.</div>`},
+  {h:"Le réflexe myotatique",html:`<p>Le réflexe le plus simple : l'étirement d'un muscle déclenche sa contraction. C'est ce qu'on teste avec le marteau (rotulien, achilléen).</p>
+  <div class="svgbox"><svg viewBox="0 0 320 170" class="schema" role="img" aria-label="Arc réflexe myotatique">
+    <circle cx="250" cy="60" r="22" fill="none" stroke="#23b5a8" stroke-width="2"/>
+    <text x="250" y="64" text-anchor="middle" class="lbl" fill="#179b8e">moelle</text>
+    <rect x="30" y="120" width="70" height="26" rx="6" fill="#ec5b6a"/>
+    <text x="65" y="137" text-anchor="middle" class="lbl" fill="#fff">muscle</text>
+    <path d="M70 120 C 120 70 200 50 230 52" fill="none" stroke="#2f8fd6" stroke-width="2.5"/>
+    <text x="120" y="78" class="lbl" fill="#2f8fd6">afférent (étirement)</text>
+    <path d="M250 82 C 230 130 150 140 100 134" fill="none" stroke="#f0b429" stroke-width="2.5"/>
+    <text x="120" y="158" class="lbl" fill="#c9930f">efférent (contraction)</text>
+  </svg><div class="svgcap">Schéma — arc réflexe monosynaptique</div></div>
+  <div class="callout clin"><span class="ct">🩺 Réflexes & racines</span>Bicipital <b>C5-C6</b> · Tricipital <b>C7</b> · Rotulien <b>L4</b> · Achilléen <b>S1</b>. Un réflexe aboli oriente vers la racine atteinte.</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>SNC (encéphale + moelle) / SNP (nerfs crâniens + 31 spinaux).</li>
+  <li>Racine <b>dorsale = sensitive</b>, <b>ventrale = motrice</b>.</li>
+  <li>Dermatome (peau) / myotome (muscles) d'une racine.</li>
+  <li>Réflexe myotatique = étirement → contraction (rotulien L4, achilléen S1).</li>
+  </ul></div>`}
 ]},
 {icon:"✋",title:"Palpation & repères",sections:[
-  {h:"Repères par région",html:`<ul>
-  <li><b>Épaule</b> : acromion, coracoïde, épine scapula, tubercule majeur</li>
-  <li><b>Coude</b> : épicondyles, olécrâne, tête radiale</li>
-  <li><b>Poignet</b> : styloïdes radiale/ulnaire, tubercule de Lister, scaphoïde (tabatière)</li>
-  <li><b>Bassin</b> : EIAS, EIPS, crête iliaque, tubérosité ischiatique, grand trochanter</li>
-  <li><b>Genou</b> : patella, tubérosité tibiale, interligne, tête fibula</li>
-  <li><b>Cheville</b> : malléoles médiale/latérale, tendon calcanéen, naviculaire</li></ul>`},
-  {h:"Notions cliniques kiné",html:`<p>Penser <b>couples agoniste/antagoniste</b> (quadriceps ↔ ischios, biceps ↔ triceps), <b>stabilisateurs</b> (coiffe à l'épaule, moyen fessier au bassin, transverse + multifides au rachis), et <b>chaînes cinétiques</b> ouverte (pied libre) vs fermée (pied au sol).</p>
-  <blockquote>Comprendre l'<b>action</b> d'un muscle = regarder son trajet par rapport à l'axe de l'articulation, plutôt que la réciter.</blockquote>`}
+  {h:"Repères osseux par région",html:`<p>Savoir palper, c'est la base du bilan kiné : on repère d'abord l'os, puis le muscle, puis on teste.</p>
+  <div class="tablewrap"><table><tr><th>Région</th><th>Repères clés</th></tr>
+  <tr><td>Épaule</td><td>acromion, coracoïde, épine scapula, tubercule majeur</td></tr>
+  <tr><td>Coude</td><td>épicondyles, olécrâne, tête radiale</td></tr>
+  <tr><td>Poignet</td><td>styloïdes, scaphoïde (tabatière)</td></tr>
+  <tr><td>Bassin</td><td>EIAS, EIPS, crête iliaque, grand trochanter</td></tr>
+  <tr><td>Genou</td><td>patella, tubérosité tibiale, interligne, tête fibula</td></tr>
+  <tr><td>Cheville</td><td>malléoles, tendon calcanéen, naviculaire</td></tr></table></div>
+  <div class="callout mnemo"><span class="ct">🧠 Astuce</span>La douleur dans la <b>tabatière anatomique</b> = suspicion de fracture du <b>scaphoïde</b> (souvent invisible à la radio initiale !).</div>`},
+  {h:"Penser le mouvement",html:`<div class="callout key"><span class="ct">⭐ Réflexes cliniques</span>Couples agoniste/antagoniste (quadriceps↔ischios), stabilisateurs (coiffe, moyen fessier, transverse), et chaîne cinétique <b>ouverte</b> (pied libre) vs <b>fermée</b> (pied au sol, ex : squat).</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>Palpation = os → muscle → test.</li>
+  <li>Repères majeurs : acromion, EIAS, grand trochanter, malléoles, interligne du genou.</li>
+  <li>Tabatière douloureuse = penser <b>scaphoïde</b>.</li>
+  <li>Raisonner en <b>chaînes</b> (ouverte/fermée) et en stabilisateurs.</li>
+  </ul></div>`}
 ]},
 {icon:"🔧",title:"Biomécanique de base",sections:[
-  {h:"Les leviers osseux",html:`<p>Un <b>levier</b> = segment rigide (os) tournant autour d'un <b>appui</b> (articulation) sous une <b>force</b> (muscle) contre une <b>résistance</b> (charge).</p>
-  <div class="tablewrap"><table><tr><th>Genre</th><th>Disposition</th><th>Exemple · Avantage</th></tr>
-  <tr><td>1er (inter-appui)</td><td>Appui au centre</td><td>tête/atlas · équilibre</td></tr>
-  <tr><td>2e (inter-résistant)</td><td>Résistance au centre</td><td>pointe des pieds · FORCE</td></tr>
-  <tr><td>3e (inter-moteur)</td><td>Force au centre</td><td>biceps/coude · VITESSE (le + fréquent)</td></tr></table></div>`},
-  {h:"Moment de force & bras de levier",html:`<p><b>Moment = Force × bras de levier.</b> Le <b>bras de levier</b> est la distance perpendiculaire entre l'axe articulaire et la ligne d'action de la force.</p>
-  <blockquote>Plus le bras de levier est grand, plus le muscle est efficace (couple élevé) pour une même force. C'est pourquoi la patella, en éloignant le tendon de l'axe du genou, augmente l'efficacité du quadriceps.</blockquote>`},
-  {h:"Équilibre & postures pathologiques",html:`<p><b>Stabilité</b> ↑ avec : base de support large, centre de gravité bas, projection du CG dans la base. CG du corps ≈ devant S2.</p>
-  <div class="tablewrap"><table><tr><th>Terme</th><th>Sens</th></tr>
-  <tr><td>Genu valgum / varum</td><td>genoux en X / jambes arquées</td></tr>
-  <tr><td>Flessum / recurvatum</td><td>déficit d'extension / hyperextension</td></tr>
-  <tr><td>Antéversion / rétroversion bassin</td><td>lordose ↑ / lordose effacée</td></tr></table></div>`}
+  {h:"Les leviers osseux",html:`<p>Chaque articulation fonctionne comme un <b>levier</b> : l'os est le bras, l'articulation l'appui, le muscle la force, et la charge la résistance.</p>
+  <div class="svgbox"><svg viewBox="0 0 420 250" class="schema" role="img" aria-label="Les 3 genres de leviers">
+    <g font-size="10" font-weight="700">
+      <text x="14" y="14" fill="#2f8fd6">F = force (muscle)</text>
+      <text x="150" y="14" fill="#e0445a">R = résistance</text>
+      <text x="270" y="14" fill="#179b8e">▲ = appui</text></g>
+    <!-- 1er genre -->
+    <text x="6" y="74" font-size="11" font-weight="800" fill="currentColor">1er</text>
+    <line x1="60" y1="70" x2="400" y2="70" stroke="currentColor" stroke-width="4"/>
+    <path d="M230 70 L221 86 L239 86 Z" fill="#23b5a8"/>
+    <line x1="110" y1="40" x2="110" y2="64" stroke="#2f8fd6" stroke-width="3"/><path d="M110 70 l-5 -8 h10 z" fill="#2f8fd6"/><text x="100" y="36" font-size="11" fill="#2f8fd6">F</text>
+    <rect x="341" y="70" width="18" height="16" fill="#ec5b6a"/><text x="346" y="104" font-size="11" fill="#e0445a">R</text>
+    <!-- 2e genre -->
+    <text x="6" y="150" font-size="11" font-weight="800" fill="currentColor">2e</text>
+    <line x1="60" y1="146" x2="400" y2="146" stroke="currentColor" stroke-width="4"/>
+    <path d="M370 146 L361 162 L379 162 Z" fill="#23b5a8"/>
+    <line x1="110" y1="116" x2="110" y2="140" stroke="#2f8fd6" stroke-width="3"/><path d="M110 146 l-5 -8 h10 z" fill="#2f8fd6"/><text x="100" y="112" font-size="11" fill="#2f8fd6">F</text>
+    <rect x="221" y="146" width="18" height="16" fill="#ec5b6a"/><text x="226" y="180" font-size="11" fill="#e0445a">R</text>
+    <!-- 3e genre -->
+    <text x="6" y="226" font-size="11" font-weight="800" fill="currentColor">3e</text>
+    <line x1="60" y1="222" x2="400" y2="222" stroke="currentColor" stroke-width="4"/>
+    <path d="M100 222 L91 238 L109 238 Z" fill="#23b5a8"/>
+    <line x1="230" y1="192" x2="230" y2="216" stroke="#2f8fd6" stroke-width="3"/><path d="M230 222 l-5 -8 h10 z" fill="#2f8fd6"/><text x="220" y="188" font-size="11" fill="#2f8fd6">F</text>
+    <rect x="351" y="222" width="18" height="16" fill="#ec5b6a"/><text x="356" y="256" font-size="11" fill="#e0445a">R</text>
+  </svg><div class="svgcap">Schéma — 1er (appui central), 2e (résistance centrale), 3e (force centrale)</div></div>
+  <div class="tablewrap"><table><tr><th>Genre</th><th>Au centre</th><th>Exemple · avantage</th></tr>
+  <tr><td>1er (inter-appui)</td><td>l'appui</td><td>tête/atlas · équilibre</td></tr>
+  <tr><td>2e (inter-résistant)</td><td>la résistance</td><td>pointe des pieds · FORCE</td></tr>
+  <tr><td>3e (inter-moteur)</td><td>la force</td><td>biceps/coude · VITESSE (le + fréquent)</td></tr></table></div>`},
+  {h:"Moment de force",html:`<div class="callout def"><span class="ct">📘 Formule</span><b>Moment = Force × bras de levier.</b> Le bras de levier = distance perpendiculaire entre l'axe articulaire et la ligne d'action de la force.</div>
+  <div class="callout clin"><span class="ct">🩺 Application kiné</span>La <b>patella</b> éloigne le tendon de l'axe du genou → augmente le bras de levier → rend le quadriceps plus efficace. Idem, on rapproche une charge du corps pour réduire le moment sur le rachis.</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>Levier = os (bras) + articulation (appui) + muscle (force) + charge (résistance).</li>
+  <li>3 genres selon ce qui est au centre ; le <b>3e (inter-moteur) domine</b> dans le corps (vitesse).</li>
+  <li><b>Moment = Force × bras de levier.</b></li>
+  <li>Augmenter le bras de levier = plus efficace pour une même force.</li>
+  </ul></div>`}
 ]},
 {icon:"⚡",title:"Physiologie neuromusculaire",sections:[
-  {h:"De l'ordre nerveux à la contraction",html:`<p>Le <b>motoneurone</b> conduit un potentiel d'action jusqu'à la <b>jonction neuromusculaire</b> → libération d'<b>acétylcholine</b> → dépolarisation de la <b>plaque motrice</b> → libération de <b>Ca2+</b> du réticulum sarcoplasmique → ponts <b>actine-myosine</b> (ATP) → contraction.</p>
-  <blockquote><b>Unité motrice</b> = 1 motoneurone + ses fibres. Petites unités = gestes fins (œil, main).</blockquote>`},
-  {h:"Types de fibres & gradation de la force",html:`<div class="tablewrap"><table><tr><th>Type I (lentes)</th><th>Type II (rapides)</th></tr>
+  {h:"De l'ordre nerveux à la contraction",html:`<p>Comment une pensée devient un mouvement ? La commande descend, passe la synapse, et déclenche le glissement des filaments.</p>
+  <div class="callout def"><span class="ct">📘 La chaîne</span>Motoneurone → <b>jonction neuromusculaire</b> (acétylcholine) → plaque motrice → libération de <b>Ca²⁺</b> → ponts <b>actine-myosine</b> (ATP) → contraction.</div>
+  <div class="svgbox"><svg viewBox="0 0 320 140" class="schema" role="img" aria-label="Sarcomère">
+    <line x1="40" y1="20" x2="40" y2="120" stroke="#e0445a" stroke-width="4"/>
+    <line x1="280" y1="20" x2="280" y2="120" stroke="#e0445a" stroke-width="4"/>
+    <text x="40" y="135" text-anchor="middle" class="lblsm">ligne Z</text><text x="280" y="135" text-anchor="middle" class="lblsm">ligne Z</text>
+    <g stroke="#2f8fd6" stroke-width="3">
+      <line x1="40" y1="42" x2="150" y2="42"/><line x1="40" y1="70" x2="150" y2="70"/><line x1="40" y1="98" x2="150" y2="98"/>
+      <line x1="280" y1="42" x2="170" y2="42"/><line x1="280" y1="70" x2="170" y2="70"/><line x1="280" y1="98" x2="170" y2="98"/></g>
+    <rect x="110" y="34" width="100" height="72" fill="none"/>
+    <g stroke="#179b8e" stroke-width="7"><line x1="120" y1="56" x2="200" y2="56"/><line x1="120" y1="84" x2="200" y2="84"/></g>
+    <text x="160" y="20" text-anchor="middle" class="lbl" fill="#2f8fd6">actine (fin)</text>
+    <text x="160" y="128" text-anchor="middle" class="lbl" fill="#179b8e">myosine (épais)</text>
+  </svg><div class="svgcap">Schéma — sarcomère : actine + myosine glissent pour raccourcir</div></div>`},
+  {h:"Fibres, force et réflexes",html:`<div class="tablewrap"><table><tr><th>Type I (lentes)</th><th>Type II (rapides)</th></tr>
   <tr><td>rouges, oxydatives</td><td>blanches, glycolytiques</td></tr>
   <tr><td>endurantes, posture</td><td>puissantes, fatigables</td></tr></table></div>
-  <p><b>Loi du tout ou rien</b> : une fibre se contracte à fond ou pas. La force du muscle se règle par le <b>recrutement</b> d'unités motrices et la <b>fréquence</b> (sommation).</p>`},
-  {h:"Réflexes & capteurs",html:`<div class="tablewrap"><table><tr><th>Capteur</th><th>Détecte</th><th>Effet</th></tr>
-  <tr><td>Fuseau neuromusculaire</td><td>étirement</td><td>réflexe myotatique (contraction)</td></tr>
-  <tr><td>Organe tendineux de Golgi</td><td>tension</td><td>réflexe myotatique inverse (protection)</td></tr></table></div>
-  <blockquote>Le <b>réflexe myotatique</b> (ex : rotulien) est <b>monosynaptique</b> : étirement → contraction immédiate. Base de l'examen des réflexes (L4 rotulien, S1 achilléen).</blockquote>`}
+  <div class="callout key"><span class="ct">⭐ Loi du tout ou rien</span>Une fibre se contracte à fond ou pas du tout. Le muscle module sa force par le <b>recrutement</b> d'unités motrices et la <b>fréquence</b> (sommation).</div>
+  <div class="callout mnemo"><span class="ct">🧠 Capteurs</span><b>Fuseau neuromusculaire</b> → détecte l'<b>étirement</b> (réflexe myotatique). <b>Organe de Golgi</b> → détecte la <b>tension</b> (protection).</div>`},
+  {h:"💡 L'essentiel",html:`<div class="essbox"><ul>
+  <li>Commande : motoneurone → <b>acétylcholine</b> → <b>Ca²⁺</b> → actine-myosine (ATP).</li>
+  <li>Fibres <b>I</b> = lentes/endurantes, <b>II</b> = rapides/puissantes.</li>
+  <li>Force réglée par <b>recrutement + fréquence</b> (la fibre = tout ou rien).</li>
+  <li>Fuseau = étirement ; Golgi = tension.</li>
+  </ul></div>`}
 ]}
 ];
 
